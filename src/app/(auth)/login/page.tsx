@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 // import ReCAPTCHA from "react-google-recaptcha";
 import { useSignInMutation } from "@/features/auth/services/authApi";
 import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   phoneNumber: z.string().optional(),
@@ -21,6 +22,7 @@ const formSchema = z.object({
 function Page() {
   const { data: session } = useSession();
   const [useCodeOnly, setUseCodeOnly] = useState(false);
+  const router = useRouter();
   function onChange(value: string) {
     console.log("Captcha value:", value);
   }
@@ -41,7 +43,7 @@ function Page() {
       Password: values.password,
       redirect: false,
     });
-    console.log(res);
+    router.push("/student");
   }
 
   useEffect(() => {
