@@ -2,8 +2,6 @@ import { footerBg, logo } from "@/assets/images";
 import { ChevronsLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import TitleSection from "../shared/TitleSection";
-import CourseCard from "../shared/CourseCard";
 
 function Footer() {
   return (
