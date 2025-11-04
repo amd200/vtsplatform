@@ -1,0 +1,184 @@
+// footer {
+//   width: 93%;
+//   margin: 40px auto 0;
+//   position: relative;
+//   overflow: hidden;
+//   z-index: 1;
+//   border-radius: 30px 30px 0 0;
+//   -webkit-border-radius: 30px 30px 0 0;
+//   -moz-border-radius: 30px 30px 0 0;
+//   -ms-border-radius: 30px 30px 0 0;
+//   -o-border-radius: 30px 30px 0 0;
+//   @media (max-width: 991px) {
+//     width: 96%;
+//     border-radius: 0;
+//     -webkit-border-radius: 0;
+//     -moz-border-radius: 0;
+//     -ms-border-radius: 0;
+//     -o-border-radius: 0;
+//     padding-bottom: 70px;
+//   }
+
+
+//   .header-footer {
+//     position: relative;
+//     margin-bottom: 15px;
+//     font-family: "ar-medium";
+
+//     p {
+//       color: var(--gray-color);
+//       font-size: 18px;
+//       font-weight: 400;
+//     }
+
+//     &::before {
+//       content: "";
+//       position: absolute;
+//       bottom: -8px;
+//       right: 0;
+//       width: 100px;
+//       border: 1px dashed var(--primary-color);
+//     }
+//   }
+//   span {
+//     font-size: 14px;
+//     margin-bottom: 10px;
+//     display: inline-block;
+//     color: #7a7a7a;
+//   }
+//   .right {
+//     a.logo {
+//       margin-bottom: 15px;
+//       width: 80px;
+//       margin-right: 45px;
+//       height: 80px;
+//       display: inline-block;
+//       img {
+//         width: 80px;
+//         height: 80px;
+//         @media (max-width: 991px) {
+//           width: 100px;
+//           height: 100px;
+//         }
+//       }
+//     }
+
+//     p {
+//       color: #5d666f;
+//       font-size: 16px;
+//       font-weight: 400;
+//     }
+//     .icons-social li {
+//       width: 40px;
+//       height: 40px;
+//       background-color: #fff;
+//       border-radius: 50%;
+//       -webkit-border-radius: 50%;
+//       -moz-border-radius: 50%;
+//       -ms-border-radius: 50%;
+//       -o-border-radius: 50%;
+//       box-shadow: 0px 11px 30px rgba(0, 0, 0, 0.07);
+//       transition: 0.3s;
+//       -webkit-transition: 0.3s;
+//       -moz-transition: 0.3s;
+//       -ms-transition: 0.3s;
+//       -o-transition: 0.3s;
+
+//       &:not(:last-child) {
+//         margin-left: 10px;
+//       }
+
+//       &:hover {
+//         background-color: var(--primary-color);
+
+//         i {
+//           color: #fff;
+//         }
+//       }
+
+//       i {
+//         font-size: 16px;
+//         color: var(--primary-color);
+//       }
+//     }
+//   }
+
+//   .center {
+//     ul.contact-teacher li a {
+//       color: var(--gray-color);
+//       font-family: "ar-medium";
+
+//       i {
+//         font-size: 17px;
+//         color: var(--gray-color);
+//         margin-left: 8px;
+//       }
+//     }
+//   }
+
+//   .left {
+//     font-family: "ar-medium";
+//     span {
+//       font-size: 14px;
+//       margin-bottom: 10px;
+//       display: inline-block;
+//       color: #7a7a7a;
+//       &:hover + .popup-contact {
+//         visibility: visible;
+//       }
+
+//       a {
+//         color: var(--primary-color);
+//       }
+//     }
+
+//     .icons-info li {
+//       margin-bottom: 15px;
+
+//       .icon {
+//         width: 35px;
+//         height: 35px;
+//         background-color: #fff;
+//         box-shadow: 0px 9px 18px rgba(24, 16, 16, 0.05);
+//         margin-left: 6px;
+
+//         i {
+//           color: var(--main-color);
+//           font-size: 17px;
+//         }
+//       }
+
+//       a {
+//         color: var(--gray-color);
+//       }
+//     }
+//     .popup-contact {
+//       position: absolute;
+//       transition: 0.3s;
+//       top: 100%;
+//       background: #fff;
+//       box-shadow: 0 9px 26px rgba(58, 87, 135, 0.15);
+//       max-width: 280px;
+//       padding: 9px 13px;
+//       visibility: hidden;
+//       border: 1px solid #eee;
+//       .close-icon {
+//         position: absolute;
+//         top: 0;
+//         left: 10px;
+//       }
+//       ul {
+//         li {
+//           i {
+//             font-size: 12px;
+//             color: var(--primary-color);
+//           }
+//           a {
+//             font-size: 13px;
+//             color: var(--text-300);
+//           }
+//         }
+//       }
+//     }
+//   }
+// }

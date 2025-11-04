@@ -1,7 +1,30 @@
+import { withNextVideo } from "next-video/process";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "vedu-demo.vtsitco.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "mrahmedmostafa.com",
+        pathname: "/**",
+      },
+    ],
+  },
+
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path((?!auth).*)", // ✅ استثناء مسار /api/auth
+        destination: "https://vedu-demo.vtsitco.com/api/:path*",
+      },
+    ];
+  },
 };
 
-export default nextConfig;
+export default withNextVideo(nextConfig);

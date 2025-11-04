@@ -1,15 +1,30 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import "../styles/global.scss";
 import "./globals.css";
+import Footer from "@/components/layout/Footer";
+import localFont from "next/font/local";
+import DirectionProviderWrapper from "@/providers/DirectionProviderWrapper";
+import SessionWrapper from "@/providers/SessionWrapper";
+import ProviderWrapper from "@/providers/ProviderWrapper";
+import { ToastContainer } from "react-toastify";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const arLight = localFont({
+  src: "../assets/fonts/ARABIC-LIGHT.ttf",
+  display: "swap",
+  variable: "--font-ar-light",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const arMedium = localFont({
+  src: "../assets/fonts/ARABIC-MEDIUM.ttf",
+  display: "swap",
+  variable: "--font-ar-medium",
+});
+
+const arBold = localFont({
+  src: "../assets/fonts/ARABIC-BOLD.ttf",
+  display: "swap",
+  variable: "--font-ar-bold",
 });
 
 export const metadata: Metadata = {
@@ -23,11 +38,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="ar" dir="rtl" className={`${arLight.variable} ${arMedium.variable} ${arBold.variable}`}>
+      <body className={`antialiased`}>
+        <ToastContainer />
+        <ProviderWrapper>
+          <SessionWrapper>{children}</SessionWrapper>
+        </ProviderWrapper>
       </body>
     </html>
   );
