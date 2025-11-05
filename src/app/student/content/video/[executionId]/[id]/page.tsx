@@ -30,7 +30,6 @@ function Page({ params }: { params: Promise<{ executionId: string; id: string }>
     console.log(courseDetails);
   }, [courseDetails]);
 
-  // Checkpoints configuration (بالثواني)
   const checkpoints = [
     { time: 60, message: "✋ توقف! هل تريد متابعة الفيديو؟" }, // 1 دقيقة
     { time: 120, message: "🚀 وصلت لنقطة مهمة! اضغط للمتابعة" }, // 2 دقيقة

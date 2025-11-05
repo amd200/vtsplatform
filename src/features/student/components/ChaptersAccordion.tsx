@@ -44,8 +44,6 @@ function ChaptersAccordion({ chapters, executionId }: { chapters: Chapter[]; exe
                       <div className="flex items-center gap-2">
                         <div className="size-7 flex items-center justify-center bg-white rounded-full">{config.icon}</div>
                         <span>{lesson.Title}</span>
-                        <span>{chapter.ExecutionId}</span>
-                        <span>{lesson.Id}</span>
                       </div>
                       <Button size="sm" asChild>
                         <Link href={url}>{config.buttonText}</Link>
