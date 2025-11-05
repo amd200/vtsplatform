@@ -5,6 +5,7 @@ import { Chapter, ContentType, Lesson } from "@/types/common.types";
 import { Button } from "@/components/ui/button";
 import { BookOpen, FileText, Video, File, Music, Users } from "lucide-react";
 import Link from "next/link";
+import getContentUrl from "../utils/getContentUrl";
 
 const lessonTypeConfig: Record<ContentType, { icon: React.ReactNode; buttonText: string }> = {
   [ContentType.RichText]: { icon: <BookOpen className="size-4 text-primary" />, buttonText: "عرض النص" },
@@ -23,37 +24,6 @@ const lessonTypeConfig: Record<ContentType, { icon: React.ReactNode; buttonText:
   [ContentType.PowerPoint]: { icon: <File className="size-4 text-primary" />, buttonText: "فتح PowerPoint" },
   [ContentType.Meeting]: { icon: <Users className="size-4 text-primary" />, buttonText: "الانضمام للاجتماع" },
 };
-
-function getContentUrl(executionId: string, lessonId: string, contentType: ContentType) {
-  switch (contentType) {
-    case ContentType.Video:
-    case ContentType.VdoCipher:
-      return `/student/content/video/${executionId}/${lessonId}`;
-    case ContentType.PDF:
-      return `/student/content/pdf/${executionId}/${lessonId}`;
-    case ContentType.Word:
-      return `/student/content/word/${executionId}/${lessonId}`;
-    case ContentType.Quiz:
-    case ContentType.QuizModels:
-      return `/student/content/quiz/${executionId}/${lessonId}`;
-    case ContentType.Link:
-      return `/student/content/link/${executionId}/${lessonId}`;
-    case ContentType.Sound:
-      return `/student/content/sound/${executionId}/${lessonId}`;
-    case ContentType.PowerPoint:
-      return `/student/content/ppt/${executionId}/${lessonId}`;
-    case ContentType.Forum:
-      return `/student/content/forum/${executionId}/${lessonId}`;
-    case ContentType.HomeWork:
-      return `/student/content/homework/${executionId}/${lessonId}`;
-    case ContentType.Meeting:
-      return `/student/content/meeting/${executionId}/${lessonId}`;
-    case ContentType.OfflineActivity:
-      return `/student/content/offline/${executionId}/${lessonId}`;
-    default:
-      return `/student/content/unknown/${executionId}/${lessonId}`;
-  }
-}
 
 function ChaptersAccordion({ chapters, executionId }: { chapters: Chapter[]; executionId: string }) {
   return (
