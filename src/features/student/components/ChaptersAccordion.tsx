@@ -4,6 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Chapter, ContentType, Lesson } from "@/types/common.types";
 import { Button } from "@/components/ui/button";
 import { BookOpen, FileText, Video, File, Music, Users } from "lucide-react";
+import Link from "next/link";
 
 const lessonTypeConfig: Record<ContentType, { icon: React.ReactNode; buttonText: string }> = {
   [ContentType.RichText]: { icon: <BookOpen className="size-4 text-primary" />, buttonText: "عرض النص" },
@@ -23,7 +24,7 @@ const lessonTypeConfig: Record<ContentType, { icon: React.ReactNode; buttonText:
   [ContentType.Meeting]: { icon: <Users className="size-4 text-primary" />, buttonText: "الانضمام للاجتماع" },
 };
 
-function ChaptersAccordion({ chapters }: { chapters: Chapter[] }) {
+function ChaptersAccordion({ chapters, executionId }: { chapters: Chapter[]; executionId: string }) {
   console.log("x", chapters);
   return (
     <Accordion type="single" collapsible className="bg-[#f8f8f8] p-8">
@@ -41,8 +42,12 @@ function ChaptersAccordion({ chapters }: { chapters: Chapter[] }) {
                       <div className="flex items-center gap-2">
                         <div className="size-7 flex items-center justify-center bg-white rounded-full">{config.icon}</div>
                         <span>{lesson.Title}</span>
+                        <span>{chapter.ExecutionId}</span>
+                        <span>{lesson?.Id}</span>
                       </div>
-                      <Button size={"sm"}>{config.buttonText}</Button>
+                      <Button size="sm" asChild>
+                        <Link href={`/student/video/${executionId}/${lesson?.Id}`}>{config.buttonText}</Link>
+                      </Button>{" "}
                     </li>
                   );
                 })}

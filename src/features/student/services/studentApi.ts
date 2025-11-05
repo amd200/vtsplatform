@@ -1,7 +1,7 @@
 import { axiosBaseQuery } from "@/lib/api/axiosBaseQuery";
 import { DashBoardResponse } from "@/types/dashboard.types";
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { AllCoursesResponse, ExamResultsRepsone, GetCourseDetailsRepsone, StudentChaptersResponse, StudentCoursesResponse, StudentLessonsRepsone, StudentPaymentsResponse, StudentScheduleRepsone, StudentSessionsRepsone, StudentSubscriptionsResponse } from "../types/student.types";
+import { AllCoursesResponse, ExamResultsRepsone, GetCourseDetailsRepsone, ShowContentRepsone, StudentChaptersResponse, StudentCoursesResponse, StudentLessonsRepsone, StudentPaymentsResponse, StudentScheduleRepsone, StudentSessionsRepsone, StudentSubscriptionsResponse } from "../types/student.types";
 import { Course } from "@/types/common.types";
 
 export const studentApi = createApi({
@@ -75,7 +75,17 @@ export const studentApi = createApi({
         },
       }),
     }),
+    showVideo: builder.query<ShowContentRepsone, { Id?: string; LessonId?: string }>({
+      query: ({ Id, LessonId }) => ({
+        url: `/platform/Show/VideoByUrl`,
+        method: "GET",
+        params: {
+          Id,
+          LessonId,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery } = studentApi;
+export const { useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery, useShowVideoQuery } = studentApi;

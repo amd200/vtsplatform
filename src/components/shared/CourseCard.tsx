@@ -56,12 +56,12 @@ function CourseCard({ course }: { course: Course }) {
               {}
               {course?.Isbuy ? (
                 <>
-                  <Link href={`/student/mycourses/${course?.CourseExecutionId}`}>
-                    <Button className="text-xs h-7" size="sm" variant="outline">
+                  <Button className="text-xs h-7" size="sm" variant="outline" asChild>
+                    <Link href={`/student/mycourses/${course?.CourseExecutionId}`}>
                       <PlayCircle />
                       المشاهدة الان
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                 </>
               ) : (
                 <>

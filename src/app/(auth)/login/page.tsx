@@ -46,9 +46,6 @@ function Page() {
     router.push("/student");
   }
 
-  useEffect(() => {
-    console.log(session);
-  }, [session]);
   return (
     <>
       <div className="text-center">

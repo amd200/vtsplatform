@@ -2,9 +2,19 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { LayoutDashboard, BookOpen, Users, FileText, Wallet, Settings, User, LogOut, ShoppingCart, CalendarCheck, MessageCircle, ClipboardList, Archive, Book, CreditCard, Banknote } from "lucide-react";
+import { signOut } from "next-auth/react";
+
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await signOut();
+
+    router.push("/login");
+  };
 
   const menuItems = [
     { href: "/student", label: "حسابي", icon: <LayoutDashboard size={20} /> },
@@ -26,11 +36,10 @@ export default function Sidebar() {
     { href: "/student/mysubscriptions", label: "الاشتراكات", icon: <Banknote size={20} /> },
     { href: "/student/mysessions", label: "جلساتي", icon: <CreditCard size={20} /> },
     { href: "/profile", label: "الملف الشخصي", icon: <User size={20} /> },
-    { href: "/logout", label: "تسجيل خروج", icon: <LogOut size={20} /> },
   ];
 
   return (
-    <aside className={`${isOpen ? "w-64" : "w-20"}  h-screen fixed start-0 z-40 top-0 bg-primary border-e shadow-sm transition-all duration-300 flex flex-col`}>
+    <aside className={`${isOpen ? "w-64" : "w-20"} h-screen fixed start-0 z-40 top-0 bg-primary border-e shadow-sm transition-all duration-300 flex flex-col`}>
       <div className={`flex items-center ${!isOpen ? "justify-center" : "justify-end"}  p-3 border-b`}>
         <button onClick={() => setIsOpen(!isOpen)} className="p-2 rounded-lg text-white hover:bg-gray-100 hover:text-black">
           {isOpen ? "←" : "→"}
@@ -47,6 +56,13 @@ export default function Sidebar() {
               </Link>
             </li>
           ))}
+
+          <li>
+            <button onClick={handleLogout} className={`flex w-full text-white items-center gap-4 p-2 py-2.5 rounded-lg hover:text-gray-700 hover:bg-white ${!isOpen && "justify-center"}`}>
+              <LogOut size={20} />
+              <span className={`${!isOpen && "hidden"} transition-all`}>تسجيل خروج</span>
+            </button>
+          </li>
         </ul>
       </nav>
     </aside>

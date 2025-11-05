@@ -145,6 +145,32 @@ export interface StudentSchedule {
   }[];
   StudentSchedule: LessonScheduleDetails[][];
 }
+export interface ShowContent {
+  AllowComment: boolean;
+  CanBuyView: boolean;
+  CanBuyViewPackage: boolean;
+  CanSendMesssage: boolean;
+  ChapterId: string;
+  // Comments: any[];
+  ContentType: number;
+  Contents: string;
+  CourseId: string;
+  CourseLanguage: string;
+  CourseTitle: string;
+  Description: string | null;
+  DisplayOrder: number;
+  Duration: number;
+  ExecuteId: string;
+  ExecuteTitle: string;
+  FeedBack: string | null;
+  Id: string;
+  IsVideo: boolean;
+  LessonId: string;
+  LessonTitle: string;
+  Title: string;
+  ViewDurationPercentage: number;
+}
+
 export type StudentPaymentsResponse = BaseResponse<Payment[]>;
 export type StudentSubscriptionsResponse = BaseResponse<StudentSubscription[]>;
 export type StudentCoursesResponse = BaseResponse<Course[]>;
@@ -155,3 +181,4 @@ export type ExamResultsRepsone = BaseResponse<ExamResult[]>;
 export type StudentLessonsRepsone = BaseResponse<Lesson[]>;
 export type StudentSessionsRepsone = BaseResponse<UserSession[]>;
 export type StudentScheduleRepsone = BaseResponse<StudentSchedule>;
+export type ShowContentRepsone = BaseResponse<ShowContent>;

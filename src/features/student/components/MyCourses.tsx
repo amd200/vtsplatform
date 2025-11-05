@@ -4,10 +4,14 @@ import CourseCard from "../../../components/shared/CourseCard";
 import TitleSection from "../../../components/shared/TitleSection";
 import { Button } from "../../../components/ui/button";
 import { useGetStudentCoursesQuery } from "../services/studentApi";
+import { useEffect } from "react";
 
 function MyCourses({ showAll = true }: { showAll?: boolean }) {
   const { data, isLoading } = useGetStudentCoursesQuery();
   const courses = data?.Data;
+  useEffect(() => {
+    console.log(courses);
+  }, [courses]);
   return (
     <section className="">
       <div className="container">
