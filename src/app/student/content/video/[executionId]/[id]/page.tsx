@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useGetCourseDetailsQuery, useShowVideoQuery } from "@/features/student/services/studentApi";
 import { Chapter, Lesson } from "@/types/common.types";
 import Link from "next/link";
+import getContentUrl from "@/features/student/utils/getContentUrl";
 
 function Page({ params }: { params: Promise<{ executionId: string; id: string }> }) {
   const { executionId, id } = use(params);
@@ -150,29 +151,33 @@ function Page({ params }: { params: Promise<{ executionId: string; id: string }>
                           <div className="space-y-2">
                             {chapter?.Lessons &&
                               chapter?.Lessons?.length > 0 &&
-                              chapter?.Lessons.map((lesson: Lesson) => (
-                                <div key={lesson?.Id} className="relative flex flex-col group">
-                                  {" "}
-                                  <div className="absolute start-2 top-1/2 -translate-y-1/2 bg-white py-1">
-                                    <Checkbox className=" " />
-                                  </div>
-                                  <div className="mr-5 flex-1 cursor-pointer p-4">
-                                    <div className="flex justify-between items-start">
-                                      <div className="flex-1">
-                                        <h3 className="text-sm text-gray-800">{lesson?.Title}</h3>
-                                        <div className="flex items-center gap-x-2 mt-1 text-sm text-gray-600">
-                                          <span className="size-2 rounded-full bg-primary"></span>
-                                          <span className="text-xs">20 دقيقة | فيديو</span>
-                                        </div>
-                                      </div>
-                                      <Button size={"sm"} className="px-3 text-sm" asChild>
-                                        <Link href={`/student/content/video/${executionId}/${lesson?.Id}`}>ابدأ</Link>
-                                      </Button>{" "}
+                              chapter?.Lessons.map((lesson: Lesson) => {
+                                const url = getContentUrl(String(executionId), lesson.Id, lesson.ContentType);
+
+                                return (
+                                  <div key={lesson?.Id} className="relative flex flex-col group">
+                                    {" "}
+                                    <div className="absolute start-2 top-1/2 -translate-y-1/2 bg-white py-1">
+                                      <Checkbox className=" " />
                                     </div>
+                                    <div className="mr-5 flex-1 cursor-pointer p-4">
+                                      <div className="flex justify-between items-start">
+                                        <div className="flex-1">
+                                          <h3 className="text-sm text-gray-800">{lesson?.Title}</h3>
+                                          <div className="flex items-center gap-x-2 mt-1 text-sm text-gray-600">
+                                            <span className="size-2 rounded-full bg-primary"></span>
+                                            <span className="text-xs">20 دقيقة | فيديو</span>
+                                          </div>
+                                        </div>
+                                        <Button size={"sm"} className="px-3 text-sm" asChild>
+                                          <Link href={url}>ابدأ</Link>
+                                        </Button>{" "}
+                                      </div>
+                                    </div>
+                                    {/* Nested Accordion */}
                                   </div>
-                                  {/* Nested Accordion */}
-                                </div>
-                              ))}
+                                );
+                              })}
                           </div>
                         </div>
                         {/* <Accordion type="single" collapsible className="pl-4">
