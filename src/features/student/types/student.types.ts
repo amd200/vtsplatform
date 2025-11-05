@@ -1,4 +1,4 @@
-import { Chapter, Course, Lesson } from "@/types/common.types";
+import { Chapter, ContentType, Course, Lesson } from "@/types/common.types";
 
 export interface BaseResponse<T> {
   Status: boolean;
@@ -152,7 +152,7 @@ export interface ShowContent {
   CanSendMesssage: boolean;
   ChapterId: string;
   // Comments: any[];
-  ContentType: number;
+  ContentType: ContentType;
   Contents: string;
   CourseId: string;
   CourseLanguage: string;

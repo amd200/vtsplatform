@@ -6,124 +6,35 @@ import { Clock, Video as VV } from "lucide-react";
 import Video from "next-video";
 import myVideo from "@/../videos/spider.mp4";
 import { Button } from "@/components/ui/button";
-import { useGetCourseDetailsQuery, useShowVideoQuery } from "@/features/student/services/studentApi";
+import { useGetCourseDetailsQuery, useShowPdfQuery, useShowVideoQuery } from "@/features/student/services/studentApi";
 import { Chapter, Lesson } from "@/types/common.types";
 import Link from "next/link";
+import { Worker } from "@react-pdf-viewer/core";
+import { Viewer } from "@react-pdf-viewer/core";
+import "@react-pdf-viewer/core/lib/styles/index.css";
+import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
+import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 
-function Page({ params }: { params: Promise<{ executionId: string; id: string }> }) {
-  const { executionId, id } = use(params);
-  const videoRef = useRef(null);
-  const [videoStats, setVideoStats] = useState({
-    currentTime: 0,
-    duration: 0,
-    played: false,
-    paused: false,
-    ended: false,
-    volume: 1,
-    playCount: 0,
-  });
-  const { data } = useShowVideoQuery({ Id: executionId, LessonId: id });
-  const { data: courseDetails } = useGetCourseDetailsQuery(executionId);
-  useEffect(() => {
-    console.log(courseDetails);
-  }, [courseDetails]);
-
-  const handleLoadedMetadata = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-    const video = e.currentTarget;
-    const duration = video.duration;
-    setVideoStats((prev) => ({ ...prev, duration }));
-    console.log("📊 Video loaded:", { duration });
-  };
-
-  const handlePlay = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-    setVideoStats((prev) => ({
-      ...prev,
-      played: true,
-      paused: false,
-      playCount: prev.playCount + 1,
-    }));
-    console.log("▶️ Video started playing - Count:", videoStats.playCount + 1);
-  };
-
-  const handlePause = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-    setVideoStats((prev) => ({ ...prev, paused: true }));
-    // console.log("⏸️ Video paused at:", e.target.currentTime);
-  };
-
-  const handleTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-    const video = e.currentTarget;
-    const currentTime = video.currentTime;
-    setVideoStats((prev) => ({ ...prev, currentTime }));
-
-    const progress = (currentTime / videoStats.duration) * 100;
-    if (Math.floor(progress) === 25 || Math.floor(progress) === 50 || Math.floor(progress) === 75) {
-      console.log(`📈 Progress milestone: ${Math.floor(progress)}%`);
-    }
-  };
-
-  const handleEnded = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-    setVideoStats((prev) => ({ ...prev, ended: true, paused: false }));
-    console.log("🏁 Video completed");
-  };
-
-  const handleVolumeChange = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-    const video = e.currentTarget;
-    const volume = video.volume;
-    setVideoStats((prev) => ({ ...prev, volume }));
-    console.log("🔊 Volume changed to:", volume);
-  };
-
-  const handleSeeking = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-    // console.log("⏩ User seeking to:", e.target.currentTime);
-  };
-
-  const handleSeeked = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-    // console.log("✅ Seek completed at:", e.target.currentTime);
-  };
-
-  // Format time helper
-  const formatTime = (seconds: number) => {
-    if (!seconds || isNaN(seconds)) return "00:00";
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
-  };
-
-  const getProgress = () => {
-    if (!videoStats.duration) return 0;
-    return (videoStats.currentTime / videoStats.duration) * 100;
-  };
-
+import { useParams } from "next/navigation";
+function Page() {
+  const params = useParams();
+  const executionId = Array.isArray(params.executionId) ? params.executionId[0] : params.executionId;
+  const lessonId = Array.isArray(params.id) ? params.id[0] : params.id;
+  const { data: pdfData } = useShowPdfQuery({ Id: executionId, LessonId: lessonId });
+  const { data: courseDetails } = useGetCourseDetailsQuery(executionId!);
+  const defaultLayoutPluginInstance = defaultLayoutPlugin();
   return (
     <section className="py-8 font-ar-medium">
       <div className="container grid grid-cols-12 gap-x-12 gap-y-8">
         <div className="lg:col-span-8 col-span-12" dir="ltr">
           {/* Next Video with Analytics */}
-          <div className="w-full ">
-            <Video ref={videoRef} src={data?.Data?.Contents} height={500} controls style={{ width: "100%" }} data-mux-env-key="0uvdpbqrkk2ar5v0ngg9ufanv" data-mux-video-id="video-local-001" data-mux-video-title="My Local Video" data-mux-viewer-user-id="user-12345" onLoadedMetadata={handleLoadedMetadata} onPlay={handlePlay} onPause={handlePause} onTimeUpdate={handleTimeUpdate} onEnded={handleEnded} onVolumeChange={handleVolumeChange} onSeeking={handleSeeking} onSeeked={handleSeeked} />
+          <div className="w-full h-[500px]">
+            <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">{pdfData?.Data?.Contents && <Viewer plugins={[defaultLayoutPluginInstance]} fileUrl={pdfData?.Data?.Contents} />}</Worker>
           </div>
+
           <div className="flex items-center justify-between mt-4">
             <Button variant={"ghost"}>السابق</Button>
             <Button>التالي</Button>
-          </div>
-
-          <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg text-center">
-              <div className="text-2xl font-bold text-blue-600">{videoStats.playCount}</div>
-              <div className="text-sm text-blue-500">مرات التشغيل</div>
-            </div>
-            <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-center">
-              <div className="text-2xl font-bold text-green-600">{formatTime(videoStats.currentTime)}</div>
-              <div className="text-sm text-green-500">الوقت الحالي</div>
-            </div>
-            <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg text-center">
-              <div className="text-2xl font-bold text-purple-600">{Math.round(getProgress())}%</div>
-              <div className="text-sm text-purple-500">نسبة التقدم</div>
-            </div>
-            <div className="p-4 bg-orange-50 border border-orange-200 rounded-lg text-center">
-              <div className="text-2xl font-bold text-orange-600">{Math.round(videoStats.volume * 100)}%</div>
-              <div className="text-sm text-orange-500">مستوى الصوت</div>
-            </div>
           </div>
         </div>{" "}
         <div className="lg:col-span-4 col-span-12 ">
@@ -166,7 +77,7 @@ function Page({ params }: { params: Promise<{ executionId: string; id: string }>
                                         </div>
                                       </div>
                                       <Button size={"sm"} className="px-3 text-sm" asChild>
-                                        <Link href={`/student/video/${executionId}/${lesson?.Id}`}>ابدأ</Link>
+                                        <Link href={`/student/content/video/${executionId}/${lesson?.Id}`}>ابدأ</Link>
                                       </Button>{" "}
                                     </div>
                                   </div>

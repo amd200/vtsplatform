@@ -85,7 +85,17 @@ export const studentApi = createApi({
         },
       }),
     }),
+    showPdf: builder.query<ShowContentRepsone, { Id?: string; LessonId?: string }>({
+      query: ({ Id, LessonId }) => ({
+        url: `/platform/Show/PdfByUrl`,
+        method: "GET",
+        params: {
+          Id,
+          LessonId,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery, useShowVideoQuery } = studentApi;
+export const { useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery, useShowVideoQuery, useShowPdfQuery } = studentApi;

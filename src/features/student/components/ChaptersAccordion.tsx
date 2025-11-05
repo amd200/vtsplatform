@@ -24,8 +24,38 @@ const lessonTypeConfig: Record<ContentType, { icon: React.ReactNode; buttonText:
   [ContentType.Meeting]: { icon: <Users className="size-4 text-primary" />, buttonText: "الانضمام للاجتماع" },
 };
 
+function getContentUrl(executionId: string, lessonId: string, contentType: ContentType) {
+  switch (contentType) {
+    case ContentType.Video:
+    case ContentType.VdoCipher:
+      return `/student/content/video/${executionId}/${lessonId}`;
+    case ContentType.PDF:
+      return `/student/content/pdf/${executionId}/${lessonId}`;
+    case ContentType.Word:
+      return `/student/content/word/${executionId}/${lessonId}`;
+    case ContentType.Quiz:
+    case ContentType.QuizModels:
+      return `/student/content/quiz/${executionId}/${lessonId}`;
+    case ContentType.Link:
+      return `/student/content/link/${executionId}/${lessonId}`;
+    case ContentType.Sound:
+      return `/student/content/sound/${executionId}/${lessonId}`;
+    case ContentType.PowerPoint:
+      return `/student/content/ppt/${executionId}/${lessonId}`;
+    case ContentType.Forum:
+      return `/student/content/forum/${executionId}/${lessonId}`;
+    case ContentType.HomeWork:
+      return `/student/content/homework/${executionId}/${lessonId}`;
+    case ContentType.Meeting:
+      return `/student/content/meeting/${executionId}/${lessonId}`;
+    case ContentType.OfflineActivity:
+      return `/student/content/offline/${executionId}/${lessonId}`;
+    default:
+      return `/student/content/unknown/${executionId}/${lessonId}`;
+  }
+}
+
 function ChaptersAccordion({ chapters, executionId }: { chapters: Chapter[]; executionId: string }) {
-  console.log("x", chapters);
   return (
     <Accordion type="single" collapsible className="bg-[#f8f8f8] p-8">
       {chapters &&
@@ -37,17 +67,19 @@ function ChaptersAccordion({ chapters, executionId }: { chapters: Chapter[]; exe
               <ul className="">
                 {chapter?.Lessons?.map((lesson: Lesson) => {
                   const config = lessonTypeConfig[lesson.ContentType];
+                  const url = getContentUrl(executionId, lesson.Id, lesson.ContentType);
+
                   return (
                     <li key={lesson.Id} className="flex justify-between items-center bg-gray-50 px-3 py-2 rounded">
                       <div className="flex items-center gap-2">
                         <div className="size-7 flex items-center justify-center bg-white rounded-full">{config.icon}</div>
                         <span>{lesson.Title}</span>
                         <span>{chapter.ExecutionId}</span>
-                        <span>{lesson?.Id}</span>
+                        <span>{lesson.Id}</span>
                       </div>
                       <Button size="sm" asChild>
-                        <Link href={`/student/video/${executionId}/${lesson?.Id}`}>{config.buttonText}</Link>
-                      </Button>{" "}
+                        <Link href={url}>{config.buttonText}</Link>
+                      </Button>
                     </li>
                   );
                 })}
