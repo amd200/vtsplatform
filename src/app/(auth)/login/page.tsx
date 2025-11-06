@@ -43,7 +43,8 @@ function Page() {
       Password: values.password,
       redirect: false,
     });
-    router.push("/student");
+    console.log(res)
+    // router.push("/student");
   }
 
   return (

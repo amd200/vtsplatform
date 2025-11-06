@@ -51,6 +51,9 @@ async function loginRequest(endpoint: string, credentials: Credentials) {
     headers: { "Content-Type": "application/json", Authorization: "Bearer UhqBUAP3T6Irguej2ogSdg==" },
     body: JSON.stringify(credentials),
   });
+  if (!res.ok) {
+    throw new Error("Login failed");
+  }
   const data: SignInResponse = await res.json();
 
   // if (!res.ok || !data.success) {
