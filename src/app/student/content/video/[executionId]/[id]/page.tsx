@@ -1,7 +1,6 @@
 "use client";
 import React, { use, useEffect, useRef, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Clock, Video as VV } from "lucide-react";
 import Video from "next-video";
 import { Button } from "@/components/ui/button";
@@ -9,6 +8,7 @@ import { useGetCourseDetailsQuery, useShowVideoQuery } from "@/features/student/
 import { Chapter, Lesson } from "@/types/common.types";
 import Link from "next/link";
 import getContentUrl from "@/features/student/utils/getContentUrl";
+import ChaptersContent from "@/features/student/components/ChaptersContent";
 
 function Page({ params }: { params: Promise<{ executionId: string; id: string }> }) {
   const { executionId, id } = use(params);
@@ -24,11 +24,6 @@ function Page({ params }: { params: Promise<{ executionId: string; id: string }>
   });
 
   const { data } = useShowVideoQuery({ Id: executionId, LessonId: id });
-  const { data: courseDetails } = useGetCourseDetailsQuery(executionId);
-
-  useEffect(() => {
-    console.log(courseDetails);
-  }, [courseDetails]);
 
   const checkpoints = [
     { time: 60, message: "✋ توقف! هل تريد متابعة الفيديو؟" }, // 1 دقيقة
@@ -145,61 +140,7 @@ function Page({ params }: { params: Promise<{ executionId: string; id: string }>
           </div>
         </div>
 
-        <div className="lg:col-span-4 col-span-12 ">
-          <div className="shadow-sm p-4 rounded h-full max-h-[500px] overflow-y-auto">
-            <h3 className="text-lg">تفاصيل الكورس</h3>
-            <div>
-              <Accordion type="single" collapsible>
-                {courseDetails &&
-                  courseDetails.Data?.Chapters &&
-                  courseDetails.Data.Chapters.map((chapter: Chapter) => (
-                    <AccordionItem key={chapter.Id} value={`item-${chapter.Id}`}>
-                      <AccordionTrigger className="relative">
-                        {chapter.Title}
-                        <div className="absolute end-8 flex items-center gap-x-3">
-                          <div className="flex items-end px-1 py-1 pb-2 rounded text-gray-500 gap-x-1">
-                            <VV className="size-3 text-primary/80" />
-                            <span className="text-xs">{chapter.Lessons?.length} درس</span>
-                          </div>
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        <div className="relative">
-                          <div className="absolute right-4 top-0 bottom-0 w-0.5 bg-gray-300"></div>
-                          <div className="space-y-2">
-                            {chapter.Lessons?.map((lesson: Lesson) => {
-                              const url = getContentUrl(String(executionId), lesson.Id, lesson.ContentType);
-                              return (
-                                <div key={lesson.Id} className="relative flex flex-col group">
-                                  <div className="absolute start-2 top-1/2 -translate-y-1/2 bg-white py-1">
-                                    <Checkbox />
-                                  </div>
-                                  <div className="mr-5 flex-1 cursor-pointer p-4">
-                                    <div className="flex justify-between items-start">
-                                      <div className="flex-1">
-                                        <h3 className="text-sm text-gray-800">{lesson.Title}</h3>
-                                        <div className="flex items-center gap-x-2 mt-1 text-sm text-gray-600">
-                                          <span className="size-2 rounded-full bg-primary"></span>
-                                          <span className="text-xs">20 دقيقة | فيديو</span>
-                                        </div>
-                                      </div>
-                                      <Button size={"sm"} className="px-3 text-sm" asChild>
-                                        <Link href={url}>ابدأ</Link>
-                                      </Button>
-                                    </div>
-                                  </div>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-              </Accordion>
-            </div>
-          </div>
-        </div>
+        <ChaptersContent executionId={executionId} />
       </div>
     </section>
   );

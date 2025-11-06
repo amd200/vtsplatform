@@ -8,6 +8,7 @@ import DirectionProviderWrapper from "@/providers/DirectionProviderWrapper";
 import SessionWrapper from "@/providers/SessionWrapper";
 import ProviderWrapper from "@/providers/ProviderWrapper";
 import { ToastContainer } from "react-toastify";
+import Script from "next/script";
 
 const arLight = localFont({
   src: "../assets/fonts/ARABIC-LIGHT.ttf",
@@ -44,6 +45,7 @@ export default function RootLayout({
         <ProviderWrapper>
           <SessionWrapper>{children}</SessionWrapper>
         </ProviderWrapper>
+        <Script src="/nutrient-viewer/nutrient-viewer.js" strategy="beforeInteractive" />
       </body>
     </html>
   );

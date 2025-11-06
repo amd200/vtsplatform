@@ -95,7 +95,17 @@ export const studentApi = createApi({
         },
       }),
     }),
+    showRichText: builder.query<ShowContentRepsone, { Id?: string; LessonId?: string }>({
+      query: ({ Id, LessonId }) => ({
+        url: `/platform/Show/RichTextByUrl`,
+        method: "GET",
+        params: {
+          Id,
+          LessonId,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery, useShowVideoQuery, useShowPdfQuery } = studentApi;
+export const { useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery, useShowVideoQuery, useShowPdfQuery, useShowRichTextQuery } = studentApi;

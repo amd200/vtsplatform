@@ -27,6 +27,6 @@ export default function getContentUrl(executionId: string, lessonId: string, con
     case ContentType.OfflineActivity:
       return `/student/content/offline/${executionId}/${lessonId}`;
     default:
-      return `/student/content/unknown/${executionId}/${lessonId}`;
+      return `/student/content/richtext/${executionId}/${lessonId}`;
   }
 }
