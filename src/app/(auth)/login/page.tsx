@@ -41,10 +41,8 @@ function Page() {
     const res = await signIn("credentials", {
       UserName: values.phoneNumber,
       Password: values.password,
-      redirect: false,
+      redirect: true,
     });
-    console.log(res)
-    // router.push("/student");
   }
 
   return (

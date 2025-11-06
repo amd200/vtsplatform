@@ -56,22 +56,16 @@ async function loginRequest(endpoint: string, credentials: Credentials) {
   }
   const data: SignInResponse = await res.json();
 
-  // if (!res.ok || !data.success) {
-  //   const errorMessages = data.errors?.length ? data.errors : [data.message || "حدث خطأ غير متوقع، الرجاء المحاولة لاحقاً"];
-  //   throw new Error(JSON.stringify(errorMessages));
-  // }
-
-  // if (data.success && (!data.data?.user || !data.data.accessToken)) {
-  //   return { isOtpConfirm: false, message: data.message };
-  // }
-
-  return {
-    id: data?.Data?.UserId,
-    StudentName: data?.Data?.StudentName,
-    StudentToken: data?.Data?.StudentToken,
-    StudentImage: data?.Data?.StudentImage,
-    Role: Number(data?.Data?.Role),
-  };
+  if (res.ok && data) {
+    return {
+      id: data?.Data?.UserId,
+      StudentName: data?.Data?.StudentName,
+      StudentToken: data?.Data?.StudentToken,
+      StudentImage: data?.Data?.StudentImage,
+      Role: Number(data?.Data?.Role),
+    };
+  }
+  return null;
 }
 
 export const authOptions: NextAuthOptions = {
@@ -83,7 +77,7 @@ export const authOptions: NextAuthOptions = {
         Password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        return await loginRequest("https://vedu-demo.vtsitco.com/api/platform/Account/SignIn", credentials!);
+        return await loginRequest("https://faroukplatform.com/api/platform/Account/SignIn", credentials!);
       },
     }),
     // CredentialsProvider({

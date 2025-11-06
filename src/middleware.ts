@@ -1,8 +1,25 @@
-// middleware.js
-export { default } from "next-auth/middleware";
+import { withAuth } from "next-auth/middleware";
 
-// Optional: Configure specific routes to protect or exclude
+export default withAuth({
+//   pages: {
+//     signIn: "/login",
+//     error: "/auth/error",
+//   },
+  callbacks: {
+    authorized: ({ req, token }) => {
+      console.log(req);
+
+      if (req.nextUrl.pathname.startsWith("/student")) {
+        if (token?.Role !== 8) {
+          return false;
+        }
+      }
+
+      return !!token;
+    },
+  },
+});
+
 export const config = {
-  matcher: ["/student/:path*", "/admin/:path*"], // Protect specific paths
-  // matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"], // Protect all paths except static assets
+  matcher: ["/student/:path*"],
 };

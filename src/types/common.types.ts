@@ -10,7 +10,7 @@ export interface User {
   UserId?: string;
   PersonId?: string;
   Role?: number;
-  StudentName?: string;
+  StudentName: string;
   StudentImage?: string;
 }
 export interface Category {
