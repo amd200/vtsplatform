@@ -51,7 +51,7 @@ function Page() {
             <Button>التالي</Button>
           </div>
         </div>{" "}
-        <ChaptersContent executionId={String(executionId)} />
+        <ChaptersContent lessonId={lessonId} executionId={String(executionId)} />
       </div>
     </section>
   );

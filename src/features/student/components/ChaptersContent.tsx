@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Clock, Video } from "lucide-react";
 
-function ChaptersContent({ executionId }: { executionId: string }) {
+function ChaptersContent({ executionId, lessonId }: { executionId: string; lessonId: string }) {
   const { data: courseDetails } = useGetCourseDetailsQuery(executionId);
 
   return (
@@ -37,6 +37,7 @@ function ChaptersContent({ executionId }: { executionId: string }) {
                         {chapter.Lessons?.map((lesson: Lesson) => {
                           const url = getContentUrl(String(executionId), lesson.Id, lesson.ContentType);
                           const contentTypeName = ContentType[lesson.ContentType];
+                          const isActive = lesson.Id === currentLessonId;
 
                           return (
                             <div key={lesson.Id} className="relative flex flex-col group">
@@ -53,7 +54,7 @@ function ChaptersContent({ executionId }: { executionId: string }) {
                                     </div>
                                   </div>
                                   <Button size={"sm"} className="px-3 text-sm" asChild>
-                                    <Link href={url}>ابدأ</Link>
+                                    {isActive ? <span className="">أنت هنا</span> : <Link href={url}>ابدأ</Link>}{" "}
                                   </Button>
                                 </div>
                               </div>
