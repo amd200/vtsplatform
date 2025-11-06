@@ -78,7 +78,7 @@ export const authOptions: NextAuthOptions = {
         Password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        return await loginRequest("https://faroukplatform.com/api/platform/Account/SignIn", credentials!);
+        return await loginRequest("https://vedu-demo.vtsitco.com/api/platform/Account/SignIn", credentials!);
       },
     }),
     // CredentialsProvider({
