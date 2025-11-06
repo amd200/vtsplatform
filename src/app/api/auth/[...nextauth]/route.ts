@@ -55,6 +55,7 @@ async function loginRequest(endpoint: string, credentials: Credentials) {
     throw new Error("Login failed");
   }
   const data: SignInResponse = await res.json();
+  console.log("aaaaaaaaaaaaaaaaaaaaa", data);
 
   if (res.ok && data) {
     return {

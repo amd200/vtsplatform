@@ -41,7 +41,7 @@ function Page() {
     const res = await signIn("credentials", {
       UserName: values.phoneNumber,
       Password: values.password,
-      redirect: true,
+      redirect: false,
     });
   }
 
