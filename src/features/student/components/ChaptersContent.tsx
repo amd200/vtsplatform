@@ -37,7 +37,7 @@ function ChaptersContent({ executionId, lessonId }: { executionId: string; lesso
                         {chapter.Lessons?.map((lesson: Lesson) => {
                           const url = getContentUrl(String(executionId), lesson.Id, lesson.ContentType);
                           const contentTypeName = ContentType[lesson.ContentType];
-                          const isActive = lesson.Id === currentLessonId;
+                          const isActive = lesson.Id === lessonId;
 
                           return (
                             <div key={lesson.Id} className="relative flex flex-col group">
