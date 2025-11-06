@@ -54,7 +54,7 @@ function ChaptersContent({ executionId, lessonId }: { executionId: string; lesso
                                     </div>
                                   </div>
                                   <Button size={"sm"} className="px-3 text-sm" asChild>
-                                    {isActive ? <span className="">أنت هنا</span> : <Link href={url}>ابدأ</Link>}{" "}
+                                    {isActive ? <span className="">أنت هنا</span> : <Link href={url}>ابدأ</Link>}
                                   </Button>
                                 </div>
                               </div>
