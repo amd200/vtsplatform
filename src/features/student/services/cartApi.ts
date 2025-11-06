@@ -8,12 +8,14 @@ import { BaseResponse } from "@/types/common.types";
 export const cartApi = createApi({
   reducerPath: "cartApi",
   baseQuery: axiosBaseQuery(),
+  tagTypes: ["Cart"],
   endpoints: (builder) => ({
     getStudentCart: builder.query<StudentCartResponse, void>({
       query: () => ({
         url: "/platform/StudentCart",
         method: "GET",
       }),
+      providesTags: ["Cart"],
     }),
     addCourseToCart: builder.mutation<BaseResponse, { Id: string }>({
       query: (body) => ({
@@ -22,7 +24,15 @@ export const cartApi = createApi({
         data: body,
       }),
     }),
+    deleteCourseFromCart: builder.mutation<BaseResponse, string>({
+      query: (id) => ({
+        url: "/platform/DeleteItemFromCart",
+        method: "POST",
+        data: { Id: id },
+      }),
+      invalidatesTags: ["Cart"],
+    }),
   }),
 });
 
-export const { useGetStudentCartQuery, useAddCourseToCartMutation } = cartApi;
+export const { useGetStudentCartQuery, useAddCourseToCartMutation, useDeleteCourseFromCartMutation } = cartApi;

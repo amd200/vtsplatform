@@ -99,7 +99,6 @@ function VideoViewer({ executionId, lessonId }: { executionId: string; lessonId:
   return (
     <div className="w-full relative">
       <Video ref={videoRef} src={data?.Data?.Contents} height={500} controls style={{ width: "100%" }} onLoadedMetadata={handleLoadedMetadata} onPlay={handlePlay} onPause={handlePause} onTimeUpdate={handleTimeUpdate} onEnded={handleEnded} onVolumeChange={handleVolumeChange} />
-      {/* Popup عند checkpoint */}
       {checkpointVisible && (
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded shadow-lg text-center">
@@ -110,53 +109,53 @@ function VideoViewer({ executionId, lessonId }: { executionId: string; lessonId:
       )}
     </div>
   );
-//   return (
-//     <section className="py-8 font-ar-medium">
-//       <div className="container grid grid-cols-12 gap-x-12 gap-y-8">
-//         <div className="lg:col-span-8 col-span-12" dir="ltr">
-//           <div className="w-full relative">
-//             <Video ref={videoRef} src={data?.Data?.Contents} height={500} controls style={{ width: "100%" }} onLoadedMetadata={handleLoadedMetadata} onPlay={handlePlay} onPause={handlePause} onTimeUpdate={handleTimeUpdate} onEnded={handleEnded} onVolumeChange={handleVolumeChange} />
+  //   return (
+  //     <section className="py-8 font-ar-medium">
+  //       <div className="container grid grid-cols-12 gap-x-12 gap-y-8">
+  //         <div className="lg:col-span-8 col-span-12" dir="ltr">
+  //           <div className="w-full relative">
+  //             <Video ref={videoRef} src={data?.Data?.Contents} height={500} controls style={{ width: "100%" }} onLoadedMetadata={handleLoadedMetadata} onPlay={handlePlay} onPause={handlePause} onTimeUpdate={handleTimeUpdate} onEnded={handleEnded} onVolumeChange={handleVolumeChange} />
 
-//             {/* Popup عند checkpoint */}
-//             {checkpointVisible && (
-//               <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-50">
-//                 <div className="bg-white p-6 rounded shadow-lg text-center">
-//                   <p className="mb-4 text-lg">{checkpoints[checkpointIndex].message}</p>
-//                   <Button onClick={handleCheckpointContinue}>أكمل الفيديو</Button>
-//                 </div>
-//               </div>
-//             )}
-//           </div>
+  //             {/* Popup عند checkpoint */}
+  //             {checkpointVisible && (
+  //               <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-50">
+  //                 <div className="bg-white p-6 rounded shadow-lg text-center">
+  //                   <p className="mb-4 text-lg">{checkpoints[checkpointIndex].message}</p>
+  //                   <Button onClick={handleCheckpointContinue}>أكمل الفيديو</Button>
+  //                 </div>
+  //               </div>
+  //             )}
+  //           </div>
 
-//           <div className="flex items-center justify-between mt-4">
-//             <Button variant={"ghost"}>السابق</Button>
-//             <Button>التالي</Button>
-//           </div>
+  //           <div className="flex items-center justify-between mt-4">
+  //             <Button variant={"ghost"}>السابق</Button>
+  //             <Button>التالي</Button>
+  //           </div>
 
-//           <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-//             <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg text-center">
-//               <div className="text-2xl font-bold text-blue-600">{videoStats.playCount}</div>
-//               <div className="text-sm text-blue-500">مرات التشغيل</div>
-//             </div>
-//             <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-center">
-//               <div className="text-2xl font-bold text-green-600">{formatTime(videoStats.currentTime)}</div>
-//               <div className="text-sm text-green-500">الوقت الحالي</div>
-//             </div>
-//             <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg text-center">
-//               <div className="text-2xl font-bold text-purple-600">{Math.round(getProgress())}%</div>
-//               <div className="text-sm text-purple-500">نسبة التقدم</div>
-//             </div>
-//             <div className="p-4 bg-orange-50 border border-orange-200 rounded-lg text-center">
-//               <div className="text-2xl font-bold text-orange-600">{Math.round(videoStats.volume * 100)}%</div>
-//               <div className="text-sm text-orange-500">مستوى الصوت</div>
-//             </div>
-//           </div>
-//         </div>
+  //           <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+  //             <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg text-center">
+  //               <div className="text-2xl font-bold text-blue-600">{videoStats.playCount}</div>
+  //               <div className="text-sm text-blue-500">مرات التشغيل</div>
+  //             </div>
+  //             <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-center">
+  //               <div className="text-2xl font-bold text-green-600">{formatTime(videoStats.currentTime)}</div>
+  //               <div className="text-sm text-green-500">الوقت الحالي</div>
+  //             </div>
+  //             <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg text-center">
+  //               <div className="text-2xl font-bold text-purple-600">{Math.round(getProgress())}%</div>
+  //               <div className="text-sm text-purple-500">نسبة التقدم</div>
+  //             </div>
+  //             <div className="p-4 bg-orange-50 border border-orange-200 rounded-lg text-center">
+  //               <div className="text-2xl font-bold text-orange-600">{Math.round(videoStats.volume * 100)}%</div>
+  //               <div className="text-sm text-orange-500">مستوى الصوت</div>
+  //             </div>
+  //           </div>
+  //         </div>
 
-//         <ChaptersContent executionId={executionId} />
-//       </div>
-//     </section>
-//   );
+  //         <ChaptersContent executionId={executionId} />
+  //       </div>
+  //     </section>
+  //   );
 }
 
 export default VideoViewer;

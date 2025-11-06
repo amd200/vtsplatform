@@ -170,6 +170,35 @@ export interface ShowContent {
   Title: string;
   ViewDurationPercentage: number;
 }
+export interface StudentChargeDetail {
+  CreatedBy: string | null;
+  Date: string;
+  Id: string;
+  IsPaied: boolean;
+  ModifiedBy: string | null;
+  PaymentType: number;
+  StudentData: string;
+  StudentId: string;
+  Total: number;
+  TotalAfterCompanyCommission: number;
+}
+export interface StudentCharge {
+  CreatedBy: string | null;
+  Date: string;
+  Id: string;
+  IsPaied: boolean;
+  ModifiedBy: string | null;
+  PaymentType: number;
+  StudentData: string;
+  StudentId: string;
+  Total: number;
+  TotalAfterCompanyCommission: number;
+  StudentBalance: number;
+  StudentCharges: StudentChargeDetail[];
+  UsePaypal: boolean;
+  UsingFawry: boolean;
+  UsingPaymob: boolean;
+}
 
 export type StudentPaymentsResponse = BaseResponse<Payment[]>;
 export type StudentSubscriptionsResponse = BaseResponse<StudentSubscription[]>;
@@ -182,3 +211,4 @@ export type StudentLessonsRepsone = BaseResponse<Lesson[]>;
 export type StudentSessionsRepsone = BaseResponse<UserSession[]>;
 export type StudentScheduleRepsone = BaseResponse<StudentSchedule>;
 export type ShowContentRepsone = BaseResponse<ShowContent>;
+export type StudentWalletRepsone = BaseResponse<StudentCharge>;

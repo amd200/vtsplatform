@@ -1,7 +1,7 @@
 import { axiosBaseQuery } from "@/lib/api/axiosBaseQuery";
 import { DashBoardResponse } from "@/types/dashboard.types";
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { AllCoursesResponse, ExamResultsRepsone, GetCourseDetailsRepsone, ShowContentRepsone, StudentChaptersResponse, StudentCoursesResponse, StudentLessonsRepsone, StudentPaymentsResponse, StudentScheduleRepsone, StudentSessionsRepsone, StudentSubscriptionsResponse } from "../types/student.types";
+import { AllCoursesResponse, ExamResultsRepsone, GetCourseDetailsRepsone, ShowContentRepsone, StudentChaptersResponse, StudentCoursesResponse, StudentLessonsRepsone, StudentPaymentsResponse, StudentScheduleRepsone, StudentSessionsRepsone, StudentSubscriptionsResponse, StudentWalletRepsone } from "../types/student.types";
 import { Course } from "@/types/common.types";
 
 export const studentApi = createApi({
@@ -105,7 +105,13 @@ export const studentApi = createApi({
         },
       }),
     }),
+    getStudentWallet: builder.query<StudentWalletRepsone, void>({
+      query: () => ({
+        url: `/platform/StudentWallet`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery, useShowVideoQuery, useShowPdfQuery, useShowRichTextQuery } = studentApi;
+export const { useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery, useShowVideoQuery, useShowPdfQuery, useShowRichTextQuery, useGetStudentWalletQuery } = studentApi;

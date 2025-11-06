@@ -26,21 +26,21 @@ const lessonTypeConfig: Record<ContentType, { icon: React.ReactNode; buttonText:
 };
 
 function ChaptersAccordion({ chapters, executionId }: { chapters: Chapter[]; executionId: string }) {
+  if (!chapters || chapters.length === 0) return null;
+
   return (
-    <Accordion type="single" collapsible className="bg-[#f8f8f8] p-8">
-      {chapters &&
-        chapters.length > 0 &&
-        chapters.map((chapter, index) => (
-          <AccordionItem key={index} value={`item-${index}`} className="bg-white px-4">
-            <AccordionTrigger className="">{chapter?.Title}</AccordionTrigger>
-            <AccordionContent>
-              <ul className="">
-                {chapter?.Lessons?.map((lesson: Lesson) => {
+    <Accordion type="single" collapsible className="bg-[#f8f8f8] p-4 space-y-2">
+      {chapters.map((chapter) => (
+        <AccordionItem key={chapter.Id} value={`item-${chapter.Id}`} className="bg-white rounded px-4">
+          <AccordionTrigger>{chapter.Title}</AccordionTrigger>
+          <AccordionContent className="pl-4">
+            {chapter.Lessons?.length > 0 && (
+              <ul className="space-y-2">
+                {chapter.Lessons.map((lesson) => {
                   const config = lessonTypeConfig[lesson.ContentType];
                   const url = getContentUrl(executionId, lesson.Id, lesson.ContentType);
-
                   return (
-                    <li key={lesson.Id} className="flex justify-between items-center bg-gray-50 px-3 py-2 rounded">
+                    <li key={lesson.Id} className={`flex justify-between items-center px-3 py-2 rounded bg-gray-50`}>
                       <div className="flex items-center gap-2">
                         <div className="size-7 flex items-center justify-center bg-white rounded-full">{config.icon}</div>
                         <span>{lesson.Title}</span>
@@ -52,37 +52,16 @@ function ChaptersAccordion({ chapters, executionId }: { chapters: Chapter[]; exe
                   );
                 })}
               </ul>
-            </AccordionContent>
-            {/* <AccordionContent>
-              <Accordion type="single" collapsible className="">
-                <AccordionItem value="nested-1">
-                  <AccordionTrigger>🧩 الفصل الأول</AccordionTrigger>
-                  <AccordionContent>
-                    <ul className="">
-                      <li>مقدمة في الدورة</li>
-                      <li>أساسيات البرمجة</li>
-                    </ul>
-                  </AccordionContent>
-                </AccordionItem>
+            )}
 
-                <AccordionItem value="nested-2">
-                  <AccordionTrigger>🧩 الفصل الثاني</AccordionTrigger>
-                  <AccordionContent>
-                    <ul className="list-disc pl-5 text-sm text-gray-600">
-                      <li>المتغيرات وأنواع البيانات</li>
-                      <li>الشروط والحلقات</li>
-                    </ul>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </AccordionContent> */}
-          </AccordionItem>
-        ))}
-
-      {/* <AccordionItem value="item-2" className="bg-white px-4">
-        <AccordionTrigger>📗 دورة تصميم</AccordionTrigger>
-        <AccordionContent>دورة متخصصة في تصميم واجهات المستخدم (UI/UX)</AccordionContent>
-      </AccordionItem> */}
+            {chapter.ChaptersChild && chapter.ChaptersChild.length > 0 && (
+              <div className="mt-2">
+                <ChaptersAccordion chapters={chapter.ChaptersChild} executionId={executionId} />
+              </div>
+            )}
+          </AccordionContent>
+        </AccordionItem>
+      ))}
     </Accordion>
   );
 }

@@ -37,13 +37,10 @@ function Page() {
     }
   };
 
-  // useEffect(() => {
-  //   console.log(data);
-  // }, [data]);
   return (
     <section className="py-8 font-ar-medium">
       <div className="container grid grid-cols-12 gap-x-12 gap-y-8">
-        <div className="lg:col-span-8 col-span-12" dir="ltr">
+        <div className="lg:col-span-8 col-span-12" >
           {/* <div className="w-full h-[500px]"></div> */}
           {renderViewer()}
           <div className="flex items-center justify-between mt-4">
@@ -51,7 +48,7 @@ function Page() {
             <Button>التالي</Button>
           </div>
         </div>{" "}
-        <ChaptersContent lessonId={lessonId} executionId={String(executionId)} />
+        <ChaptersContent lessonId={String(lessonId)} executionId={String(executionId)} />
       </div>
     </section>
   );

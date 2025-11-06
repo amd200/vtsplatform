@@ -5,11 +5,13 @@ import { DialogProvider } from "@/context/DialogContext";
 import Header from "@/components/layout/Header";
 function MainLayout({ children }: { children: ReactNode }) {
   return (
-    <main className="">
+    <>
       <Header />
-      <DialogProvider>{children}</DialogProvider>
+      <main className="min-h-[calc(100vh-255px)]">
+        <DialogProvider>{children}</DialogProvider>
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }
 

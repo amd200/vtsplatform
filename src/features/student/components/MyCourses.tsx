@@ -5,13 +5,9 @@ import TitleSection from "../../../components/shared/TitleSection";
 import { Button } from "../../../components/ui/button";
 import { useGetStudentCoursesQuery } from "../services/studentApi";
 import { useEffect } from "react";
+import { Course } from "@/types/common.types";
 
-function MyCourses({ showAll = true }: { showAll?: boolean }) {
-  const { data, isLoading } = useGetStudentCoursesQuery();
-  const courses = data?.Data;
-  useEffect(() => {
-    console.log(courses);
-  }, [courses]);
+function MyCourses({ courses, isLoading, showAll = true }: { courses: Course[]; isLoading: boolean; showAll?: boolean }) {
   return (
     <section className="">
       <div className="container">

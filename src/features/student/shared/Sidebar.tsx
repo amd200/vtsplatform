@@ -31,7 +31,7 @@ export default function Sidebar() {
     { href: "/student/myinvoicesCourses", label: "فواتير المقررات", icon: <FileText size={20} /> },
     { href: "/student/myinvoicesCourses", label: "سلة مشتريات الكتب", icon: <ShoppingCart size={20} /> },
     { href: "/student/myinvoicesCourses", label: "فواتير شراء الكتب الخدمات", icon: <FileText size={20} /> },
-    { href: "/wallet", label: "شحن رصيد", icon: <Wallet size={20} /> },
+    { href: "/student/mywallet", label: "شحن رصيد", icon: <Wallet size={20} /> },
     { href: "/", label: "مدفوعاتي", icon: <CreditCard size={20} /> },
     { href: "/student/mysubscriptions", label: "الاشتراكات", icon: <Banknote size={20} /> },
     { href: "/student/mysessions", label: "جلساتي", icon: <CreditCard size={20} /> },

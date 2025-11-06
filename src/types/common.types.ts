@@ -71,6 +71,7 @@ export interface UserSession {
   UserToken: string;
 }
 export interface Chapter {
+  ChaptersChild: Chapter[];
   Discount: number;
   DisplayOrder: number;
   EndDate: string;

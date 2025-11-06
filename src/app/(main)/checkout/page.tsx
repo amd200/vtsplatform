@@ -1,17 +1,18 @@
 import TitleSection from "@/components/shared/TitleSection";
-import MySubscriptions from "@/features/student/components/MySubscriptions";
+import CartCourses from "@/features/student/components/CartCourses";
+import React from "react";
 
-function Page() {
+function page() {
   return (
     <section>
       <div className="container">
         <div className="flex items-center justify-between">
-          <TitleSection title="اشتراكاتي" />
+          <TitleSection title="إتمام عملية الشراء" />
         </div>
-        <MySubscriptions />
+        <CartCourses />
       </div>
     </section>
   );
 }
 
-export default Page;
+export default page;
