@@ -18,6 +18,7 @@ import { useParams } from "next/navigation";
 import ChaptersContent from "@/features/student/components/ChaptersContent";
 import PdfViewer from "@/features/student/components/PdfViewer";
 import RichTextViewer from "@/features/student/components/RichTextViewer";
+import VideoViewer from "@/features/student/components/VideoViewer";
 function Page() {
   const params = useParams();
   const type = params.type;
@@ -26,7 +27,7 @@ function Page() {
   const renderViewer = () => {
     switch (type) {
       case "video":
-        // return <VideoViewer executionId={String(executionId)} lessonId={String(lessonId)} />;
+        return <VideoViewer executionId={String(executionId)} lessonId={String(lessonId)} />;
         return "";
       case "pdf":
         return <PdfViewer executionId={String(executionId)} lessonId={String(lessonId)} />;
