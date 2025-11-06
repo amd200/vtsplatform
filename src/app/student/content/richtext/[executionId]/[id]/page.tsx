@@ -20,16 +20,16 @@ function Page() {
   const params = useParams();
   const executionId = Array.isArray(params.executionId) ? params.executionId[0] : params.executionId;
   const lessonId = Array.isArray(params.id) ? params.id[0] : params.id;
-  const { data } = useShowRichTextQuery({ Id: executionId, LessonId: lessonId });
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  const { data: rishTextData } = useShowRichTextQuery({ Id: executionId, LessonId: lessonId });
+  // useEffect(() => {
+  //   console.log(data);
+  // }, [data]);
   return (
     <section className="py-8 font-ar-medium">
       <div className="container grid grid-cols-12 gap-x-12 gap-y-8">
         <div className="lg:col-span-8 col-span-12" dir="ltr">
-          <div className="w-full h-[500px]"></div>
-
+          {/* <div className="w-full h-[500px]"></div> */}
+          <div className="prose w-full [&_iframe]:w-full [&_iframe]:h-[500px]" dangerouslySetInnerHTML={{ __html: rishTextData?.Data?.Contents || "" }} />
           <div className="flex items-center justify-between mt-4">
             <Button variant={"ghost"}>السابق</Button>
             <Button>التالي</Button>

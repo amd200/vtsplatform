@@ -1,6 +1,6 @@
 import React from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Chapter, Lesson } from "@/types/common.types";
+import { Chapter, ContentType, Lesson } from "@/types/common.types";
 import { useGetCourseDetailsQuery } from "../services/studentApi";
 import getContentUrl from "../utils/getContentUrl";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -36,6 +36,8 @@ function ChaptersContent({ executionId }: { executionId: string }) {
                       <div className="space-y-2">
                         {chapter.Lessons?.map((lesson: Lesson) => {
                           const url = getContentUrl(String(executionId), lesson.Id, lesson.ContentType);
+                          const contentTypeName = ContentType[lesson.ContentType];
+
                           return (
                             <div key={lesson.Id} className="relative flex flex-col group">
                               <div className="absolute start-2 top-1/2 -translate-y-1/2 bg-white py-1">
@@ -47,7 +49,7 @@ function ChaptersContent({ executionId }: { executionId: string }) {
                                     <h3 className="text-sm text-gray-800">{lesson.Title}</h3>
                                     <div className="flex items-center gap-x-2 mt-1 text-sm text-gray-600">
                                       <span className="size-2 rounded-full bg-primary"></span>
-                                      <span className="text-xs">20 دقيقة | فيديو</span>
+                                      <span className="text-xs">20 دقيقة | {contentTypeName}</span>
                                     </div>
                                   </div>
                                   <Button size={"sm"} className="px-3 text-sm" asChild>
