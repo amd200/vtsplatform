@@ -9,7 +9,7 @@ function PdfViewer({ executionId, lessonId }: { executionId: string; lessonId: s
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
   const { data: pdfData } = useShowPdfQuery({ Id: executionId, LessonId: lessonId });
   return (
-    <div className="w-full h-[500px]">
+    <div className="w-full max-w-full h-[500px]">
       <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">{pdfData?.Data?.Contents && <Viewer plugins={[defaultLayoutPluginInstance]} fileUrl={pdfData?.Data?.Contents} />}</Worker>
     </div>
   );

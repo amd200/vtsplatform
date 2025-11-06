@@ -97,8 +97,8 @@ function VideoViewer({ executionId, lessonId }: { executionId: string; lessonId:
   };
 
   return (
-    <div className="w-full relative">
-      <Video ref={videoRef} src={data?.Data?.Contents} height={500} controls style={{ width: "100%" }} onLoadedMetadata={handleLoadedMetadata} onPlay={handlePlay} onPause={handlePause} onTimeUpdate={handleTimeUpdate} onEnded={handleEnded} onVolumeChange={handleVolumeChange} />
+    <div className="w-full max-w-full relative" dir="ltr">
+      <Video ref={videoRef} src={data?.Data?.Contents} height={500} controls style={{ width: "100%", maxWidth:"100%" }} onLoadedMetadata={handleLoadedMetadata} onPlay={handlePlay} onPause={handlePause} onTimeUpdate={handleTimeUpdate} onEnded={handleEnded} onVolumeChange={handleVolumeChange} />
       {checkpointVisible && (
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded shadow-lg text-center">
