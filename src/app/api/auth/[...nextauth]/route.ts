@@ -55,7 +55,7 @@ async function loginRequest(endpoint: string, credentials: Credentials) {
     throw new Error("Login failed");
   }
   const data: SignInResponse = await res.json();
-  console.log("aaaaaaaaaaaaaaaaaaaaa", data);
+  console.log("error", data);
 
   if (res.ok && data) {
     return {
@@ -78,7 +78,7 @@ export const authOptions: NextAuthOptions = {
         Password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        return await loginRequest("https://eslam-yahia-physics/api/platform/Account/SignIn", credentials!);
+        return await loginRequest("https://faroukplatform.com/api/platform/Account/SignIn", credentials!);
       },
     }),
     // CredentialsProvider({
@@ -130,7 +130,6 @@ export const authOptions: NextAuthOptions = {
     },
 
     async session({ session, token }) {
-      console.log("tokne", token);
       session.user = {
         UserId: token.UserId || "",
         StudentName: token.StudentName || "",

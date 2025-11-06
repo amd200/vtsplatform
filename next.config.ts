@@ -46,7 +46,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/api/:path((?!auth).*)", // ✅ استثناء مسار /api/auth
-        destination: "https://eslam-yahia-physics/api/:path*",
+        destination: "https://faroukplatform.com/api/:path*",
       },
     ];
   },
