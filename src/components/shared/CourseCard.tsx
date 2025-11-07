@@ -5,16 +5,18 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription }
 import { Button } from "@/components/ui/button";
 import { Calendar, CalendarDays, File, Key, PlayCircle, ShoppingCart, StickyNote, Users, Video } from "lucide-react";
 import { useDialog } from "@/context/DialogContext";
-import { DialogHeader } from "../ui/dialog";
-import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
+// import { DialogHeader } from "../ui/dialog";
+// import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
 import { Input } from "../ui/input";
 import { BaseResponse, Course } from "@/types/common.types";
 import { formatDate } from "@/utils/formatDate";
 import { useAddCourseToCartMutation } from "@/features/student/services/cartApi";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { toast } from "react-toastify";
 function CourseCard({ course }: { course: Course }) {
   const { openDialog } = useDialog();
   const [addCourseToCart] = useAddCourseToCartMutation();
+  const codePurchaseOnly = !course?.Possibilityimplementationcodesonly;
   const handleAddCourseToCart = async (courseExecutionId: string) => {
     try {
       const res = await addCourseToCart({ Id: courseExecutionId }).unwrap();
@@ -52,7 +54,7 @@ function CourseCard({ course }: { course: Course }) {
                 {course?.Title}
               </Link>
             </CardTitle>
-            <div className={`mt-3 ${!course?.Isbuy ? "grid grid-cols-3" : "flex justify-center"}  gap-x-4`}>
+            <div className={`mt-3 ${!course?.Isbuy ? (codePurchaseOnly ? "grid grid-cols-3" : "flex justify-center") : "flex justify-center"}  gap-x-4`}>
               {}
               {course?.Isbuy ? (
                 <>
@@ -65,36 +67,32 @@ function CourseCard({ course }: { course: Course }) {
                 </>
               ) : (
                 <>
-                  {!course?.Possibilityimplementationcodesonly && (
+                  {codePurchaseOnly && (
                     <Button className="text-xs h-7" size={"sm"} variant="outline">
                       <PlayCircle />
                       اشترك الان
                     </Button>
                   )}
 
-                  <Button
-                    onClick={() =>
-                      openDialog(
-                        <>
-                          <DialogHeader>
-                            <DialogTitle>ادخل كود المقرر</DialogTitle>
-                            {/* <DialogDescription>هل أنت متأكد أنك تريد حذف الحساب نهائياً؟</DialogDescription> */}
-                          </DialogHeader>
-                          <form className="flex flex-col  items-end">
-                            <Input placeholder="الكود" />
-                            <Button className="mt-2">تفعيل</Button>
-                          </form>
-                        </>
-                      )
-                    }
-                    className="text-xs h-7"
-                    size={"sm"}
-                    variant="outline"
-                  >
-                    <Key />
-                    شراء بكود
-                  </Button>
-                  {!course?.Possibilityimplementationcodesonly && (
+                  <Dialog>
+                    <DialogTrigger>
+                      <Button className="text-xs h-7" size={"sm"} variant="outline">
+                        <Key />
+                        شراء بكود
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle className="font-ar-medium">ادخل كود المقرر</DialogTitle>
+                      </DialogHeader>
+                      <form className="flex flex-col  items-end">
+                        <Input placeholder="الكود" />
+                        <Button className="mt-2 font-ar-medium">تفعيل</Button>
+                      </form>
+                    </DialogContent>
+                  </Dialog>
+
+                  {codePurchaseOnly && (
                     <Button onClick={() => handleAddCourseToCart(course?.CourseExecutionId)} className="text-xs h-7" size={"sm"} variant="outline">
                       <ShoppingCart />
                       اضافة للسلة
