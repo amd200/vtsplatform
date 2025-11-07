@@ -1,6 +1,6 @@
 import TitleSection from "@/components/shared/TitleSection";
 import { ExamResult, StudentCharge, StudentChargeDetail } from "../types/student.types";
-import RowSkeleton from "./RowSkeleton";
+import RowSkeleton from "./skeletons/RowSkeleton";
 import { useGetStudentWalletQuery } from "../services/studentApi";
 
 interface MyWalletProps {

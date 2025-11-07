@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ExamResult } from "../types/student.types";
-import RowSkeleton from "./RowSkeleton";
+import RowSkeleton from "./skeletons/RowSkeleton";
 
 interface MyExamResultsProps {
   showAll?: boolean;

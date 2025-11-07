@@ -4,7 +4,7 @@ import { Viewer } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
-import { useShowPdfQuery } from "../services/studentApi";
+import { useShowPdfQuery } from "../services/lessonContentApi";
 function PdfViewer({ executionId, lessonId }: { executionId: string; lessonId: string }) {
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
   const { data: pdfData } = useShowPdfQuery({ Id: executionId, LessonId: lessonId });

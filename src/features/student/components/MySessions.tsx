@@ -5,7 +5,7 @@ import { Check, X } from "lucide-react";
 import { Button } from "../../../components/ui/button";
 import { UserSession } from "@/types/common.types";
 import { formatDate } from "@/utils/formatDate";
-import RowSkeleton from "./RowSkeleton";
+import RowSkeleton from "./skeletons/RowSkeleton";
 
 function MySessions({ showAll = true, sessions, isLoading }: { showAll?: boolean; sessions: UserSession[]; isLoading?: boolean }) {
   return (

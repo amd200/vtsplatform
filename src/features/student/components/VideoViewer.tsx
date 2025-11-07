@@ -4,11 +4,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Clock, Video as VV } from "lucide-react";
 import Video from "next-video";
 import { Button } from "@/components/ui/button";
-import { useGetCourseDetailsQuery, useShowVideoQuery } from "@/features/student/services/studentApi";
 import { Chapter, Lesson } from "@/types/common.types";
 import Link from "next/link";
 import getContentUrl from "@/features/student/utils/getContentUrl";
 import ChaptersContent from "@/features/student/components/ChaptersContent";
+import { useShowVideoQuery } from "../services/lessonContentApi";
 
 function VideoViewer({ executionId, lessonId }: { executionId: string; lessonId: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -98,7 +98,7 @@ function VideoViewer({ executionId, lessonId }: { executionId: string; lessonId:
 
   return (
     <div className="w-full max-w-full relative" dir="ltr">
-      <Video ref={videoRef} src={data?.Data?.Contents} height={500} controls style={{ width: "100%", maxWidth:"100%" }} onLoadedMetadata={handleLoadedMetadata} onPlay={handlePlay} onPause={handlePause} onTimeUpdate={handleTimeUpdate} onEnded={handleEnded} onVolumeChange={handleVolumeChange} />
+      <Video ref={videoRef} src={data?.Data?.Contents} height={500} controls style={{ width: "100%", maxWidth: "100%" }} onLoadedMetadata={handleLoadedMetadata} onPlay={handlePlay} onPause={handlePause} onTimeUpdate={handleTimeUpdate} onEnded={handleEnded} onVolumeChange={handleVolumeChange} />
       {checkpointVisible && (
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded shadow-lg text-center">

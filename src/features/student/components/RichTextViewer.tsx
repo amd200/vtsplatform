@@ -1,5 +1,5 @@
 import React from "react";
-import { useShowRichTextQuery } from "../services/studentApi";
+import { useShowRichTextQuery } from "../services/lessonContentApi";
 
 function RichTextViewer({ executionId, lessonId }: { executionId: string; lessonId: string }) {
   const { data: rishTextData } = useShowRichTextQuery({ Id: executionId, LessonId: lessonId });

@@ -65,10 +65,13 @@ function CourseCard({ course }: { course: Course }) {
                 </>
               ) : (
                 <>
-                  <Button className="text-xs h-7" size={"sm"} variant="outline">
-                    <PlayCircle />
-                    اشترك الان
-                  </Button>
+                  {!course?.Possibilityimplementationcodesonly && (
+                    <Button className="text-xs h-7" size={"sm"} variant="outline">
+                      <PlayCircle />
+                      اشترك الان
+                    </Button>
+                  )}
+
                   <Button
                     onClick={() =>
                       openDialog(
@@ -91,10 +94,12 @@ function CourseCard({ course }: { course: Course }) {
                     <Key />
                     شراء بكود
                   </Button>
-                  <Button onClick={() => handleAddCourseToCart(course?.CourseExecutionId)} className="text-xs h-7" size={"sm"} variant="outline">
-                    <ShoppingCart />
-                    اضافة للسلة
-                  </Button>
+                  {!course?.Possibilityimplementationcodesonly && (
+                    <Button onClick={() => handleAddCourseToCart(course?.CourseExecutionId)} className="text-xs h-7" size={"sm"} variant="outline">
+                      <ShoppingCart />
+                      اضافة للسلة
+                    </Button>
+                  )}
                 </>
               )}
             </div>

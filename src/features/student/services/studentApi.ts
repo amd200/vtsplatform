@@ -75,36 +75,6 @@ export const studentApi = createApi({
         },
       }),
     }),
-    showVideo: builder.query<ShowContentRepsone, { Id?: string; LessonId?: string }>({
-      query: ({ Id, LessonId }) => ({
-        url: `/platform/Show/VideoByUrl`,
-        method: "GET",
-        params: {
-          Id,
-          LessonId,
-        },
-      }),
-    }),
-    showPdf: builder.query<ShowContentRepsone, { Id?: string; LessonId?: string }>({
-      query: ({ Id, LessonId }) => ({
-        url: `/platform/Show/PdfByUrl`,
-        method: "GET",
-        params: {
-          Id,
-          LessonId,
-        },
-      }),
-    }),
-    showRichText: builder.query<ShowContentRepsone, { Id?: string; LessonId?: string }>({
-      query: ({ Id, LessonId }) => ({
-        url: `/platform/Show/RichTextByUrl`,
-        method: "GET",
-        params: {
-          Id,
-          LessonId,
-        },
-      }),
-    }),
     getStudentWallet: builder.query<StudentWalletRepsone, void>({
       query: () => ({
         url: `/platform/StudentWallet`,
@@ -114,4 +84,4 @@ export const studentApi = createApi({
   }),
 });
 
-export const { useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery, useShowVideoQuery, useShowPdfQuery, useShowRichTextQuery, useGetStudentWalletQuery } = studentApi;
+export const { useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery, useGetStudentWalletQuery } = studentApi;

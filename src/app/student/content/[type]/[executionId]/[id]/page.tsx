@@ -6,7 +6,6 @@ import { Clock, Video as VV } from "lucide-react";
 import Video from "next-video";
 import myVideo from "@/../videos/spider.mp4";
 import { Button } from "@/components/ui/button";
-import { useGetCourseDetailsQuery, useShowPdfQuery, useShowRichTextQuery, useShowVideoQuery } from "@/features/student/services/studentApi";
 import { Chapter, Lesson } from "@/types/common.types";
 import Link from "next/link";
 import { Worker } from "@react-pdf-viewer/core";
