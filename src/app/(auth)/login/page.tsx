@@ -42,6 +42,7 @@ function Page() {
       UserName: values.phoneNumber,
       Password: values.password,
       redirect: false,
+      callbackUrl: "/student",
     });
   }
 
