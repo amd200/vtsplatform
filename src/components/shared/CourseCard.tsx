@@ -13,6 +13,7 @@ import { formatDate } from "@/utils/formatDate";
 import { useAddCourseToCartMutation } from "@/features/student/services/cartApi";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { toast } from "react-toastify";
+import { snow } from "@/assets/images";
 function CourseCard({ course }: { course: Course }) {
   const { openDialog } = useDialog();
   const [addCourseToCart] = useAddCourseToCartMutation();
@@ -28,7 +29,8 @@ function CourseCard({ course }: { course: Course }) {
   };
 
   return (
-    <Card className="shadow-none pt-0 gap-0 border-0 font-ar-medium hover:-translate-y-3 transition-transform bg-transparent">
+    <Card className="shadow-none relative pt-0 gap-0 border-0 font-ar-medium hover:-translate-y-3 transition-transform bg-transparent">
+      <Image src={snow} alt="snow" className="absolute h-[50px] top-[-30px] z-5" />
       <div className="relative h-48 w-full rounded overflow-hidden">
         {course?.ImageLink && (
           <Link href="#">
@@ -41,8 +43,8 @@ function CourseCard({ course }: { course: Course }) {
         <CardHeader className="border-b-">
           <div className="inline-flex w-fit mt-[-24px] gap-x-1 px-2 py-1  bg-primary/90 rounded">
             <div className="bg-white rounded flex px-1 space-x-1 items-center">
-              {/* <del className="text-gray-400">1500</del> */}
-              <span className="text-sm">{course?.Price > 0 ? course?.Price : "مجانا"} </span>
+              {course?.Discount > 0 && <del className="text-gray-400 ">{course?.Price} </del>}
+              <span className="text-sm ">{course?.Discount > 0 ? course?.Price - course?.Discount : course?.Price > 0 ? course?.Price : "مجانا"}</span>{" "}
             </div>
 
             {course?.Price > 0 && <span className="text-white">{course?.DefaultCurrencyCode}</span>}

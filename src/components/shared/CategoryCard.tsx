@@ -3,9 +3,12 @@ import Link from "next/link";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, CalendarDays, File, Key, PlayCircle, ShoppingCart, StickyNote, Users, Video } from "lucide-react";
+import { snow } from "@/assets/images";
 function CategoryCard() {
   return (
-    <Card className="shadow-none pt-0 gap-0 border-0 font-ar-medium hover:-translate-y-3 transition-transform">
+    <Card className="relative shadow-none pt-0 gap-0 border-0 font-ar-medium hover:-translate-y-3 transition-transform">
+            <Image src={snow} alt="snow" className="absolute h-[50px] top-[-30px] z-5" />
+      
       <div className="relative h-48 w-full rounded overflow-hidden">
         <Link href="#">
           <Image src="https://vedu-demo.vtsitco.com/Files/Courses/303ec4d7-bef2-4ce1-a6db-18c4390c6852/303ec4d7-bef2-4ce1-a6db-18c4390c6852.jpg" alt="Course Image" fill className="object-cover" />
