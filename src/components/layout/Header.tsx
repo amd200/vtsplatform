@@ -8,7 +8,7 @@ import { getSession, signOut, useSession } from "next-auth/react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-async function Header() {
+function Header() {
   const { data: session } = useSession();
   return (
     <header>
