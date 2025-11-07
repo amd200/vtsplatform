@@ -38,7 +38,7 @@ function Page() {
 
   return (
     <section className="py-8 font-ar-medium">
-      <div className="container grid lg:grid-cols-2 grid-cols-1 gap-x-12 gap-y-8">
+      <div className="container grid lg:grid-cols-12 grid-cols-1 gap-x-12 gap-y-8">
         <div className="lg:col-span-8 col-span-12">
           {/* <div className="w-full h-[500px]"></div> */}
           {renderViewer()}
