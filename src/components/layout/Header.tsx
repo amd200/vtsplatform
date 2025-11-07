@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { LogIn, Menu, UserPlus } from "lucide-react";
-import { getSession, useSession } from "next-auth/react";
+import { getSession, signOut, useSession } from "next-auth/react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -59,7 +59,9 @@ async function Header() {
               {/* <DropdownMenuLabel>My Account</DropdownMenuLabel> */}
               {/* <DropdownMenuSeparator /> */}
               <DropdownMenuItem className="font-ar-medium flex-row-reverse text-sm">حسابي</DropdownMenuItem>
-              <DropdownMenuItem className="font-ar-medium flex-row-reverse text-sm">تسجيل خروج</DropdownMenuItem>
+              <DropdownMenuItem className="font-ar-medium flex-row-reverse text-sm" onClick={() => signOut()}>
+                تسجيل خروج
+              </DropdownMenuItem>
               {/* <DropdownMenuItem>Team</DropdownMenuItem> */}
               {/* <DropdownMenuItem>Subscription</DropdownMenuItem> */}
             </DropdownMenuContent>
