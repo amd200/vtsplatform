@@ -1,3 +1,4 @@
+"use client";
 import { avatar, logo } from "@/assets/images";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +9,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 async function Header() {
-  const session = await getServerSession(authOptions);
+  const { data: session } = useSession();
   return (
     <header>
       <div className="container flex items-center justify-between py-3 font-ar-medium gap-x-5">
