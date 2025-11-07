@@ -59,7 +59,11 @@ function Header() {
             <DropdownMenuContent>
               {/* <DropdownMenuLabel>My Account</DropdownMenuLabel> */}
               {/* <DropdownMenuSeparator /> */}
-              <DropdownMenuItem className="font-ar-medium flex-row-reverse text-sm">حسابي</DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/student" className="font-ar-medium flex-row-reverse text-sm">
+                  حسابي
+                </Link>
+              </DropdownMenuItem>{" "}
               <DropdownMenuItem className="font-ar-medium flex-row-reverse text-sm" onClick={() => signOut()}>
                 تسجيل خروج
               </DropdownMenuItem>
