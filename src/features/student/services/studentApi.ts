@@ -7,6 +7,7 @@ import { Course } from "@/types/common.types";
 export const studentApi = createApi({
   reducerPath: "studentApi",
   baseQuery: axiosBaseQuery(),
+  tagTypes: ["StudentCourses", "StudentChapters", "AllCourses", "CourseDetails"],
   endpoints: (builder) => ({
     getStudentPayements: builder.query<StudentPaymentsResponse, void>({
       query: () => ({
@@ -25,25 +26,37 @@ export const studentApi = createApi({
         url: "/platform/Content/StudentCourses",
         method: "GET",
       }),
+      providesTags: ["StudentCourses"],
+      keepUnusedDataFor: 60, // كاش لمدة دقيقة
     }),
+
     getStudentChapters: builder.query<StudentChaptersResponse, void>({
       query: () => ({
         url: "/platform/Content/StudentChapters",
         method: "GET",
       }),
+      providesTags: ["StudentChapters"],
+      keepUnusedDataFor: 60,
     }),
+
     getAllCourses: builder.query<AllCoursesResponse, void>({
       query: () => ({
         url: "/platform/AllCourses",
         method: "GET",
       }),
+      providesTags: ["AllCourses"],
+      keepUnusedDataFor: 60,
     }),
+
     getCourseDetails: builder.query<GetCourseDetailsRepsone, string>({
       query: (Id) => ({
         url: `/platform/Content/StudentCourseDetails/${Id}`,
         method: "GET",
       }),
+      providesTags: (result, error, id) => [{ type: "CourseDetails", id }],
+      keepUnusedDataFor: 60,
     }),
+
     getStudentExamsResutls: builder.query<ExamResultsRepsone, void>({
       query: () => ({
         url: `/platform/StudentExamsResults`,
