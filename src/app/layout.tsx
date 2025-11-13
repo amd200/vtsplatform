@@ -40,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl" className={`${arLight.variable} ${arMedium.variable} ${arBold.variable}`}>
-      <body className={`antialiased`}>
+      <body className={`antialiased font-ar-medium`}>
         <ToastContainer />
         <ProviderWrapper>
           <SessionWrapper>{children}</SessionWrapper>

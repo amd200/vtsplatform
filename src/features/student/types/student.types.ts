@@ -199,6 +199,48 @@ export interface StudentCharge {
   UsingFawry: boolean;
   UsingPaymob: boolean;
 }
+export interface InvoiceDetail {
+  Id: string;
+  CourseExecutionId: string;
+  Title: string;
+  ImageLink: string;
+  Price: number;
+  DiscountedPrice: number;
+  CompanyCommission: number;
+}
+export interface InvoiceData {
+  Id: string;
+  Code: string;
+  CommissionOnType: number;
+  CompanyCommission: number;
+  CouponDiscount: number;
+  CurrencyCode: string;
+  Date: string;
+  HasCoupon: boolean;
+  InvoiceDetails: InvoiceDetail[];
+  InvoiceStatus: number;
+  ItemsCount: number;
+  OrderId: string | null;
+  PaymentType: string;
+  ReturnURL: string | null;
+  Total: number;
+}
+
+export interface Invoice {
+  // Banks: any[];
+  InvoiceData: InvoiceData;
+  UsePaypal: boolean;
+  UsingFawry: boolean;
+  UsingPaymob: boolean;
+}
+export interface Fawry {
+  SubId: string; // رقم الفاتورة أو المرجع (invoice id)
+  ClientId: string; // رقم تعريف العميل (student id)
+  ClientName: string; // اسم العميل
+  ClientPhone: string; // رقم الموبايل أو وسيلة التواصل
+  price: string; // المبلغ الإجمالي المطلوب (formatted string)
+  signature: string; // توقيع التشفير (secure hash)
+}
 
 export type StudentPaymentsResponse = BaseResponse<Payment[]>;
 export type StudentSubscriptionsResponse = BaseResponse<StudentSubscription[]>;
@@ -212,3 +254,5 @@ export type StudentSessionsRepsone = BaseResponse<UserSession[]>;
 export type StudentScheduleRepsone = BaseResponse<StudentSchedule>;
 export type ShowContentRepsone = BaseResponse<ShowContent>;
 export type StudentWalletRepsone = BaseResponse<StudentCharge>;
+export type InvoiceRepsone = BaseResponse<Invoice>;
+export type FawryRepsone = BaseResponse<Fawry>;

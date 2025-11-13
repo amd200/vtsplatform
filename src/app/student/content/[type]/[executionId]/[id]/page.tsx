@@ -18,6 +18,7 @@ import ChaptersContent from "@/features/student/components/ChaptersContent";
 import PdfViewer from "@/features/student/components/PdfViewer";
 import RichTextViewer from "@/features/student/components/RichTextViewer";
 import VideoViewer from "@/features/student/components/VideoViewer";
+import AudioPlayer from "@/features/student/components/AudioPlayer";
 function Page() {
   const params = useParams();
   const type = params.type;
@@ -27,9 +28,10 @@ function Page() {
     switch (type) {
       case "video":
         return <VideoViewer executionId={String(executionId)} lessonId={String(lessonId)} />;
-        return "";
       case "pdf":
         return <PdfViewer executionId={String(executionId)} lessonId={String(lessonId)} />;
+      case "sound":
+        return <AudioPlayer executionId={String(executionId)} lessonId={String(lessonId)} />;
       case "richtext":
       default:
         return <RichTextViewer executionId={String(executionId)} lessonId={String(lessonId)} />;

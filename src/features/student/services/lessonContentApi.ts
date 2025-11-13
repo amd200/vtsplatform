@@ -36,7 +36,17 @@ export const lessonContentApi = createApi({
         },
       }),
     }),
+    showAudio: builder.query<ShowContentRepsone, { Id?: string; LessonId?: string }>({
+      query: ({ Id, LessonId }) => ({
+        url: `/platform/Show/Sound2`,
+        method: "GET",
+        params: {
+          Id,
+          LessonId,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useShowVideoQuery, useShowPdfQuery, useShowRichTextQuery } = lessonContentApi;
+export const { useShowVideoQuery, useShowPdfQuery, useShowRichTextQuery, useShowAudioQuery } = lessonContentApi;

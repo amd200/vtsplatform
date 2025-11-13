@@ -57,7 +57,6 @@ function VideoViewer({ executionId, lessonId }: { executionId: string; lessonId:
     const currentTime = video.currentTime;
     setVideoStats((prev) => ({ ...prev, currentTime }));
 
-    // Checkpoint logic
     if (checkpointIndex < checkpoints.length && currentTime >= checkpoints[checkpointIndex].time) {
       video.pause();
       setCheckpointVisible(true);
@@ -66,7 +65,6 @@ function VideoViewer({ executionId, lessonId }: { executionId: string; lessonId:
 
   const handleEnded = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
     setVideoStats((prev) => ({ ...prev, ended: true, paused: false }));
-    console.log("🏁 Video completed");
   };
 
   const handleVolumeChange = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {

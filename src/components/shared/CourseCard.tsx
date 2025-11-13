@@ -14,10 +14,14 @@ import { useAddCourseToCartMutation } from "@/features/student/services/cartApi"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { toast } from "react-toastify";
 import { snow } from "@/assets/images";
+import { useBuyCourseMutation } from "@/features/student/services/paymentApi";
+import { useRouter } from "next/navigation";
 function CourseCard({ course }: { course: Course }) {
   const { openDialog } = useDialog();
   const [addCourseToCart] = useAddCourseToCartMutation();
+  const [buyCourse, { data }] = useBuyCourseMutation();
   const codePurchaseOnly = !course?.Possibilityimplementationcodesonly;
+  const router = useRouter();
   const handleAddCourseToCart = async (courseExecutionId: string) => {
     try {
       const res = await addCourseToCart({ Id: courseExecutionId }).unwrap();
@@ -25,6 +29,16 @@ function CourseCard({ course }: { course: Course }) {
     } catch (error) {
       const err = error as BaseResponse;
       toast.error(err.Message || "حدث خطأ، حاول مرة أخرى");
+    }
+  };
+  const handleBuyCourseNow = async (id: string) => {
+    try {
+      console.log(id);
+      const res = await buyCourse(id).unwrap();
+      console.log("x", res);
+      router.push(`/checkout/${res?.Data?.InvoiceData?.Id}`);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -70,7 +84,7 @@ function CourseCard({ course }: { course: Course }) {
               ) : (
                 <>
                   {codePurchaseOnly && (
-                    <Button className="text-xs h-7" size={"sm"} variant="outline">
+                    <Button onClick={() => handleBuyCourseNow(course?.CourseExecutionId)} className="text-xs h-7" size={"sm"} variant="outline">
                       <PlayCircle />
                       اشترك الان
                     </Button>

@@ -1,18 +1,17 @@
 import TitleSection from "@/components/shared/TitleSection";
 import CartCourses from "@/features/student/components/CartCourses";
-import React from "react";
+import React, { use } from "react";
 
-function page() {
+export default async function Page({ params }: { params: Promise<{ invoiceId: string }> }) {
+  const { invoiceId } = await params;
   return (
     <section>
       <div className="container">
         <div className="flex items-center justify-between">
           <TitleSection title="إتمام عملية الشراء" />
         </div>
-        <CartCourses />
+        <CartCourses invoiceId={invoiceId} />
       </div>
     </section>
   );
 }
-
-export default page;

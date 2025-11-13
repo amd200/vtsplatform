@@ -30,6 +30,7 @@ axiosInstance.interceptors.request.use(
     if (session) {
       config.headers["X-App-Token"] = `UhqBUAP3T6Irguej2ogSdg==`;
       config.headers["X-Student-Token"] = session?.user?.StudentToken;
+      console.log(session?.user?.StudentToken)
     } else {
       config.headers.Authorization = `Bearer UhqBUAP3T6Irguej2ogSdg==`;
     }
@@ -79,7 +80,9 @@ export const axiosBaseQuery =
         //     (msgs as string[]).forEach((msg) => toast.error(msg));
         //   });
         // }
-
+        if (resData.Message) {
+          toast.error(resData.Message);
+        }
         return { error: resData };
       }
 
