@@ -27,7 +27,7 @@ export const studentApi = createApi({
         method: "GET",
       }),
       providesTags: ["StudentCourses"],
-      keepUnusedDataFor: 60, // كاش لمدة دقيقة
+      keepUnusedDataFor: 120, // كاش لمدة دقيقة
     }),
 
     getStudentChapters: builder.query<StudentChaptersResponse, void>({
@@ -36,7 +36,7 @@ export const studentApi = createApi({
         method: "GET",
       }),
       providesTags: ["StudentChapters"],
-      keepUnusedDataFor: 60,
+      keepUnusedDataFor: 120,
     }),
 
     getAllCourses: builder.query<AllCoursesResponse, void>({
@@ -45,7 +45,7 @@ export const studentApi = createApi({
         method: "GET",
       }),
       providesTags: ["AllCourses"],
-      keepUnusedDataFor: 60,
+      keepUnusedDataFor: 120,
     }),
 
     getCourseDetails: builder.query<GetCourseDetailsRepsone, string>({
