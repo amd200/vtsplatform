@@ -4,7 +4,8 @@ export default function getContentUrl(executionId: string, lessonId: string, con
   const typeName = ContentType[contentType]?.toLowerCase();
 
   if (typeName === "quiz" || typeName === "quizmodels") {
-    return `/student/exam/${executionId}/${lessonId}`;
+    // return `/student/exam/${executionId}/${lessonId}`;
+    return `/student/exam/${lessonId}`;
   }
   const safeType = typeName || "richtext";
   return `/student/content/${safeType}/${executionId}/${lessonId}`;
