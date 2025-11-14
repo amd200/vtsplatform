@@ -69,10 +69,10 @@ function VideoViewer({ executionId, lessonId, setLessonName }: { executionId: st
     localStorage.setItem(STORAGE_KEY, currentTime.toString());
 
     // Checkpoint logic
-    if (checkpointIndex < checkpoints.length && currentTime >= checkpoints[checkpointIndex].time) {
-      e.currentTarget.pause();
-      setCheckpointVisible(true);
-    }
+    // if (checkpointIndex < checkpoints.length && currentTime >= checkpoints[checkpointIndex].time) {
+    //   e.currentTarget.pause();
+    //   setCheckpointVisible(true);
+    // }
   };
 
   // --- Ended ---
@@ -81,14 +81,14 @@ function VideoViewer({ executionId, lessonId, setLessonName }: { executionId: st
     localStorage.removeItem(STORAGE_KEY); // لو عايز يمسح التقدم بعد الانتهاء
   };
 
-  const handleCheckpointContinue = () => {
-    setCheckpointVisible(false);
-    setCheckpointIndex((prev) => prev + 1);
+  // const handleCheckpointContinue = () => {
+  //   setCheckpointVisible(false);
+  //   setCheckpointIndex((prev) => prev + 1);
 
-    if (videoRef.current) {
-      videoRef.current.play();
-    }
-  };
+  //   if (videoRef.current) {
+  //     videoRef.current.play();
+  //   }
+  // };
 
   return (
     <div className="w-full max-w-full relative" dir="ltr">
