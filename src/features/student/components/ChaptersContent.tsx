@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Chapter, ContentType, Lesson } from "@/types/common.types";
 import { useGetCourseDetailsQuery } from "../services/studentApi";
@@ -7,9 +8,22 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Clock, Video } from "lucide-react";
-
-function ChaptersContent({ executionId, lessonId }: { executionId: string; lessonId: string }) {
+function ChaptersContent({ executionId, lessonId, onLessonsLoaded }: { executionId: string; lessonId: string; onLessonsLoaded?: (lessons: Lesson[]) => void }) {
   const { data: courseDetails } = useGetCourseDetailsQuery(executionId);
+
+  useEffect(() => {
+    if (courseDetails?.Data?.Chapters) {
+      const allLessons: Lesson[] = [];
+
+      courseDetails.Data.Chapters.forEach((chapter: Chapter) => {
+        chapter.Lessons?.forEach((lesson: Lesson) => {
+          allLessons.push(lesson);
+        });
+      });
+
+      onLessonsLoaded?.(allLessons);
+    }
+  }, [courseDetails]);
 
   return (
     <div className="lg:col-span-4 col-span-12 ">

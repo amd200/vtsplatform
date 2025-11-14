@@ -10,7 +10,7 @@ import getContentUrl from "@/features/student/utils/getContentUrl";
 import ChaptersContent from "@/features/student/components/ChaptersContent";
 import { useShowVideoQuery } from "../services/lessonContentApi";
 
-function VideoViewer({ executionId, lessonId }: { executionId: string; lessonId: string }) {
+function VideoViewer({ executionId, lessonId, setLessonName }: { executionId: string; lessonId: string; setLessonName: (name: string) => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoStats, setVideoStats] = useState({
     currentTime: 0,
@@ -23,7 +23,11 @@ function VideoViewer({ executionId, lessonId }: { executionId: string; lessonId:
   });
 
   const { data } = useShowVideoQuery({ Id: executionId, LessonId: lessonId });
-
+  useEffect(() => {
+    if (data?.Data?.Title) {
+      setLessonName(data.Data.LessonTitle);
+    }
+  }, [data]);
   const checkpoints = [
     { time: 60, message: "✋ توقف! هل تريد متابعة الفيديو؟" },
     { time: 120, message: "🚀 وصلت لنقطة مهمة! اضغط للمتابعة" },

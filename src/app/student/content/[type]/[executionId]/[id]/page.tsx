@@ -1,40 +1,50 @@
 "use client";
-import React, { use, useEffect, useRef, useState } from "react";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Clock, Video as VV } from "lucide-react";
-import Video from "next-video";
-import myVideo from "@/../videos/spider.mp4";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Chapter, Lesson } from "@/types/common.types";
-import Link from "next/link";
-import { Worker } from "@react-pdf-viewer/core";
-import { Viewer } from "@react-pdf-viewer/core";
-import "@react-pdf-viewer/core/lib/styles/index.css";
-import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
-import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 import { useParams } from "next/navigation";
+import Link from "next/link";
+
 import ChaptersContent from "@/features/student/components/ChaptersContent";
 import PdfViewer from "@/features/student/components/PdfViewer";
 import RichTextViewer from "@/features/student/components/RichTextViewer";
 import VideoViewer from "@/features/student/components/VideoViewer";
 import AudioPlayer from "@/features/student/components/AudioPlayer";
+import getContentUrl from "@/features/student/utils/getContentUrl";
+import { Lesson } from "@/types/common.types";
+
 function Page() {
   const params = useParams();
   const type = params.type;
   const executionId = Array.isArray(params.executionId) ? params.executionId[0] : params.executionId;
+
   const lessonId = Array.isArray(params.id) ? params.id[0] : params.id;
+
+  const [lessonName, setLessonName] = useState("");
+  const [lessons, setLessons] = useState<Lesson[]>([]);
+
+  const id = String(lessonId);
+  const exe = String(executionId);
+
+  // ترتيب الدروس
+  const currentIndex = lessons.findIndex((l) => String(l.Id) === id);
+
+  const prevLesson = currentIndex > 0 ? lessons[currentIndex - 1] : null;
+  const nextLesson = currentIndex !== -1 && currentIndex < lessons.length - 1 ? lessons[currentIndex + 1] : null;
+
+  const prevUrl = prevLesson ? getContentUrl(exe, prevLesson.Id, prevLesson.ContentType) : null;
+
+  const nextUrl = nextLesson ? getContentUrl(exe, nextLesson.Id, nextLesson.ContentType) : null;
+
   const renderViewer = () => {
     switch (type) {
       case "video":
-        return <VideoViewer executionId={String(executionId)} lessonId={String(lessonId)} />;
+        return <VideoViewer executionId={exe} lessonId={id} setLessonName={setLessonName} />;
       case "pdf":
-        return <PdfViewer executionId={String(executionId)} lessonId={String(lessonId)} />;
+        return <PdfViewer executionId={exe} lessonId={id} />;
       case "sound":
-        return <AudioPlayer executionId={String(executionId)} lessonId={String(lessonId)} />;
-      case "richtext":
+        return <AudioPlayer executionId={exe} lessonId={id} />;
       default:
-        return <RichTextViewer executionId={String(executionId)} lessonId={String(lessonId)} />;
+        return <RichTextViewer executionId={exe} lessonId={id} setLessonName={setLessonName} />;
     }
   };
 
@@ -42,14 +52,30 @@ function Page() {
     <section className="py-8 font-ar-medium">
       <div className="container grid lg:grid-cols-12 grid-cols-1 lg:gap-x-12 gap-y-8">
         <div className="lg:col-span-8 col-span-12">
-          {/* <div className="w-full h-[500px]"></div> */}
+          <h1 className="text-2xl font-bold mb-4">{lessonName}</h1>
+
           {renderViewer()}
+
           <div className="flex items-center justify-between mt-4">
-            <Button variant={"ghost"}>السابق</Button>
-            <Button>التالي</Button>
+            {prevUrl ? (
+              <Link href={prevUrl}>
+                <Button variant="ghost">السابق</Button>
+              </Link>
+            ) : (
+              <div></div>
+            )}
+
+            {nextUrl ? (
+              <Link href={nextUrl}>
+                <Button>التالي</Button>
+              </Link>
+            ) : (
+              <div></div>
+            )}
           </div>
-        </div>{" "}
-        <ChaptersContent lessonId={String(lessonId)} executionId={String(executionId)} />
+        </div>
+
+        <ChaptersContent lessonId={id} executionId={exe} onLessonsLoaded={setLessons} />
       </div>
     </section>
   );

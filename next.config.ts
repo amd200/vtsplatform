@@ -37,6 +37,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "faroukplatform.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "mrahmedmostafa.com",
         pathname: "/**",
       },
@@ -47,7 +52,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/api/:path((?!auth).*)", // ✅ استثناء مسار /api/auth
-        destination: "https://vedu-demo.vtsitco.com/api/:path*",
+        destination: "https://faroukplatform.com/api/:path*",
       },
     ];
   },

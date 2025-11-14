@@ -7,7 +7,7 @@ function Footer() {
   return (
     <>
       <footer style={{ backgroundImage: `url(${footerBg.src})` }} className="relative py-4 mt-12 bg-center lg:max-w-7xl w-full  mx-auto font-ar-medium rounded-lg overflow-hidden">
-        <Image src={snow} alt="snow" className="absolute h-[60px] w-full top-[-30px] z-5" />
+        {/* <Image src={snow} alt="snow" className="absolute h-[60px] w-full top-[-30px] z-5" /> */}
         <div className="container grid lg:grid-cols-3 gap-y-4 pt-[10px]">
           <div className="">
             <Link href="/">
