@@ -78,7 +78,7 @@ function VideoViewer({ executionId, lessonId, setLessonName }: { executionId: st
   // --- Ended ---
   const handleEnded = () => {
     setVideoStats((prev) => ({ ...prev, currentTime: 0 }));
-    localStorage.removeItem(STORAGE_KEY); // لو عايز يمسح التقدم بعد الانتهاء
+    localStorage.removeItem(STORAGE_KEY);
   };
 
   // const handleCheckpointContinue = () => {
