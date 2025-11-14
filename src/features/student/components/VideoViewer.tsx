@@ -49,13 +49,11 @@ function VideoViewer({ executionId, lessonId, setLessonName }: { executionId: st
     { time: 120, message: "🚀 وصلت لنقطة مهمة! اضغط للمتابعة" },
   ];
 
-  // --- Metadata loaded ---
   const handleLoadedMetadata = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
     const duration = e.currentTarget.duration;
     setVideoStats((prev) => ({ ...prev, duration }));
   };
 
-  // --- Play ---
   const handlePlay = () => {
     setVideoStats((prev) => ({
       ...prev,
@@ -63,13 +61,11 @@ function VideoViewer({ executionId, lessonId, setLessonName }: { executionId: st
     }));
   };
 
-  // --- Time update (SAVE VIDEO PROGRESS HERE) ---
   const handleTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
     const currentTime = e.currentTarget.currentTime;
 
     setVideoStats((prev) => ({ ...prev, currentTime }));
 
-    // Save progress to localStorage
     localStorage.setItem(STORAGE_KEY, currentTime.toString());
 
     // Checkpoint logic
@@ -99,14 +95,14 @@ function VideoViewer({ executionId, lessonId, setLessonName }: { executionId: st
       <Video ref={videoRef} src={data?.Data?.Contents} height={500} controls style={{ width: "100%", maxWidth: "100%" }} onLoadedMetadata={handleLoadedMetadata} onPlay={handlePlay} onTimeUpdate={handleTimeUpdate} onEnded={handleEnded} />
 
       {/* Checkpoint Popup */}
-      {checkpointVisible && (
+      {/* {checkpointVisible && (
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded shadow-lg text-center">
             <p className="mb-4 text-lg">{checkpoints[checkpointIndex].message}</p>
             <Button onClick={handleCheckpointContinue}>أكمل الفيديو</Button>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
