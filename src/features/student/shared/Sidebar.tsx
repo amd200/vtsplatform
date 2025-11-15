@@ -39,7 +39,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className={`${isOpen ? "w-64" : "w-20"} h-screen  fixed start-0 z-40 top-0 bg-primary border-e shadow-sm transition-all duration-300 flex flex-col`}>
+    <aside className={`${isOpen ? "w-64" : "w-20"} h-screen max-lg:hidden  fixed start-0 z-40 top-0 bg-primary border-e shadow-sm transition-all duration-300 flex flex-col`}>
       <div className={`flex items-center ${!isOpen ? "justify-center" : "justify-end"}  p-3 border-b`}>
         <button onClick={() => setIsOpen(!isOpen)} className="p-2 rounded-lg text-white hover:bg-gray-100 hover:text-black">
           {isOpen ? "←" : "→"}
