@@ -4,7 +4,14 @@ import { Button } from "@/components/ui/button";
 import Video from "next-video";
 import { useShowVideoQuery } from "../services/lessonContentApi";
 
-function VideoViewer({ executionId, lessonId, setLessonName, onStatsUpdate }: { executionId: string; lessonId: string; setLessonName: (name: string) => void; onStatsUpdate: (stats: any) => void }) {
+export type VideoStats = {
+  currentTime: number;
+  duration: number;
+  playCount: number;
+  volume: number;
+};
+
+function VideoViewer({ executionId, lessonId, setLessonName, onStatsUpdate }: { executionId: string; lessonId: string; setLessonName: (name: string) => void; onStatsUpdate: (stats: VideoStats) => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [checkpointIndex, setCheckpointIndex] = useState(0);
   const [checkpointVisible, setCheckpointVisible] = useState(false);
