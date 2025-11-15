@@ -13,8 +13,11 @@ import { useGetStudentExamsResutlsQuery } from "@/features/student/services/stud
 import { ExamResult } from "@/features/student/types/student.types";
 
 function Page() {
-  const { data, isLoading } = useGetDashboardDataQuery();
+  const { data, isLoading, error } = useGetDashboardDataQuery();
   console.log(data);
+  useEffect(() => {
+    console.log(error);
+  }, [error]);
   return (
     <main className="py-8 space-y-20 font-ar-medium">
       <Chart />

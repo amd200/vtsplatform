@@ -51,11 +51,11 @@ async function loginRequest(endpoint: string, credentials: Credentials) {
     headers: { "Content-Type": "application/json", Authorization: "Bearer UhqBUAP3T6Irguej2ogSdg==" },
     body: JSON.stringify(credentials),
   });
-  if (!res.ok) {
-    throw new Error("Login failed");
+  const data: SignInResponse | null = await res.json().catch(() => null);
+
+  if (!res.ok || !data?.Data) {
+    throw new Error(data?.Message || "Login failed");
   }
-  const data: SignInResponse = await res.json();
-  console.log("error", data);
 
   if (res.ok && data) {
     return {
@@ -78,7 +78,7 @@ export const authOptions: NextAuthOptions = {
         Password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        return await loginRequest("https://faroukplatform.com/api/platform/Account/SignIn", credentials!);
+        return await loginRequest(`${process.env.NEXT_PUBLIC_API_URL}/platform/Account/SignIn`, credentials!);
       },
     }),
     // CredentialsProvider({

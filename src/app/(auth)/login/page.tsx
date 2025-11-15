@@ -44,6 +44,7 @@ function Page() {
       redirect: true,
       callbackUrl: "/student",
     });
+    console.log("xx", res);
   }
 
   return (

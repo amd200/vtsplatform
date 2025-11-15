@@ -25,6 +25,7 @@ axiosInstance.interceptors.request.use(
       method: config.method,
       data: config.data,
       params: config.params,
+      headers : config.headers
     });
     const session = await getSession();
     if (session) {

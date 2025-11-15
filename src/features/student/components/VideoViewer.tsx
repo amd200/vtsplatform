@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Video from "next-video";
 import { useShowVideoQuery } from "../services/lessonContentApi";
 
-function VideoViewer({ executionId, lessonId, setLessonName }: { executionId: string; lessonId: string; setLessonName: (name: string) => void }) {
+function VideoViewer({ executionId, lessonId, setLessonName, onStatsUpdate }: { executionId: string; lessonId: string; setLessonName: (name: string) => void; onStatsUpdate: (stats: any) => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [checkpointIndex, setCheckpointIndex] = useState(0);
   const [checkpointVisible, setCheckpointVisible] = useState(false);
@@ -13,7 +13,11 @@ function VideoViewer({ executionId, lessonId, setLessonName }: { executionId: st
     currentTime: 0,
     duration: 0,
     playCount: 0,
+    volume: 1,
   });
+  useEffect(() => {
+    onStatsUpdate(videoStats);
+  }, [videoStats]);
 
   const { data } = useShowVideoQuery({ Id: executionId, LessonId: lessonId });
 
@@ -80,6 +84,13 @@ function VideoViewer({ executionId, lessonId, setLessonName }: { executionId: st
     setVideoStats((prev) => ({ ...prev, currentTime: 0 }));
     localStorage.removeItem(STORAGE_KEY);
   };
+  const handleVolumeChange = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+    const volume = e.currentTarget.volume;
+    setVideoStats((prev) => ({
+      ...prev,
+      volume,
+    }));
+  };
 
   // const handleCheckpointContinue = () => {
   //   setCheckpointVisible(false);
@@ -92,7 +103,7 @@ function VideoViewer({ executionId, lessonId, setLessonName }: { executionId: st
 
   return (
     <div className="w-full max-w-full relative" dir="ltr">
-      <Video ref={videoRef} src={data?.Data?.Contents} height={500} controls style={{ width: "100%", maxWidth: "100%" }} onLoadedMetadata={handleLoadedMetadata} onPlay={handlePlay} onTimeUpdate={handleTimeUpdate} onEnded={handleEnded} />
+      <Video ref={videoRef} src={data?.Data?.Contents} height={500} controls style={{ width: "100%", maxWidth: "100%" }} onLoadedMetadata={handleLoadedMetadata} onVolumeChange={handleVolumeChange} onPlay={handlePlay} onTimeUpdate={handleTimeUpdate} onEnded={handleEnded} />
 
       {/* Checkpoint Popup */}
       {/* {checkpointVisible && (

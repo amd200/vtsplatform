@@ -15,6 +15,12 @@ import { Lesson } from "@/types/common.types";
 function Page() {
   const params = useParams();
   const type = params.type;
+  const [videoStats, setVideoStats] = useState({
+    currentTime: 0,
+    duration: 0,
+    playCount: 0,
+    volume: 1,
+  });
   const executionId = Array.isArray(params.executionId) ? params.executionId[0] : params.executionId;
 
   const lessonId = Array.isArray(params.id) ? params.id[0] : params.id;
@@ -38,7 +44,7 @@ function Page() {
   const renderViewer = () => {
     switch (type) {
       case "video":
-        return <VideoViewer executionId={exe} lessonId={id} setLessonName={setLessonName} />;
+        return <VideoViewer executionId={exe} lessonId={id} setLessonName={setLessonName} onStatsUpdate={setVideoStats} />;
       case "pdf":
         return <PdfViewer executionId={exe} lessonId={id} />;
       case "sound":
@@ -47,6 +53,19 @@ function Page() {
         return <RichTextViewer executionId={exe} lessonId={id} setLessonName={setLessonName} />;
     }
   };
+  function formatTime(seconds: number) {
+    if (!seconds || isNaN(seconds)) return "00:00";
+
+    const hrs = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
+    const secs = Math.floor(seconds % 60);
+
+    if (hrs > 0) {
+      return `${hrs.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+    }
+
+    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+  }
 
   return (
     <section className="py-8 font-ar-medium">
@@ -73,6 +92,28 @@ function Page() {
               <div></div>
             )}
           </div>
+          {type === "video" && videoStats && (
+            <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg text-center">
+                <div className="text-2xl font-bold text-blue-600">{videoStats.playCount}</div>
+                <div className="text-sm text-blue-500">مرات التشغيل</div>
+              </div>
+
+              <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-center">
+                <div className="text-2xl font-bold text-green-600">{formatTime(videoStats.currentTime)}</div>
+                <div className="text-sm text-green-500">الوقت الحالي</div>
+              </div>
+
+              <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg text-center">
+                <div className="text-2xl font-bold text-purple-600">{Math.round((videoStats.currentTime / videoStats.duration) * 100)}%</div>
+                <div className="text-sm text-purple-500">نسبة التقدم</div>
+              </div>
+              <div className="p-4 bg-orange-50 border border-orange-200 rounded-lg text-center">
+                <div className="text-2xl font-bold text-orange-600">{Math.round(videoStats.volume * 100)}%</div>
+                <div className="text-sm text-orange-500">مستوى الصوت</div>
+              </div>
+            </div>
+          )}
         </div>
 
         <ChaptersContent lessonId={id} executionId={exe} onLessonsLoaded={setLessons} />

@@ -36,7 +36,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "faroukplatform.com",
+        hostname: process.env.NEXT_PUBLIC_FILES_PATH!.replace(/^https?:\/\//, ""),
         pathname: "/**",
       },
       {
@@ -47,14 +47,14 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  async rewrites() {
-    return [
-      {
-        source: "/api/:path((?!auth).*)", // ✅ استثناء مسار /api/auth
-        destination: "https://faroukplatform.com/api/:path*",
-      },
-    ];
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: "/api/:path((?!auth).*)", // ✅ استثناء مسار /api/auth
+  //       destination: "https://faroukplatform.com/api/:path*",
+  //     },
+  //   ];
+  // },
 };
 
 export default withNextVideo(nextConfig);
