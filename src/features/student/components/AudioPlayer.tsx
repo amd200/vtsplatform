@@ -22,7 +22,7 @@ function AudioPlayer({ executionId, lessonId }: { executionId: string; lessonId:
           "--media-accent-color": "var(--primary)",
         }}
       >
-        <audio slot="media" src={"https://backup.qurango.net/radio/nasser_alqatami"} playsInline crossOrigin="anonymous"></audio>
+        <audio slot="media" src={data?.Data?.Contents} playsInline crossOrigin="anonymous"></audio>
       </MediaThemeTailwindAudio>{" "}
     </div>
   );

@@ -31,7 +31,6 @@ function Page() {
   const id = String(lessonId);
   const exe = String(executionId);
 
-  // ترتيب الدروس
   const currentIndex = lessons.findIndex((l) => String(l.Id) === id);
 
   const prevLesson = currentIndex > 0 ? lessons[currentIndex - 1] : null;
