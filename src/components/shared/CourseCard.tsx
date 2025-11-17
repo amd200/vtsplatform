@@ -16,12 +16,33 @@ import { toast } from "react-toastify";
 import { snow } from "@/assets/images";
 import { useBuyCourseMutation } from "@/features/student/services/paymentApi";
 import { useRouter } from "next/navigation";
+import { useActivateCodeMutation } from "@/features/student/services/studentApi";
+import { useState } from "react";
 function CourseCard({ course }: { course: Course }) {
   const { openDialog } = useDialog();
   const [addCourseToCart] = useAddCourseToCartMutation();
   const [buyCourse, { data }] = useBuyCourseMutation();
   const codePurchaseOnly = !course?.Possibilityimplementationcodesonly;
+  const [activateCode, { isLoading }] = useActivateCodeMutation();
+  const [codeValue, setCodeValue] = useState("");
   const router = useRouter();
+  const handleActivate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const res = await activateCode(codeValue).unwrap();
+      console.log(res);
+      if (res.Data?.IsTheTargetActivated) {
+        toast.success("تم التفعيل بنجاح");
+      } else {
+        toast.error(res.Data?.Message || "هذا الكود غير صحيح");
+      }
+      setCodeValue("");
+    } catch (error) {
+      const err = error as BaseResponse<unknown>;
+      toast.error(err.Message || "حدث خطأ أثناء التفعيل");
+    }
+  };
+
   const handleAddCourseToCart = async (courseExecutionId: string) => {
     try {
       const res = await addCourseToCart({ Id: courseExecutionId }).unwrap();
@@ -101,9 +122,11 @@ function CourseCard({ course }: { course: Course }) {
                       <DialogHeader>
                         <DialogTitle className="font-ar-medium">ادخل كود المقرر</DialogTitle>
                       </DialogHeader>
-                      <form className="flex flex-col  items-end">
-                        <Input placeholder="الكود" />
-                        <Button className="mt-2 font-ar-medium">تفعيل</Button>
+                      <form onSubmit={handleActivate} className="flex flex-col items-end w-full">
+                        <Input placeholder="الكود" value={codeValue} onChange={(e) => setCodeValue(e.target.value)} required />
+                        <Button className={`mt-2 font-ar-medium `} disabled={isLoading ? true : false}>
+                          {isLoading ? "جاري التفعيل..." : "تفعيل"}
+                        </Button>
                       </form>
                     </DialogContent>
                   </Dialog>

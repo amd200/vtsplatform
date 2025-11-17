@@ -1,7 +1,7 @@
 import { axiosBaseQuery } from "@/lib/api/axiosBaseQuery";
 import { DashBoardResponse } from "@/types/dashboard.types";
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { AllCoursesResponse, ExamResultsRepsone, GetCourseDetailsRepsone, ShowContentRepsone, StudentChaptersResponse, StudentCoursesResponse, StudentLessonsRepsone, StudentPaymentsResponse, StudentScheduleRepsone, StudentSessionsRepsone, StudentSubscriptionsResponse, StudentWalletRepsone } from "../types/student.types";
+import { ActivateCodeResponse, AllCoursesResponse, ExamResultsRepsone, GetCourseDetailsRepsone, ShowContentRepsone, StudentChaptersResponse, StudentCoursesResponse, StudentLessonsRepsone, StudentPaymentsResponse, StudentScheduleRepsone, StudentSessionsRepsone, StudentSubscriptionsResponse, StudentWalletRepsone } from "../types/student.types";
 import { Course } from "@/types/common.types";
 
 export const studentApi = createApi({
@@ -27,7 +27,7 @@ export const studentApi = createApi({
         method: "GET",
       }),
       providesTags: ["StudentCourses"],
-      keepUnusedDataFor: 120, // كاش لمدة دقيقة
+      keepUnusedDataFor: 120,
     }),
 
     getStudentChapters: builder.query<StudentChaptersResponse, void>({
@@ -76,6 +76,17 @@ export const studentApi = createApi({
         method: "GET",
       }),
     }),
+    activateCode: builder.mutation<ActivateCodeResponse, string>({
+      query: (code) => ({
+        url: `/platform/Dashboard/ActivateCode`,
+        method: "POST",
+        data: {
+          Code: code,
+        },
+      }),
+      invalidatesTags: ["StudentCourses", "AllCourses"],
+    }),
+
     getStudentSchedule: builder.query<StudentScheduleRepsone, { Id?: string; type?: string; fromDate?: string; toDate?: string }>({
       query: ({ Id, type, fromDate, toDate }) => ({
         url: `/platform/StudentScheduleWeb`,
@@ -97,4 +108,4 @@ export const studentApi = createApi({
   }),
 });
 
-export const { useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery, useGetStudentWalletQuery } = studentApi;
+export const { useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useActivateCodeMutation, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery, useGetStudentWalletQuery } = studentApi;

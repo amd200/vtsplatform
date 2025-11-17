@@ -234,12 +234,16 @@ export interface Invoice {
   UsingPaymob: boolean;
 }
 export interface Fawry {
-  SubId: string; // رقم الفاتورة أو المرجع (invoice id)
-  ClientId: string; // رقم تعريف العميل (student id)
+  SubId: string;
+  ClientId: string;
   ClientName: string; // اسم العميل
   ClientPhone: string; // رقم الموبايل أو وسيلة التواصل
   price: string; // المبلغ الإجمالي المطلوب (formatted string)
   signature: string; // توقيع التشفير (secure hash)
+}
+export interface ActivateCode {
+  IsTheTargetActivated: boolean;
+  Message: string;
 }
 
 export type StudentPaymentsResponse = BaseResponse<Payment[]>;
@@ -255,4 +259,5 @@ export type StudentScheduleRepsone = BaseResponse<StudentSchedule>;
 export type ShowContentRepsone = BaseResponse<ShowContent>;
 export type StudentWalletRepsone = BaseResponse<StudentCharge>;
 export type InvoiceRepsone = BaseResponse<Invoice>;
+export type ActivateCodeResponse = BaseResponse<ActivateCode>;
 export type FawryRepsone = BaseResponse<Fawry>;
