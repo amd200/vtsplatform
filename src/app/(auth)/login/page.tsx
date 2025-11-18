@@ -107,7 +107,7 @@ function Page() {
           )}
           <Switch className="ms-auto h-7 w-14" thumbClassName="h-6 w-6 data-[state=checked]:-translate-x-7" checked={useCodeOnly} onCheckedChange={(val) => setUseCodeOnly(val)} />
           <div className="flex justify-center">
-            <ReCAPTCHA sitekey="6LdmA3IoAAAAAM57OfILdg1UfEPyEBQ5ya2gUbyG" onChange={onChange} />,
+            <ReCAPTCHA sitekey="6LdOHBEsAAAAALJdW3GngYXx5l9NUR4hyn1HImbI" onChange={onChange} />,
           </div>
           <div className="flex justify-between items-center">
             <p className="text-xs">
