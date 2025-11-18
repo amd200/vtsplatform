@@ -25,6 +25,8 @@ function SignUpForm() {
   }, [data]);
   const [signup] = useSignupMutation();
   const [useCodeOnly, setUseCodeOnly] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+
   const form = useForm<SignUpSchema>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -38,9 +40,15 @@ function SignUpForm() {
     },
   });
   function onChange(value: string | null) {
+    setCaptchaToken(value);
+
     console.log("Captcha value:", value);
   }
   async function onSubmit(values: SignUpSchema) {
+    if (!captchaToken) {
+      toast.error("من فضلك قم بحل اختبار التحقق (reCAPTCHA)");
+      return;
+    }
     const payload: SignUpRequest = {
       FirstName: values.firstName,
       LastName: values.lastName,

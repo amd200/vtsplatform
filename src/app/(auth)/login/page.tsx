@@ -24,8 +24,11 @@ function Page() {
   const { data: session } = useSession();
   const [useCodeOnly, setUseCodeOnly] = useState(false);
   const router = useRouter();
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+
   function onChange(value: string | null) {
     console.log("Captcha value:", value);
+    setCaptchaToken(value);
   }
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -37,6 +40,10 @@ function Page() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (!captchaToken) {
+      toast.error("من فضلك قم بحل اختبار التحقق (reCAPTCHA)");
+      return;
+    }
     const res = await signIn("credentials", {
       UserName: values.phoneNumber,
       Password: values.password,
