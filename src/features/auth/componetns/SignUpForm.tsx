@@ -198,7 +198,7 @@ function SignUpForm() {
           )}
         />
         <div className="flex justify-center">
-          <ReCAPTCHA sitekey="6Lfm4RAsAAAAAO4VRipS97nC4KxANTI0R9CA7qVm" onChange={onChange} />,
+          <ReCAPTCHA sitekey="6LfdKxEsAAAAAG8FyFKM1KhsQJd8p2EH6HhYtviL" onChange={onChange} />,
         </div>
         <div className="flex justify-between items-center">
           <p className="text-xs">
