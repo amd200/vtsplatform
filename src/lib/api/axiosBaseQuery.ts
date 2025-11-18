@@ -20,21 +20,16 @@ axiosInstance.interceptors.response.use(
 
 axiosInstance.interceptors.request.use(
   async (config) => {
-    console.log("🛰️ Axios Request:", {
-      url: config.url,
-      method: config.method,
-      data: config.data,
-      params: config.params,
-      headers : config.headers
-    });
     const session = await getSession();
-    if (session) {
+
+    if (session?.user?.StudentToken) {
       config.headers["X-App-Token"] = `UhqBUAP3T6Irguej2ogSdg==`;
-      config.headers["X-Student-Token"] = session?.user?.StudentToken;
-      console.log(session?.user?.StudentToken);
+      config.headers["X-Student-Token"] = session.user.StudentToken;
     } else {
+      console.log("first")
       config.headers.Authorization = `Bearer UhqBUAP3T6Irguej2ogSdg==`;
     }
+
     return config;
   },
   (error) => Promise.reject(error)

@@ -1,6 +1,6 @@
 export interface BaseResponse<T = void> {
   Status: boolean;
-  Code: string;
+  Code: number | string;
   Message: string;
   Data?: T | null;
 }

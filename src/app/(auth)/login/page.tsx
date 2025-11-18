@@ -8,7 +8,7 @@ import { z } from "zod";
 import { Switch } from "@/components/ui/switch";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useEffect, useState } from "react";
-// import ReCAPTCHA from "react-google-recaptcha";
+import ReCAPTCHA from "react-google-recaptcha";
 import { useSignInMutation } from "@/features/auth/services/authApi";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -24,7 +24,7 @@ function Page() {
   const { data: session } = useSession();
   const [useCodeOnly, setUseCodeOnly] = useState(false);
   const router = useRouter();
-  function onChange(value: string) {
+  function onChange(value: string | null) {
     console.log("Captcha value:", value);
   }
   const form = useForm<z.infer<typeof formSchema>>({
@@ -106,9 +106,9 @@ function Page() {
             />
           )}
           <Switch className="ms-auto h-7 w-14" thumbClassName="h-6 w-6 data-[state=checked]:-translate-x-7" checked={useCodeOnly} onCheckedChange={(val) => setUseCodeOnly(val)} />
-          {/* <div className="flex justify-center">
+          <div className="flex justify-center">
             <ReCAPTCHA sitekey="6LdmA3IoAAAAAM57OfILdg1UfEPyEBQ5ya2gUbyG" onChange={onChange} />,
-          </div> */}
+          </div>
           <div className="flex justify-between items-center">
             <p className="text-xs">
               ليس لديك حساب؟{" "}

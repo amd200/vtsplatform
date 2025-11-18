@@ -62,6 +62,12 @@ export enum InvoiceStatus {
   Rejected,
 }
 
+export interface Country {
+  Id: string;
+  Name: string;
+  MobileCode: string;
+}
+
 export interface Payment {
   Id: string;
   PaymentType: number;
@@ -261,3 +267,4 @@ export type StudentWalletRepsone = BaseResponse<StudentCharge>;
 export type InvoiceRepsone = BaseResponse<Invoice>;
 export type ActivateCodeResponse = BaseResponse<ActivateCode>;
 export type FawryRepsone = BaseResponse<Fawry>;
+export type CoutriesRepsone = BaseResponse<Country[]>;

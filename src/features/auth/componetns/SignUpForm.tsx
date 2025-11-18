@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import z from "zod";
 import { useForm } from "react-hook-form";
@@ -12,8 +13,16 @@ import { Switch } from "@/components/ui/switch";
 import { signUpSchema, SignUpSchema } from "../schemas/signUpSchema";
 import { useSignupMutation } from "../services/authApi";
 import { SignUpRequest } from "../types/auth.types";
+import { useGetCountriesQuery } from "@/features/student/services/studentApi";
+import { toast } from "react-toastify";
+import { BaseResponse } from "@/types/common.types";
+import ReCAPTCHA from "react-google-recaptcha";
 
 function SignUpForm() {
+  const { data } = useGetCountriesQuery();
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
   const [signup] = useSignupMutation();
   const [useCodeOnly, setUseCodeOnly] = useState(false);
   const form = useForm<SignUpSchema>({
@@ -28,24 +37,28 @@ function SignUpForm() {
       gender: "",
     },
   });
-  function onChange(value: string) {
+  function onChange(value: string | null) {
     console.log("Captcha value:", value);
   }
   async function onSubmit(values: SignUpSchema) {
-    console.log("first");
     const payload: SignUpRequest = {
       FirstName: values.firstName,
       LastName: values.lastName,
       MobileNumber: values.phoneNumber,
       Password: values.password,
       ConfirmPassword: values.confirmPassword,
-      CountryId: "314e3072-aedb-44a1-931b-196750b3c095",
+      CountryId: values?.country,
       Gender: values.gender,
-      DeviceToken: "s",
     };
-
-    const res = await signup(payload);
-    console.log(res);
+    try {
+      const res = await signup(payload).unwrap();
+      if (res?.Code == 200) {
+        toast.success(res?.Message);
+      }
+    } catch (err) {
+      const error = err as BaseResponse<unknown>;
+      toast.error(error?.Message);
+    }
   }
   return (
     <Form {...form}>
@@ -95,12 +108,17 @@ function SignUpForm() {
             render={({ field }) => (
               <FormItem className="col-span-4">
                 <FormControl>
-                  <Select>
+                  <Select onValueChange={field.onChange} value={field.value}>
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="الدولة" />
                     </SelectTrigger>
+
                     <SelectContent>
-                      <SelectItem value="مصر">مصر</SelectItem>
+                      {data?.Data?.map((country) => (
+                        <SelectItem key={country.Id} value={country.Id}>
+                          {country.Name}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </FormControl>
@@ -178,10 +196,9 @@ function SignUpForm() {
             </FormItem>
           )}
         />
-        <Switch className="ms-auto h-7 w-14" thumbClassName="h-6 w-6 data-[state=checked]:-translate-x-7" checked={useCodeOnly} onCheckedChange={(val) => setUseCodeOnly(val)} />
-        {/* <div className="flex justify-center">
+        <div className="flex justify-center">
           <ReCAPTCHA sitekey="6LdmA3IoAAAAAM57OfILdg1UfEPyEBQ5ya2gUbyG" onChange={onChange} />,
-          </div> */}
+        </div>
         <div className="flex justify-between items-center">
           <p className="text-xs">
             ليس لديك حساب؟{" "}

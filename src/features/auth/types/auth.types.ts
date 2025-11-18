@@ -18,7 +18,6 @@ export interface SignUpRequest {
   Password: string;
   ConfirmPassword: string;
   Gender: string;
-  DeviceToken: string;
 }
 
 export interface VerifyOtpCodeRequest {

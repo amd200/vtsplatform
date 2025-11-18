@@ -5,7 +5,7 @@ import { fetcher } from "@/lib/api/fetcher";
 import { StudentCoursesResponse } from "@/features/student/types/student.types";
 
 async function Courses() {
-  const data = await fetcher<StudentCoursesResponse>(`/api/platform/AllCourses`);
+  const data = await fetcher<StudentCoursesResponse>(`/platform/AllCourses`);
   const courses = data?.Data;
   return (
     <section className="py-8">

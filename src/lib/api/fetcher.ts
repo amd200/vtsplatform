@@ -5,10 +5,11 @@ export async function fetcher<T = unknown>(url: string, options: RequestInit = {
   try {
     const session = await getServerSession(authOptions);
     console.log("from fethcer", session);
-    const res = await fetch(`${process.env.NEXT_PUBLIC_FILES_PATH}${url}`, {
+    const appToken = session?.user?.StudentToken ? `Bearer ${session.user.StudentToken}` : "UhqBUAP3T6Irguej2ogSdg==";
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
       headers: {
         "Content-Type": "application/json",
-        "X-App-Token": "UhqBUAP3T6Irguej2ogSdg==",
+        "X-App-Token": appToken,
         "X-Student-Token": session?.user?.StudentToken ?? "",
         ...options.headers,
       },

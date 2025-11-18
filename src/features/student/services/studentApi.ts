@@ -1,7 +1,7 @@
 import { axiosBaseQuery } from "@/lib/api/axiosBaseQuery";
 import { DashBoardResponse } from "@/types/dashboard.types";
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { ActivateCodeResponse, AllCoursesResponse, ExamResultsRepsone, GetCourseDetailsRepsone, ShowContentRepsone, StudentChaptersResponse, StudentCoursesResponse, StudentLessonsRepsone, StudentPaymentsResponse, StudentScheduleRepsone, StudentSessionsRepsone, StudentSubscriptionsResponse, StudentWalletRepsone } from "../types/student.types";
+import { ActivateCodeResponse, AllCoursesResponse, CoutriesRepsone, ExamResultsRepsone, GetCourseDetailsRepsone, ShowContentRepsone, StudentChaptersResponse, StudentCoursesResponse, StudentLessonsRepsone, StudentPaymentsResponse, StudentScheduleRepsone, StudentSessionsRepsone, StudentSubscriptionsResponse, StudentWalletRepsone } from "../types/student.types";
 import { Course } from "@/types/common.types";
 
 export const studentApi = createApi({
@@ -9,6 +9,12 @@ export const studentApi = createApi({
   baseQuery: axiosBaseQuery(),
   tagTypes: ["StudentCourses", "StudentChapters", "AllCourses", "CourseDetails"],
   endpoints: (builder) => ({
+    getCountries: builder.query<CoutriesRepsone, void>({
+      query: () => ({
+        url: "/platform/Account/Countries",
+        method: "GET",
+      }),
+    }),
     getStudentPayements: builder.query<StudentPaymentsResponse, void>({
       query: () => ({
         url: "/platform/Studentpayments",
@@ -108,4 +114,4 @@ export const studentApi = createApi({
   }),
 });
 
-export const { useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useActivateCodeMutation, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery, useGetStudentWalletQuery } = studentApi;
+export const { useGetCountriesQuery, useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useActivateCodeMutation, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery, useGetStudentWalletQuery } = studentApi;
