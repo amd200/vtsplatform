@@ -21,10 +21,7 @@ function CartCourses({ invoiceId }: { invoiceId?: string }) {
     setPaymentMethod(e.target.value);
   };
   async function generateFawrySignature({ merchantCode, merchantRefNum, customerProfileId = "", returnUrl, items, securityKey }: { merchantCode: string; merchantRefNum: string; customerProfileId?: string; returnUrl: string; items: { itemId: string; quantity: number; price: number }[]; securityKey: string }) {
-    // 1️⃣ رتّب العناصر حسب itemId
     const sortedItems = [...items].sort((a, b) => a.itemId.localeCompare(b.itemId));
-
-    // 2️⃣ جهّز السلسلة اللي هتتحسب منها الـ hash
     const raw =
       merchantCode +
       merchantRefNum +
@@ -37,7 +34,6 @@ function CartCourses({ invoiceId }: { invoiceId?: string }) {
         .join("") +
       securityKey;
 
-    // 3️⃣ حول النص لـ SHA256
     const encoder = new TextEncoder();
     const data = encoder.encode(raw);
     const hashBuffer = await crypto.subtle.digest("SHA-256", data);

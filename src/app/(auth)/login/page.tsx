@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { useSignInMutation } from "@/features/auth/services/authApi";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const formSchema = z.object({
   phoneNumber: z.string().optional(),
@@ -36,15 +37,20 @@ function Page() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-
     const res = await signIn("credentials", {
       UserName: values.phoneNumber,
       Password: values.password,
-      redirect: true,
+      redirect: false,
       callbackUrl: "/student",
     });
-    console.log("xx", res);
+
+    if (res?.error) {
+      toast.error(res?.error || "حدث خطأ يرجى المحاولة لاحقا");
+
+      return;
+    }
+
+    router.push("/student");
   }
 
   return (

@@ -23,7 +23,9 @@ export const cartApi = createApi({
         method: "POST",
         data: body,
       }),
+      invalidatesTags: ["Cart"], 
     }),
+
     deleteCourseFromCart: builder.mutation<BaseResponse, string>({
       query: (id) => ({
         url: "/platform/DeleteItemFromCart",

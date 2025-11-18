@@ -12,7 +12,7 @@ function MyWallet({ charges, isLoading }: { charges: StudentChargeDetail[]; isLo
   return (
     <div className="content bg-[#f9f9f9] py-7 px-3 rounded space-y-5">
       {isLoading ? (
-        <RowSkeleton rows={10} colsPerRow={4} />
+        <RowSkeleton rows={10} colsPerRow={3} />
       ) : (
         charges &&
         charges.length > 0 &&
