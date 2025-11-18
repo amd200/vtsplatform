@@ -184,7 +184,7 @@ function SignUpForm() {
             </FormItem>
           )}
         />
-        
+
         <FormField
           control={form.control}
           name="confirmPassword"
@@ -198,7 +198,7 @@ function SignUpForm() {
           )}
         />
         <div className="flex justify-center">
-          <ReCAPTCHA sitekey="6LdOHBEsAAAAALJdW3GngYXx5l9NUR4hyn1HImbI" onChange={onChange} />,
+          <ReCAPTCHA sitekey="6Lfm4RAsAAAAAO4VRipS97nC4KxANTI0R9CA7qVm" onChange={onChange} />,
         </div>
         <div className="flex justify-between items-center">
           <p className="text-xs">
