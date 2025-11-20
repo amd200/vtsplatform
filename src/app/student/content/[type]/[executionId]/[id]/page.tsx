@@ -58,6 +58,7 @@ function Page() {
       } catch (err) {
         const error = err as BaseResponse<null>;
         toasError(error?.Message || "حدث خطأ ");
+
       }
 
       setIsLoading(false);
@@ -118,8 +119,8 @@ function Page() {
     <section className="py-8 font-ar-medium">
       <div className="container grid lg:grid-cols-12 grid-cols-1 lg:gap-x-12 gap-y-8">
         <div className="lg:col-span-8">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold mb-4">{lessonTitle}</h1>
+          <div className="flex items-center mb-4 justify-between">
+            <h1 className="text-2xl font-bold ">{lessonTitle}</h1>
             <Button onClick={copyCurrentUrl}>
               <Share2 />
             </Button>
