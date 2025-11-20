@@ -7,6 +7,7 @@ import { StudentCoursesResponse } from "@/features/student/types/student.types";
 async function Courses() {
   const data = await fetcher<StudentCoursesResponse>(`/platform/AllCourses`);
   const courses = data?.Data;
+  console.log(courses);
   return (
     <section className="py-8">
       <div className="container">

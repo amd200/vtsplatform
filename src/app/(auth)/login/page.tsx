@@ -13,25 +13,32 @@ import { useSignInMutation } from "@/features/auth/services/authApi";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { useToastMessage } from "@/hooks/useToastMessage";
 
-const formSchema = z.object({
-  phoneNumber: z.string().optional(),
-  password: z.string().optional(),
+const phoneSchema = z.object({
+  phoneNumber: z.string().min(1, "أدخل رقم الهاتف"),
+  password: z.string().min(1, "أدخل كلمة المرور"),
   code: z.string().optional(),
 });
 
+const codeSchema = z.object({
+  code: z.string().min(1, "أدخل كود الطالب"),
+  phoneNumber: z.string().optional(),
+  password: z.string().optional(),
+});
+
 function Page() {
-  const { data: session } = useSession();
   const [useCodeOnly, setUseCodeOnly] = useState(false);
   const router = useRouter();
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const { error } = useToastMessage();
 
   function onChange(value: string | null) {
     console.log("Captcha value:", value);
     setCaptchaToken(value);
   }
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm({
+    resolver: zodResolver(useCodeOnly ? codeSchema : phoneSchema),
     defaultValues: {
       phoneNumber: "",
       password: "",
@@ -39,14 +46,19 @@ function Page() {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  type LoginValues = z.infer<typeof phoneSchema> | z.infer<typeof codeSchema>;
+  async function onSubmit(values: LoginValues): Promise<void> {
     if (!captchaToken) {
-      toast.error("من فضلك قم بحل اختبار التحقق (reCAPTCHA)");
+      error("من فضلك قم بحل اختبار التحقق (reCAPTCHA)");
+      return;
+    }
+    if (useCodeOnly) {
+      error("تسجيل الدخول بالكود غير متاح الآن");
       return;
     }
     const res = await signIn("credentials", {
-      UserName: values.phoneNumber,
-      Password: values.password,
+      UserName: values.phoneNumber?.trim(),
+      Password: values.password?.trim(),
       redirect: false,
       callbackUrl: "/student",
     });

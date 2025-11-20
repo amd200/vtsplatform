@@ -22,12 +22,10 @@ axiosInstance.interceptors.request.use(
   async (config) => {
     const session = await getSession();
 
+    config.headers["X-App-Token"] = `UhqBUAP3T6Irguej2ogSdg==`;
+
     if (session?.user?.StudentToken) {
-      config.headers["X-App-Token"] = `UhqBUAP3T6Irguej2ogSdg==`;
       config.headers["X-Student-Token"] = session.user.StudentToken;
-    } else {
-      console.log("first")
-      config.headers.Authorization = `Bearer UhqBUAP3T6Irguej2ogSdg==`;
     }
 
     return config;

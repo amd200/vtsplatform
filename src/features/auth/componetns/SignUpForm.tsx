@@ -9,7 +9,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Switch } from "@/components/ui/switch";
-// import ReCAPTCHA from "react-google-recaptcha";
 import { signUpSchema, SignUpSchema } from "../schemas/signUpSchema";
 import { useSignupMutation } from "../services/authApi";
 import { SignUpRequest } from "../types/auth.types";
@@ -17,15 +16,13 @@ import { useGetCountriesQuery } from "@/features/student/services/studentApi";
 import { toast } from "react-toastify";
 import { BaseResponse } from "@/types/common.types";
 import ReCAPTCHA from "react-google-recaptcha";
+import { useToastMessage } from "@/hooks/useToastMessage";
 
 function SignUpForm() {
   const { data } = useGetCountriesQuery();
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
   const [signup] = useSignupMutation();
-  const [useCodeOnly, setUseCodeOnly] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const { success, error: toastError } = useToastMessage();
 
   const form = useForm<SignUpSchema>({
     resolver: zodResolver(signUpSchema),
@@ -46,7 +43,7 @@ function SignUpForm() {
   }
   async function onSubmit(values: SignUpSchema) {
     if (!captchaToken) {
-      toast.error("من فضلك قم بحل اختبار التحقق (reCAPTCHA)");
+      toastError("من فضلك قم بحل اختبار التحقق (reCAPTCHA)");
       return;
     }
     const payload: SignUpRequest = {
@@ -61,11 +58,11 @@ function SignUpForm() {
     try {
       const res = await signup(payload).unwrap();
       if (res?.Code == 200) {
-        toast.success(res?.Message);
+        success(res?.Message);
       }
     } catch (err) {
       const error = err as BaseResponse<unknown>;
-      toast.error(error?.Message);
+      toastError(error?.Message);
     }
   }
   return (
@@ -186,7 +183,7 @@ function SignUpForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input type="text" placeholder="كلمة المرور" className="w-full " {...field} />
+                <Input type="password" placeholder="كلمة المرور" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -199,7 +196,7 @@ function SignUpForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input type="text" placeholder="تأكيد كلمة المرور" className="w-full " {...field} />
+                <Input type="password" placeholder="تأكيد كلمة المرور" className="w-full " {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -215,7 +212,7 @@ function SignUpForm() {
               إنشاء حساب{" "}
             </Link>
           </p>
-          <Button type="submit">تسجيل الدخول</Button>
+          <Button type="submit">إنشاء حساب</Button>
         </div>
       </form>
     </Form>
