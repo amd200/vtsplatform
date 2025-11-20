@@ -62,14 +62,14 @@ function CartCourses({ invoiceId }: { invoiceId?: string }) {
 
         const merchantCode = "siYxylRjSPzP3SHpCxPXEg==";
         const securityKey = "5d1428e7-6b4e-4089-8236-8d99b51369e2";
-        const merchantRefNum = fawryData.SubId;
-        const customerProfileId = fawryData.ClientId;
+        const merchantRefNum = fawryData?.SubId || "";
+        const customerProfileId = fawryData?.ClientId;
         const returnUrl = "https://developer.fawrystaging.com";
         const items = [
           {
-            itemId: fawryData.SubId,
+            itemId: fawryData?.SubId,
             quantity: 1,
-            price: Number(fawryData.price),
+            price: Number(fawryData?.price),
           },
         ];
 
@@ -78,22 +78,22 @@ function CartCourses({ invoiceId }: { invoiceId?: string }) {
           merchantRefNum,
           customerProfileId,
           returnUrl,
-          items: [{ itemId: fawryData.SubId, quantity: 1, price: Number(fawryData.price) }],
+          items: [{ itemId: fawryData?.SubId || "", quantity: 1, price: Number(fawryData?.price) }],
           securityKey,
         });
 
         const chargeRequest = {
           merchantCode,
           merchantRefNum,
-          customerMobile: fawryData.ClientPhone,
+          customerMobile: fawryData?.ClientPhone,
           customerEmail: "test@example.com",
-          customerName: fawryData.ClientName,
+          customerName: fawryData?.ClientName,
           customerProfileId,
           paymentExpiry: (Date.now() + 2 * 60 * 60 * 1000).toString(), // بعد ساعتين
           language: "ar-eg",
           chargeItems: items.map((item) => ({
             itemId: item.itemId,
-            description: "دفع فاتورة رقم " + fawryData.SubId,
+            description: "دفع فاتورة رقم " + fawryData?.SubId,
             price: item.price,
             quantity: item.quantity,
             imageUrl: "https://developer.fawrystaging.com/photos/45566.jpg",
