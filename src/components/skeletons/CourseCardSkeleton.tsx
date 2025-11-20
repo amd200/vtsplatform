@@ -3,13 +3,14 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface CourseCardSkeletonProps {
-  showButtons?: boolean; // تتحكم إذا عايز تظهر Skeleton للزرار ولا لا
+  showButtons?: boolean;
+  count?: number;
 }
 
-export default function CourseCardSkeleton({ showButtons = true }: CourseCardSkeletonProps) {
+export default function CourseCardSkeleton({ showButtons = true, count = 5 }: CourseCardSkeletonProps) {
   return (
     <>
-      {Array.from({ length: 10 }).map((_, index) => (
+      {Array.from({ length: count }).map((_, index) => (
         <div key={index} className="shadow-none pt-0 gap-0 border-0 font-ar-medium hover:-translate-y-3 transition-transform bg-transparent animate-pulse">
           {/* Image */}
           <div className="relative h-48 w-full rounded bg-gray-200" />

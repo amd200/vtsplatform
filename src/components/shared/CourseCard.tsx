@@ -92,7 +92,6 @@ function CourseCard({ course }: { course: Course }) {
               </Link>
             </CardTitle>
             <div className={`mt-3 ${!course?.Isbuy ? (codePurchaseOnly ? "grid grid-cols-3" : "flex justify-center") : "flex justify-center"}  gap-x-4`}>
-              {}
               {course?.Isbuy ? (
                 <>
                   <Button className="text-xs h-7" size="sm" variant="outline" asChild>

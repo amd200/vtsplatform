@@ -11,13 +11,14 @@ import { useToastMessage } from "@/hooks/useToastMessage";
 import { Comment } from "../types/student.types";
 import { useSession } from "next-auth/react";
 import { Trash2 } from "lucide-react";
+import { BaseResponse } from "@/types/common.types";
 
 export function CommentsSection({ executionId, lessonId, comments }: { executionId: string; lessonId: string; comments: Comment[] }) {
   const [addComment, { isLoading }] = useAddCommentMutation();
   const [deleteComment] = useDeleteCommentMutation();
   const [comment, setComment] = useState<string>("");
   const [localComments, setLocalComments] = useState<Comment[]>([]);
-  const { success } = useToastMessage();
+  const { success, error: toastError } = useToastMessage();
   const { data: session } = useSession();
 
   useEffect(() => {
@@ -57,12 +58,12 @@ export function CommentsSection({ executionId, lessonId, comments }: { execution
 
       const newComment: Comment = {
         Id: crypto.randomUUID(),
-        CommentId: res.Data?.CommentId,
+        CommentId: res.Data?.CommentId || "",
         Comment: trimmed,
         Date: formatArabicDateNow(),
         LessonId: lessonId,
         UserId: session?.user?.UserId || "",
-        PersonName: session?.user?.StudentName || "مستخدم",
+        PersonName: session?.user?.StudentName || "user",
         Image: session?.user?.StudentImage || "",
       };
 
@@ -81,7 +82,8 @@ export function CommentsSection({ executionId, lessonId, comments }: { execution
       }
       success("تم حذف التعليق بنجاح");
     } catch (err) {
-      console.error(err);
+      const error = err as BaseResponse<null>;
+      toastError(error?.Message || "حدث خطأ يرجى المحاولة مرة اخرى");
     }
   };
 
@@ -111,7 +113,6 @@ export function CommentsSection({ executionId, lessonId, comments }: { execution
         <div className="space-y-4">
           {localComments.map((c: Comment) => (
             <div key={c.Id} className="flex gap-3 items-start justify-between">
-              {/* اليسار: الصورة + النص */}
               <div className="flex gap-3">
                 <Avatar>
                   <AvatarImage src={c?.Image} />
@@ -119,7 +120,7 @@ export function CommentsSection({ executionId, lessonId, comments }: { execution
                 </Avatar>
 
                 <div>
-                  <p className="font-medium">
+                  <p dir="rtl" className="font-medium text-start">
                     {c.PersonName} • <span className="text-sm text-muted-foreground">{c.Date}</span>
                   </p>
                   <p className="text-sm mt-1 whitespace-pre-line">{c.Comment}</p>

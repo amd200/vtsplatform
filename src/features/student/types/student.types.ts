@@ -1,11 +1,6 @@
-import { Chapter, ContentType, Course, Lesson } from "@/types/common.types";
+import { BaseResponse, Chapter, ContentType, Course, Lesson } from "@/types/common.types";
 
-export interface BaseResponse<T> {
-  Status: boolean;
-  Code: string;
-  Message: string;
-  Data: T;
-}
+
 export interface User {
   StudentToken?: string;
   UserId?: string;

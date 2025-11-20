@@ -178,3 +178,4 @@ export interface PaginatedResponse<T> {
   page: number;
   pageSize: number;
 }
+export type CategoriesResponse = BaseResponse<Category[]>;

@@ -1,11 +1,5 @@
-import { Chapter, Course } from "@/types/common.types";
+import { BaseResponse, Chapter, Course } from "@/types/common.types";
 
-export interface BaseResponse<T> {
-  Status: boolean;
-  Code: string;
-  Message: string;
-  Data: T;
-}
 export interface CartItem {
   AddedDate: string;
   CourseExecutionId: string;
@@ -18,6 +12,5 @@ export interface CartItem {
   PriceDiscounted: number;
   Title: string;
 }
-
 
 export type StudentCartResponse = BaseResponse<CartItem[]>;
