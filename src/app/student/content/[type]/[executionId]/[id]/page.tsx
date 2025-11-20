@@ -11,6 +11,8 @@ import VideoViewer from "@/features/student/components/VideoViewer";
 import AudioPlayer from "@/features/student/components/AudioPlayer";
 import getContentUrl from "@/features/student/utils/getContentUrl";
 import { Lesson } from "@/types/common.types";
+import { toast } from "sonner";
+import { Share2 } from "lucide-react";
 
 function Page() {
   const params = useParams();
@@ -21,6 +23,15 @@ function Page() {
     playCount: 0,
     volume: 1,
   });
+  const copyCurrentUrl = async () => {
+    try {
+      const currentUrl = window.location.href;
+      await navigator.clipboard.writeText(currentUrl);
+      toast.success("تم النسخ بنجاح");
+    } catch (err) {
+      console.error("Failed to copy URL: ", err);
+    }
+  };
   const executionId = Array.isArray(params.executionId) ? params.executionId[0] : params.executionId;
 
   const lessonId = Array.isArray(params.id) ? params.id[0] : params.id;
@@ -70,7 +81,12 @@ function Page() {
     <section className="py-8 font-ar-medium">
       <div className="container grid lg:grid-cols-12 grid-cols-1 lg:gap-x-12 gap-y-8">
         <div className="lg:col-span-8 col-span-12">
-          <h1 className="text-2xl font-bold mb-4">{lessonName}</h1>
+          <div className="flex items-center justify-between">
+            <h1 className="text-2xl font-bold mb-4">{lessonName}</h1>
+            <Button onClick={copyCurrentUrl}>
+              <Share2 />
+            </Button>
+          </div>
 
           {renderViewer()}
 
