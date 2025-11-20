@@ -11,13 +11,14 @@ import RichTextViewer from "@/features/student/components/RichTextViewer";
 import VideoViewer from "@/features/student/components/VideoViewer";
 import AudioPlayer from "@/features/student/components/AudioPlayer";
 import getContentUrl from "@/features/student/utils/getContentUrl";
-import { Lesson } from "@/types/common.types";
+import { BaseResponse, Lesson } from "@/types/common.types";
 import { toast } from "sonner";
 import { Share2 } from "lucide-react";
 import { CommentsSection } from "@/features/student/components/Comments";
 
 import { useLazyShowAudioQuery, useLazyShowPdfQuery, useLazyShowRichTextQuery, useLazyShowVideoQuery } from "@/features/student/services/lessonContentApi";
 import { ShowContent } from "@/features/student/types/student.types";
+import { useToastMessage } from "@/hooks/useToastMessage";
 
 function Page() {
   const params = useParams();
@@ -29,6 +30,7 @@ function Page() {
 
   const [contentData, setContentData] = useState<ShowContent | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { error: toasError } = useToastMessage();
 
   const [showVideo] = useLazyShowVideoQuery();
   const [showPdf] = useLazyShowPdfQuery();
@@ -54,7 +56,8 @@ function Page() {
 
         setContentData(res.Data ?? null);
       } catch (err) {
-        console.error(err);
+        const error = err as BaseResponse<null>;
+        toasError(error?.Message || "حدث خطأ ");
       }
 
       setIsLoading(false);
