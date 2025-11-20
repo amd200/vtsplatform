@@ -24,12 +24,9 @@ function Page() {
   const params = useParams();
   const type = params.type;
 
-  const executionId = Array.isArray(params.executionId) ? params.executionId[0] : params.executionId;
+  const executionId = (Array.isArray(params.executionId) ? params.executionId[0] : params.executionId) as string;
 
-  const lessonId = Array.isArray(params.id) ? params.id[0] : params.id;
-
-  const exe = String(executionId);
-  const id = String(lessonId);
+  const lessonId = (Array.isArray(params.id) ? params.id[0] : params.id) as string;
 
   const [contentData, setContentData] = useState<ShowContent | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -48,13 +45,13 @@ function Page() {
         let res;
 
         if (type === "video") {
-          res = await showVideo({ Id: exe, LessonId: id }).unwrap();
+          res = await showVideo({ Id: executionId, LessonId: lessonId }).unwrap();
         } else if (type === "pdf") {
-          res = await showPdf({ Id: exe, LessonId: id }).unwrap();
+          res = await showPdf({ Id: executionId, LessonId: lessonId }).unwrap();
         } else if (type === "sound") {
-          res = await showAudio({ Id: exe, LessonId: id }).unwrap();
+          res = await showAudio({ Id: executionId, LessonId: lessonId }).unwrap();
         } else {
-          res = await showRichText({ Id: exe, LessonId: id }).unwrap();
+          res = await showRichText({ Id: executionId, LessonId: lessonId }).unwrap();
         }
 
         setContentData(res.Data ?? null);
@@ -66,7 +63,7 @@ function Page() {
     }
 
     load();
-  }, [type, exe, id]);
+  }, [type, executionId, lessonId]);
 
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [videoStats, setVideoStats] = useState({
@@ -92,13 +89,13 @@ function Page() {
   const contentUrl = contentData?.Contents || "";
   const comments = contentData?.Comments || [];
 
-  const currentIndex = lessons.findIndex((l) => String(l.Id) === id);
+  const currentIndex = lessons.findIndex((l) => String(l.Id) === lessonId);
   const prevLesson = currentIndex > 0 ? lessons[currentIndex - 1] : null;
   const nextLesson = currentIndex !== -1 && currentIndex < lessons.length - 1 ? lessons[currentIndex + 1] : null;
 
-  const prevUrl = prevLesson ? getContentUrl(exe, prevLesson.Id, prevLesson.ContentType) : null;
+  const prevUrl = prevLesson ? getContentUrl(executionId, prevLesson.Id, prevLesson.ContentType) : null;
 
-  const nextUrl = nextLesson ? getContentUrl(exe, nextLesson.Id, nextLesson.ContentType) : null;
+  const nextUrl = nextLesson ? getContentUrl(executionId, nextLesson.Id, nextLesson.ContentType) : null;
 
   const renderViewer = () => {
     switch (type) {
@@ -147,10 +144,10 @@ function Page() {
             )}
           </div>
 
-          {contentData?.AllowComment && <CommentsSection comments={comments} lessonId={id} executionId={exe} />}
+          {contentData?.AllowComment && <CommentsSection comments={comments} lessonId={lessonId} executionId={executionId} />}
         </div>
 
-        <ChaptersContent lessonId={id} executionId={exe} onLessonsLoaded={setLessons} />
+        <ChaptersContent lessonId={lessonId} executionId={executionId} onLessonsLoaded={setLessons} />
       </div>
     </section>
   );
