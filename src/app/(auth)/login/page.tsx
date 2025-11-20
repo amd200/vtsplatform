@@ -131,7 +131,7 @@ function Page() {
           <div className="flex justify-between items-center">
             <p className="text-xs">
               ليس لديك حساب؟{" "}
-              <Link className="text-primary" href="/">
+              <Link className="text-primary" href="/signup">
                 إنشاء حساب{" "}
               </Link>
             </p>
