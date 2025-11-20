@@ -110,6 +110,7 @@ export const authOptions: NextAuthOptions = {
         token.StudentName = user.StudentName || "";
         token.StudentToken = user.StudentToken || "";
         token.StudentImage = user.StudentImage || "";
+        token.UserId = user.id || "";
         token.Role = Number(user.Role);
       }
       // token.Role = Number(user?.Role);

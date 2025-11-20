@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useParams } from "next/navigation";
 import Link from "next/link";
@@ -13,37 +14,85 @@ import getContentUrl from "@/features/student/utils/getContentUrl";
 import { Lesson } from "@/types/common.types";
 import { toast } from "sonner";
 import { Share2 } from "lucide-react";
+import { CommentsSection } from "@/features/student/components/Comments";
+
+// lazy queries فقط
+import { useLazyShowAudioQuery, useLazyShowPdfQuery, useLazyShowRichTextQuery, useLazyShowVideoQuery } from "@/features/student/services/lessonContentApi";
+import { ShowContent, ShowContentRepsone } from "@/features/student/types/student.types";
 
 function Page() {
   const params = useParams();
   const type = params.type;
+
+  const executionId = Array.isArray(params.executionId) ? params.executionId[0] : params.executionId;
+
+  const lessonId = Array.isArray(params.id) ? params.id[0] : params.id;
+
+  const exe = String(executionId);
+  const id = String(lessonId);
+
+  const [contentData, setContentData] = useState<ShowContent | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [showVideo] = useLazyShowVideoQuery();
+  const [showPdf] = useLazyShowPdfQuery();
+  const [showRichText] = useLazyShowRichTextQuery();
+  const [showAudio] = useLazyShowAudioQuery();
+
+  // fetch content
+  useEffect(() => {
+    async function load() {
+      setIsLoading(true);
+
+      try {
+        let res;
+
+        if (type === "video") {
+          res = await showVideo({ Id: exe, LessonId: id }).unwrap();
+        } else if (type === "pdf") {
+          res = await showPdf({ Id: exe, LessonId: id }).unwrap();
+        } else if (type === "sound") {
+          res = await showAudio({ Id: exe, LessonId: id }).unwrap();
+        } else {
+          res = await showRichText({ Id: exe, LessonId: id }).unwrap();
+        }
+
+        setContentData(res.Data ?? null);
+      } catch (err) {
+        console.error(err);
+      }
+
+      setIsLoading(false);
+    }
+
+    load();
+  }, [type, exe, id]);
+
+  const [lessons, setLessons] = useState<Lesson[]>([]);
   const [videoStats, setVideoStats] = useState({
     currentTime: 0,
     duration: 0,
     playCount: 0,
     volume: 1,
   });
+
   const copyCurrentUrl = async () => {
     try {
-      const currentUrl = window.location.href;
-      await navigator.clipboard.writeText(currentUrl);
-      toast.success("تم النسخ بنجاح");
-    } catch (err) {
-      console.error("Failed to copy URL: ", err);
-    }
+      await navigator.clipboard.writeText(window.location.href);
+      toast.success("تم النسخ بنجاح", {
+        description: "يمكنك الآن مشاركة الرابط مع زملائك بسهولة.",
+      });
+    } catch {}
   };
-  const executionId = Array.isArray(params.executionId) ? params.executionId[0] : params.executionId;
 
-  const lessonId = Array.isArray(params.id) ? params.id[0] : params.id;
+  // لو لسة يحمل
+  // if (isLoading || !contentData) return <p className="text-center py-10">جاري التحميل...</p>;
 
-  const [lessonName, setLessonName] = useState("");
-  const [lessons, setLessons] = useState<Lesson[]>([]);
-
-  const id = String(lessonId);
-  const exe = String(executionId);
+  const lessonTitle = contentData?.LessonTitle || "";
+  const contentUrl = contentData?.Contents || "";
+  const comments = contentData?.Comments || [];
 
   const currentIndex = lessons.findIndex((l) => String(l.Id) === id);
-
   const prevLesson = currentIndex > 0 ? lessons[currentIndex - 1] : null;
   const nextLesson = currentIndex !== -1 && currentIndex < lessons.length - 1 ? lessons[currentIndex + 1] : null;
 
@@ -54,35 +103,25 @@ function Page() {
   const renderViewer = () => {
     switch (type) {
       case "video":
-        return <VideoViewer executionId={exe} lessonId={id} setLessonName={setLessonName} onStatsUpdate={setVideoStats} />;
+        return <VideoViewer videoUrl={contentUrl} lessonTitle={lessonTitle} onStatsUpdate={setVideoStats} />;
+
       case "pdf":
-        return <PdfViewer executionId={exe} lessonId={id} />;
+        return <PdfViewer pdfUrl={contentUrl} />;
+
       case "sound":
-        return <AudioPlayer executionId={exe} lessonId={id} />;
+        return <AudioPlayer audioUrl={contentUrl} />;
+
       default:
-        return <RichTextViewer executionId={exe} lessonId={id} setLessonName={setLessonName} />;
+        return <RichTextViewer htmlContent={contentUrl} />;
     }
   };
-  function formatTime(seconds: number) {
-    if (!seconds || isNaN(seconds)) return "00:00";
-
-    const hrs = Math.floor(seconds / 3600);
-    const mins = Math.floor((seconds % 3600) / 60);
-    const secs = Math.floor(seconds % 60);
-
-    if (hrs > 0) {
-      return `${hrs.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
-    }
-
-    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
-  }
 
   return (
     <section className="py-8 font-ar-medium">
       <div className="container grid lg:grid-cols-12 grid-cols-1 lg:gap-x-12 gap-y-8">
-        <div className="lg:col-span-8 col-span-12">
+        <div className="lg:col-span-8">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold mb-4">{lessonName}</h1>
+            <h1 className="text-2xl font-bold mb-4">{lessonTitle}</h1>
             <Button onClick={copyCurrentUrl}>
               <Share2 />
             </Button>
@@ -96,7 +135,7 @@ function Page() {
                 <Button variant="ghost">السابق</Button>
               </Link>
             ) : (
-              <div></div>
+              <span />
             )}
 
             {nextUrl ? (
@@ -104,31 +143,11 @@ function Page() {
                 <Button>التالي</Button>
               </Link>
             ) : (
-              <div></div>
+              <span />
             )}
           </div>
-          {type === "video" && videoStats && (
-            <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg text-center">
-                <div className="text-2xl font-bold text-blue-600">{videoStats.playCount}</div>
-                <div className="text-sm text-blue-500">مرات التشغيل</div>
-              </div>
 
-              <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-center">
-                <div className="text-2xl font-bold text-green-600">{formatTime(videoStats.currentTime)}</div>
-                <div className="text-sm text-green-500">الوقت الحالي</div>
-              </div>
-
-              <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg text-center">
-                <div className="text-2xl font-bold text-purple-600">{Math.round((videoStats.currentTime / videoStats.duration) * 100)}%</div>
-                <div className="text-sm text-purple-500">نسبة التقدم</div>
-              </div>
-              <div className="p-4 bg-orange-50 border border-orange-200 rounded-lg text-center">
-                <div className="text-2xl font-bold text-orange-600">{Math.round(videoStats.volume * 100)}%</div>
-                <div className="text-sm text-orange-500">مستوى الصوت</div>
-              </div>
-            </div>
-          )}
+          {contentData?.AllowComment && <CommentsSection comments={comments} lessonId={id} executionId={exe} />}
         </div>
 
         <ChaptersContent lessonId={id} executionId={exe} onLessonsLoaded={setLessons} />

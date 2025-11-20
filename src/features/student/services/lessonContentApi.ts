@@ -1,11 +1,34 @@
 import { axiosBaseQuery } from "@/lib/api/axiosBaseQuery";
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { AllCoursesResponse, ExamResultsRepsone, GetCourseDetailsRepsone, ShowContentRepsone, StudentChaptersResponse, StudentCoursesResponse, StudentLessonsRepsone, StudentPaymentsResponse, StudentScheduleRepsone, StudentSessionsRepsone, StudentSubscriptionsResponse, StudentWalletRepsone } from "../types/student.types";
+import { AllCoursesResponse, CommentResponse, ExamResultsRepsone, GetCourseDetailsRepsone, ShowContentRepsone, StudentChaptersResponse, StudentCoursesResponse, StudentLessonsRepsone, StudentPaymentsResponse, StudentScheduleRepsone, StudentSessionsRepsone, StudentSubscriptionsResponse, StudentWalletRepsone } from "../types/student.types";
 
 export const lessonContentApi = createApi({
   reducerPath: "lessonContentApi",
   baseQuery: axiosBaseQuery(),
   endpoints: (builder) => ({
+    addComment: builder.mutation<CommentResponse, { Comment?: string; ExecutionId?: string; LessonId?: string }>({
+      query: ({ Comment, ExecutionId, LessonId }) => ({
+        url: `/platform/AddComment`,
+        method: "POSt",
+        data: {
+          Comment,
+          ExecutionId,
+          LessonId,
+        },
+      }),
+    }),
+    deleteComment: builder.mutation<CommentResponse, { CommentId: string; Comment?: string; ExecutionId: string; LessonId: string }>({
+      query: ({ CommentId, Comment, ExecutionId, LessonId }) => ({
+        url: `/platform/DeleteComment`,
+        method: "POSt",
+        data: {
+          CommentId,
+          Comment,
+          ExecutionId,
+          LessonId,
+        },
+      }),
+    }),
     showVideo: builder.query<ShowContentRepsone, { Id?: string; LessonId?: string }>({
       query: ({ Id, LessonId }) => ({
         url: `/platform/Show/VideoByUrl`,
@@ -49,4 +72,4 @@ export const lessonContentApi = createApi({
   }),
 });
 
-export const { useShowVideoQuery, useShowPdfQuery, useShowRichTextQuery, useShowAudioQuery } = lessonContentApi;
+export const { useAddCommentMutation, useDeleteCommentMutation, useLazyShowVideoQuery, useLazyShowPdfQuery, useLazyShowRichTextQuery, useLazyShowAudioQuery } = lessonContentApi;

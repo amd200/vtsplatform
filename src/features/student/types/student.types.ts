@@ -151,13 +151,30 @@ export interface StudentSchedule {
   }[];
   StudentSchedule: LessonScheduleDetails[][];
 }
+export interface Comment {
+  Id: string;
+  CommentId: string;
+  Comment: string;
+  Date: string;
+  LessonId: string;
+  UserId: string;
+  PersonName: string;
+  Image: string;
+}
+export interface CommentData {
+  Comment: string;
+  CommentId: string;
+  ExecutionId: string;
+  LessonId: string;
+}
+
 export interface ShowContent {
   AllowComment: boolean;
   CanBuyView: boolean;
   CanBuyViewPackage: boolean;
   CanSendMesssage: boolean;
   ChapterId: string;
-  // Comments: any[];
+  Comments: Comment[];
   ContentType: ContentType;
   Contents: string;
   CourseId: string;
@@ -268,3 +285,4 @@ export type InvoiceRepsone = BaseResponse<Invoice>;
 export type ActivateCodeResponse = BaseResponse<ActivateCode>;
 export type FawryRepsone = BaseResponse<Fawry>;
 export type CoutriesRepsone = BaseResponse<Country[]>;
+export type CommentResponse = BaseResponse<CommentData>;

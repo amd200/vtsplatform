@@ -49,7 +49,7 @@ export default function RootLayout({
         </ProviderWrapper>
         <Script src="/nutrient-viewer/nutrient-viewer.js" strategy="beforeInteractive" />
         <Salesiq widgetCode="siqd29074ac33ce4ef3a1a65c99b8ea93675cbad44e888f83b0e253b6db26b63d6d" domain="https://salesiq.zohopublic.com/widget" />
-        <Toaster position="top-center" />
+        <Toaster className="!font-ar-medium" position="top-center" />
       </body>
     </html>
   );
