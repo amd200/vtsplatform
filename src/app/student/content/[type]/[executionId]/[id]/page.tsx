@@ -16,9 +16,8 @@ import { toast } from "sonner";
 import { Share2 } from "lucide-react";
 import { CommentsSection } from "@/features/student/components/Comments";
 
-// lazy queries فقط
 import { useLazyShowAudioQuery, useLazyShowPdfQuery, useLazyShowRichTextQuery, useLazyShowVideoQuery } from "@/features/student/services/lessonContentApi";
-import { ShowContent, ShowContentRepsone } from "@/features/student/types/student.types";
+import { ShowContent } from "@/features/student/types/student.types";
 
 function Page() {
   const params = useParams();
@@ -36,7 +35,6 @@ function Page() {
   const [showRichText] = useLazyShowRichTextQuery();
   const [showAudio] = useLazyShowAudioQuery();
 
-  // fetch content
   useEffect(() => {
     async function load() {
       setIsLoading(true);
