@@ -58,7 +58,6 @@ function Page() {
       } catch (err) {
         const error = err as BaseResponse<null>;
         toasError(error?.Message || "حدث خطأ ");
-
       }
 
       setIsLoading(false);
@@ -129,20 +128,16 @@ function Page() {
           {renderViewer()}
 
           <div className="flex items-center justify-between mt-4">
-            {prevUrl ? (
+            {prevUrl && (
               <Link href={prevUrl}>
                 <Button variant="ghost">السابق</Button>
               </Link>
-            ) : (
-              <span />
             )}
 
-            {nextUrl ? (
+            {nextUrl && (
               <Link href={nextUrl}>
                 <Button>التالي</Button>
               </Link>
-            ) : (
-              <span />
             )}
           </div>
 
