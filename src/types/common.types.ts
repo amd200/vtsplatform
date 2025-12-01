@@ -109,6 +109,32 @@ export type Lesson = {
   Title: string;
 };
 
+export interface Book {
+  Id: string;
+  Title: string;
+  Detials: string | null;
+
+  DefaultPrice: number;
+  DefaultPriceDiscounted: number;
+  DefaultDiscount: number;
+  DefaultCurrencyCode: string;
+
+  ImageLink: string;
+
+  IsVisible: boolean;
+  IsServices: boolean;
+
+  DisplayOrder: number;
+
+  CreatedBy: string;
+  Createdon: string;
+  ModifiedBy: string;
+  Modifiedon: string | null;
+
+  PublishFrom: string;
+  PublishTo: string;
+}
+
 export interface Course {
   Brief: string;
   Category: string;

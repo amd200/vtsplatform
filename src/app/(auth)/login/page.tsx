@@ -64,7 +64,7 @@ function Page() {
     });
 
     if (res?.error) {
-      toast.error(res?.error || "حدث خطأ يرجى المحاولة لاحقا");
+      error(res?.error || "حدث خطأ يرجى المحاولة لاحقا");
 
       return;
     }

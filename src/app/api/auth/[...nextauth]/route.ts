@@ -55,7 +55,6 @@ async function loginRequest(endpoint: string, credentials: Credentials) {
   const data: SignInResponse | null = await res.json().catch(() => null);
 
   if (!res.ok || !data?.Data) {
-    toast.error(data?.Message);
     throw new Error(data?.Message || "Login failed");
   }
 

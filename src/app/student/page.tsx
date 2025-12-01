@@ -5,7 +5,7 @@ import MySchedule from "@/features/student/components/MySchedule";
 import MySessions from "@/features/student/components/MySessions";
 import MyPayments from "@/features/student/components/MyPayments";
 import SuggestedCourses from "@/features/student/components/SuggestedCourses";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MyExamResults from "@/features/student/components/MyExamResults";
 import { useSession } from "next-auth/react";
 import { useGetDashboardDataQuery } from "@/services/dashboardApi";
@@ -15,9 +15,7 @@ import Courses from "@/features/student/components/Courses";
 
 function Page() {
   const { data, isLoading, error } = useGetDashboardDataQuery();
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  console.log(data)
   return (
     <main className="py-8 space-y-20 font-ar-medium">
       <Chart />

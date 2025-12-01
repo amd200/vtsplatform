@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import QuestionActions from "@/features/student/components/exam/QuestionActions";
 import QuestionBody from "@/features/student/components/exam/QuestionBody";
 import QuestionHeader from "@/features/student/components/exam/QuestionHeader";
 import QuestionNavigator from "@/features/student/components/exam/QuestionNavigator";

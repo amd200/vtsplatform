@@ -6,7 +6,8 @@ export async function fetcher<T = unknown>(url: string, options: RequestInit = {
     const session = await getServerSession(authOptions);
     // console.log("from fethcer", session);
     const appToken = session?.user?.StudentToken ? `UhqBUAP3T6Irguej2ogSdg==` : "Beare UhqBUAP3T6Irguej2ogSdg==";
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
+    const baseURL = process.env.NEXT_PUBLIC_API_URL!;
+    const res = await fetch(`${baseURL}${url}`, {
       headers: {
         "Content-Type": "application/json",
         "X-App-Token": appToken,

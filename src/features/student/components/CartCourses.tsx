@@ -22,17 +22,7 @@ function CartCourses({ invoiceId }: { invoiceId?: string }) {
   };
   async function generateFawrySignature({ merchantCode, merchantRefNum, customerProfileId = "", returnUrl, items, securityKey }: { merchantCode: string; merchantRefNum: string; customerProfileId?: string; returnUrl: string; items: { itemId: string; quantity: number; price: number }[]; securityKey: string }) {
     const sortedItems = [...items].sort((a, b) => a.itemId.localeCompare(b.itemId));
-    const raw =
-      merchantCode +
-      merchantRefNum +
-      customerProfileId +
-      returnUrl +
-      sortedItems
-        .map(
-          (i) => i.itemId + i.quantity.toString() + i.price.toFixed(2) // لازم تكون بصيغة 10.00
-        )
-        .join("") +
-      securityKey;
+    const raw = merchantCode + merchantRefNum + customerProfileId + returnUrl + sortedItems.map((i) => i.itemId + i.quantity.toString() + i.price.toFixed(2)).join("") + securityKey;
 
     const encoder = new TextEncoder();
     const data = encoder.encode(raw);
@@ -188,7 +178,7 @@ function CartCourses({ invoiceId }: { invoiceId?: string }) {
               <tbody>
                 <tr className="border-b border-gray-300">
                   <td className="border-l border-gray-300 py-3 px-4 font-semibold">حالة الفاتورة</td>
-                  <td className="py-2 px-4">Open</td>
+                  <td className="py-2 px-4">{(data?.Data?.length ?? 0) > 0 ? "Open" : ""}</td>
                 </tr>
                 <tr>
                   <td className="border-l border-gray-300 py-3 px-4 font-semibold">إجمالي</td>
@@ -198,7 +188,7 @@ function CartCourses({ invoiceId }: { invoiceId?: string }) {
             </table>
 
             {/* قسم طرق الدفع */}
-            <div className="payment-methods mb-4 border border-gray-300 rounded-lg p-4">
+            {/* <div className="payment-methods mb-4 border border-gray-300 rounded-lg p-4">
               <h6 className="font-semibold text-lg mb-3">اختر طريقة الدفع</h6>
 
               <div className="space-y-2">
@@ -223,9 +213,9 @@ function CartCourses({ invoiceId }: { invoiceId?: string }) {
                   </label>
                 ))}
               </div>
-            </div>
+            </div> */}
 
-            <Button onClick={handleCheckout} className="w-full" variant={"default"}>
+            <Button onClick={handleCheckout} className="w-full" size={"lg"} variant={"default"}>
               اتمام الشراء
             </Button>
           </div>

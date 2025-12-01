@@ -1,6 +1,5 @@
 import { BaseResponse, Chapter, ContentType, Course, Lesson } from "@/types/common.types";
 
-
 export interface User {
   StudentToken?: string;
   UserId?: string;
@@ -264,6 +263,17 @@ export interface ActivateCode {
   Message: string;
 }
 
+export interface ChatMessage {
+  Id: string;
+  Name: string;
+  Phone: string;
+  Email: string | null;
+  Title: string | null;
+  Message: string;
+  MessageType: number;
+  CreatedOn: string;
+}
+
 export type StudentPaymentsResponse = BaseResponse<Payment[]>;
 export type StudentSubscriptionsResponse = BaseResponse<StudentSubscription[]>;
 export type StudentCoursesResponse = BaseResponse<Course[]>;
@@ -281,3 +291,4 @@ export type ActivateCodeResponse = BaseResponse<ActivateCode>;
 export type FawryRepsone = BaseResponse<Fawry>;
 export type CoutriesRepsone = BaseResponse<Country[]>;
 export type CommentResponse = BaseResponse<CommentData>;
+export type GetAllMessageResponse = BaseResponse<ChatMessage[]>;

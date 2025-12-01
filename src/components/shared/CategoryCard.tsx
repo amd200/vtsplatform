@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, CalendarDays, File, Key, PlayCircle, ShoppingCart, StickyNote, Users, Video } from "lucide-react";
+import { Calendar, CalendarDays, Facebook, File, Key, PlayCircle, ShoppingCart, StickyNote, Users, Video } from "lucide-react";
 import { snow } from "@/assets/images";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { BaseResponse, Category } from "@/types/common.types";
@@ -11,6 +11,7 @@ import { useState } from "react";
 import { Input } from "../ui/input";
 import { useActivateCodeMutation } from "@/features/student/services/studentApi";
 import { toast } from "react-toastify";
+import { FacebookShareButton, FacebookIcon } from "next-share";
 function CategoryCard({ category }: { category: Category }) {
   const [activateCode, { isLoading }] = useActivateCodeMutation();
 
@@ -37,7 +38,7 @@ function CategoryCard({ category }: { category: Category }) {
 
       <div className="relative h-48 w-full rounded overflow-hidden">
         <Link href="#">
-          <Image src={`${process.env.NEXT_PUBLIC_FILES_PATH}${category?.ImageLink}`} alt="Category Image" fill className="object-cover" />
+          <Image src={category?.ImageLink ? `${process.env.NEXT_PUBLIC_FILES_PATH}${category.ImageLink}` : "https://vedu-demo.vtsitco.com/assets/images/noimage.jpg"} alt="Category Image" fill className="object-cover" />
         </Link>
       </div>
 
@@ -48,7 +49,7 @@ function CategoryCard({ category }: { category: Category }) {
               <div className="bg-white rounded flex px-1 space-x-1 items-center">
                 <span className="text-sm ">{category?.Price > 0 ? category?.Price : "مجانا"}</span>
               </div>
-              <span className="text-white">جنيهًا</span>
+              <span className="text-white">{category?.CurrencyCode}</span>
             </div>
           )}
 
