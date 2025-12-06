@@ -94,7 +94,7 @@ const handleMainTabClick = (tab: MainTabId) => {
 
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 bg-white" dir="rtl">
+    <div className="lg:hidden block fixed inset-x-0 bottom-0 z-50 bg-white" dir="rtl">
       
       {/* ---------- MORE PANEL ---------- */}
       {isMoreOpen && (
