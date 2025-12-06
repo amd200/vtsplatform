@@ -13,4 +13,8 @@ export interface CartItem {
   Title: string;
 }
 
+
+
+
+
 export type StudentCartResponse = BaseResponse<CartItem[]>;

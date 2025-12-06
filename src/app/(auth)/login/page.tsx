@@ -48,10 +48,10 @@ function Page() {
 
   type LoginValues = z.infer<typeof phoneSchema> | z.infer<typeof codeSchema>;
   async function onSubmit(values: LoginValues): Promise<void> {
-    if (!captchaToken) {
-      error("من فضلك قم بحل اختبار التحقق (reCAPTCHA)");
-      return;
-    }
+    // if (!captchaToken) {
+    //   error("من فضلك قم بحل اختبار التحقق (reCAPTCHA)");
+    //   return;
+    // }
     if (useCodeOnly) {
       error("تسجيل الدخول بالكود غير متاح الآن");
       return;

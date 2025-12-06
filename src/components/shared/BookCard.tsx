@@ -10,14 +10,14 @@ import { useDialog } from "@/context/DialogContext";
 import { Input } from "../ui/input";
 import { BaseResponse, Book, Course } from "@/types/common.types";
 import { formatDate } from "@/utils/formatDate";
-import { useAddBookToCartMutation, useAddCourseToCartMutation } from "@/features/student/services/cartApi";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {  useAddCourseToCartMutation } from "@/features/student/services/cartApi";
 import { toast } from "react-toastify";
 import { snow } from "@/assets/images";
 import { useBuyCourseMutation } from "@/features/student/services/paymentApi";
 import { useRouter } from "next/navigation";
 import { useActivateCodeMutation } from "@/features/student/services/studentApi";
 import { useState } from "react";
+import { useAddBookToCartMutation } from "@/features/student/services/cartBooksApi";
 function BookCard({ book }: { book: Book }) {
   const { openDialog } = useDialog();
   const [addBookToCart] = useAddBookToCartMutation();

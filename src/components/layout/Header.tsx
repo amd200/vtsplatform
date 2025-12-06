@@ -7,11 +7,13 @@ import { LogIn, Menu, UserPlus } from "lucide-react";
 import { getSession, signOut, useSession } from "next-auth/react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { ScrollProgress } from "@/components/ui/scroll-progress"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 function Header() {
   const { data: session } = useSession();
   return (
-    <header>
+<>
+    <header className="sticky top-0 z-40 bg-white">
       <div className="container flex items-center justify-between py-3 font-ar-medium gap-x-5">
         <div className="flex items-center gap-x-2">
           <Menu className="max-lg:block hidden" />
@@ -56,7 +58,7 @@ function Header() {
                 </div>
               </div>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent className="min-w-[9rem]" >
               {/* <DropdownMenuLabel>My Account</DropdownMenuLabel> */}
               {/* <DropdownMenuSeparator /> */}
               <DropdownMenuItem asChild>
@@ -74,6 +76,8 @@ function Header() {
         )}
       </div>
     </header>
+      <ScrollProgress className="top-[73px]" />
+      </>
   );
 }
 

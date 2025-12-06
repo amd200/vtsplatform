@@ -17,14 +17,7 @@ export const cartApi = createApi({
       }),
       providesTags: ["Cart"],
     }),
-    addBookToCart: builder.mutation<BaseResponse, { Id: string }>({
-      query: (body) => ({
-        url: "/platform/AddBookToCart",
-        method: "POST",
-        data: body,
-      }),
-      invalidatesTags: ["Cart"],
-    }),
+
     addCourseToCart: builder.mutation<BaseResponse, { Id: string }>({
       query: (body) => ({
         url: "/platform/AddCourseToCart",
@@ -45,4 +38,4 @@ export const cartApi = createApi({
   }),
 });
 
-export const { useGetStudentCartQuery, useAddCourseToCartMutation, useDeleteCourseFromCartMutation, useAddBookToCartMutation } = cartApi;
+export const { useGetStudentCartQuery, useAddCourseToCartMutation, useDeleteCourseFromCartMutation } = cartApi;

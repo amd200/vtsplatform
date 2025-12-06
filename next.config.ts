@@ -4,6 +4,7 @@ const path = require("node:path");
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.externals = config.externals || [];
@@ -42,6 +43,11 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "mrahmedmostafa.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.alpha-dz.com",
         pathname: "/**",
       },
     ],
