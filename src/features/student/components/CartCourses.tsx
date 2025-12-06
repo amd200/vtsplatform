@@ -34,10 +34,10 @@ function CartCourses({ invoiceId }: { invoiceId?: string }) {
   }
 
   const handleCheckout = async () => {
-    if (!paymentMethod) {
-      alert("من فضلك اختر طريقة الدفع أولاً");
-      return;
-    }
+    // if (!paymentMethod) {
+    //   alert("من فضلك اختر طريقة الدفع أولاً");
+    //   return;
+    // }
 
     if (paymentMethod === "fawry") {
       try {
