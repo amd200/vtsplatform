@@ -65,7 +65,7 @@ function CourseCard({ course }: { course: Course }) {
 
   return (
     <Card className="shadow-none relative pt-0 gap-0 border-0 font-ar-medium hover:-translate-y-3 transition-transform bg-transparent">
-      <Image src={snow} alt="snow" className="absolute h-[50px] top-[-30px] z-5" />
+      {/* <Image src={snow} alt="snow" className="absolute h-[50px] top-[-30px] z-5" /> */}
       <div className="relative h-48 w-full rounded overflow-hidden">
         {course?.ImageLink && (
           <Link href="#">

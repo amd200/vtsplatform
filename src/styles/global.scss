@@ -19,7 +19,6 @@
 //     padding-bottom: 70px;
 //   }
 
-
 //   .header-footer {
 //     position: relative;
 //     margin-bottom: 15px;
@@ -182,3 +181,84 @@
 //     }
 //   }
 // }
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// .swiper-slide img {
+//   display: block;
+//   width: 100%;
+//   height: 100%;
+//   object-fit: cover;
+// }
+
+.hover-swiper {
+  width: 100%;
+  padding: 20px 0;
+
+  .swiper-wrapper {
+    display: flex;
+    transition: 0.3s ease;
+  }
+
+  .hover-slide {
+    background-color: var(--color-secondary); // الأزرق
+  }
+
+  .hover-slide:nth-child(odd) {
+    background-color: var(--color-primary); // الأزرق
+  }
+  .hover-slide {
+    flex-grow: 1;
+    width: 120px;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 12px;
+    transition: width 0.3s ease;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  // لما أعمل Hover على السلايدر كله
+  &:hover {
+    .hover-slide {
+      width: 70px;
+      img{
+        object-fit: cover;
+      }
+    }
+  }
+
+  .hover-slide:hover {
+    width: 400px; // السلايد اللي عليها hover تكبر
+    img {
+      object-fit: contain;
+      //   transform: scale(1.1);
+    }
+  }
+}
+
+.hover-slide:hover .slide-img {
+  transform: translateX(130px);
+}
+
+/* إظهار الكلام */
+.hover-slide:hover .slide-text {
+  opacity: 1;
+  transform: translateX(-40px);
+}

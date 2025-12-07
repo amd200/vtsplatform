@@ -5,6 +5,7 @@ import Courses from "@/components/Home/Courses";
 import Features from "@/components/Home/Features";
 import Hero from "@/components/Home/Hero";
 import HowItWork from "@/components/Home/HowItWork";
+import Instructors from "@/components/Home/Instructors";
 import Statics from "@/components/Home/Statics";
 import ExamPaper3D from "@/features/student/components/ExamPaper3D";
 import Image from "next/image";
@@ -13,8 +14,9 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Features/>
+      {/* <Features/> */}
       <About/>
+      <Instructors/>
       <Categories />
       <Books />
       <Courses />

@@ -34,7 +34,7 @@ function CategoryCard({ category }: { category: Category }) {
   };
   return (
     <Card className="relative shadow-none pt-0 gap-0 border-0 font-ar-medium hover:-translate-y-3 transition-transform">
-      <Image src={snow} alt="snow" className="absolute h-[50px] top-[-30px] z-5" />
+      {/* <Image src={snow} alt="snow" className="absolute h-[50px] top-[-30px] z-5" /> */}
 
       <div className="relative h-48 w-full rounded overflow-hidden">
         <Link href="#">

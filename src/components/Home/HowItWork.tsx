@@ -25,8 +25,8 @@ export default function HowItWork() {
   ];
 
   return (
-    <div className="min-h-screen  flex items-center justify-center p-8">
-      <div className="max-w-6xl w-full">
+    <div className="min-h-screen  flex items-center justify-center">
+      <div className="container">
         {/* Header */}
        <TitleSection title='كيف نعمل ؟'/>
 
