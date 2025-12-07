@@ -25,7 +25,7 @@ export default function HowItWork() {
   ];
 
   return (
-    <div className="min-h-screen  flex items-center justify-center">
+    <section className="">
       <div className="container">
         {/* Header */}
        <TitleSection title='كيف نعمل ؟'/>
@@ -69,6 +69,6 @@ export default function HowItWork() {
           })}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -9,9 +9,10 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { fetcher } from "@/lib/api/fetcher";
 import { StudentCoursesResponse } from "@/features/student/types/student.types";
+import { useGetAllCoursesQuery } from "@/features/student/services/studentApi";
 
-async function Courses() {
-  const data = await fetcher<StudentCoursesResponse>(`/platform/AllCourses`);
+function Courses() {
+  const { data } = useGetAllCoursesQuery();
   const courses = data?.Data;
 
   return (
@@ -29,7 +30,7 @@ async function Courses() {
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
           }}
-          className="courses-swiper mt-6"
+          className="!pt-4"
         >
           {courses?.map((course, index) => (
             <SwiperSlide key={index}>
