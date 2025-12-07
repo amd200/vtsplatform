@@ -2,9 +2,9 @@ import { withNextVideo } from "next-video/process";
 const CopyPlugin = require("copy-webpack-plugin");
 const path = require("node:path");
 import type { NextConfig } from "next";
+const withLess = require("next-with-less");
 
 const nextConfig: NextConfig = {
-  output: "standalone",
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.externals = config.externals || [];
@@ -63,4 +63,4 @@ const nextConfig: NextConfig = {
   // },
 };
 
-export default withNextVideo(nextConfig);
+export default withLess(withNextVideo(nextConfig));
