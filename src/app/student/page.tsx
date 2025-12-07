@@ -15,11 +15,11 @@ import Courses from "@/features/student/components/Courses";
 
 function Page() {
   const { data, isLoading, error } = useGetDashboardDataQuery();
-  console.log(data)
+  console.log(data);
   return (
     <main className="py-8 space-y-20 font-ar-medium">
       <Chart />
-      <Courses title="اخر ما تم مشاهدته" isLoading={isLoading} courses={data?.Data?.CourseViewed || []} />
+      <Courses link="/student/mycourses" title="اخر ما تم مشاهدته" isLoading={isLoading} courses={data?.Data?.CourseViewed || []} />
       <Courses title="مقررات مقترحة" isLoading={isLoading} courses={data?.Data?.SuggestedCourses || []} />
       <MyExamResults isLoading={isLoading} results={data?.Data?.StudentExamsResults || []} />
       <MyPayments />

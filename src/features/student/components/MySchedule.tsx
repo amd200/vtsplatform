@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, Calendar } from "lucide-react";
 import { daysInMonth } from "@/utils/daysInMonth";
-import MonthNavigation from "../schedule/MonthNavigation";
-import WeekNavigation from "../schedule/WeekNavigation";
-import ScheduleGrid from "../schedule/ScheduleGrid";
-import EventList from "../schedule/EventList";
+import MonthNavigation from "./schedule/MonthNavigation";
+import WeekNavigation from "./schedule/WeekNavigation";
+import ScheduleGrid from "./schedule/ScheduleGrid";
+import EventList from "./schedule/EventList";
 import TitleSection from "../../../components/shared/TitleSection";
 
 export default function MySchedule() {
