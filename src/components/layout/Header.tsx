@@ -13,7 +13,7 @@ function Header() {
   const { data: session } = useSession();
   return (
 <>
-    <header className="sticky top-0 z-40 bg-white">
+    <header className="sticky top-0 z-50 bg-white">
       <div className="container flex items-center justify-between py-3 font-ar-medium gap-x-5">
         <div className="flex items-center gap-x-2">
           <Menu className="max-lg:block hidden" />
