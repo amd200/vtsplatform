@@ -1,22 +1,42 @@
+"use client";
+
 import React from "react";
 import CourseCard from "../shared/CourseCard";
 import TitleSection from "../shared/TitleSection";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
 import { fetcher } from "@/lib/api/fetcher";
 import { StudentCoursesResponse } from "@/features/student/types/student.types";
 
 async function Courses() {
   const data = await fetcher<StudentCoursesResponse>(`/platform/AllCourses`);
   const courses = data?.Data;
-  console.log(courses);
+
   return (
     <section className="py-8">
       <div className="container">
         <TitleSection title="المقررات" />
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-x-9 gap-y-5">
+
+        <Swiper
+          modules={[Navigation]}
+          navigation
+          spaceBetween={20}
+          slidesPerView={1}
+          breakpoints={{
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+          className="courses-swiper mt-6"
+        >
           {courses?.map((course, index) => (
-            <CourseCard key={index} course={course} />
+            <SwiperSlide key={index}>
+              <CourseCard course={course} />
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
     </section>
   );
