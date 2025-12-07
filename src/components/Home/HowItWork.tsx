@@ -37,7 +37,7 @@ export default function HowItWork() {
             return (
               <React.Fragment key={index}>
                 {/* Step Card */}
-                <div className={`${step.color} rounded-3xl p-8 w-full  relative overflow-hidden group hover:shadow-lg transition-shadow duration-300`}>
+                <div className={`bg-primary/20 rounded-3xl p-8 w-full  relative overflow-hidden group hover:shadow-lg transition-shadow duration-300`}>
                   {/* Decorative curves */}
                   <div className="absolute top-4 left-4 w-16 h-16 opacity-20">
                     <svg viewBox="0 0 100 100" className="text-primary">
@@ -52,7 +52,7 @@ export default function HowItWork() {
 
                   {/* Icon */}
                   <div className="bg-white rounded-2xl w-16 h-16 flex items-center justify-center mb-6 shadow-sm">
-                    <IconComponent className="w-8 h-8 text-orange-600" />
+                    <IconComponent className="w-8 h-8 text-primary" />
                   </div>
 
                   {/* Content */}
