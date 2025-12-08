@@ -5,12 +5,7 @@ import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, LineChart, Line, XAx
 import { Clock, BookOpen, FileText, Video, TrendingUp, Award, Target, Zap, Trophy, Calendar, CheckCircle2, Star, Flame, Brain, Lightbulb } from "lucide-react";
 import TitleSection from "../../../components/shared/TitleSection";
 import { TooltipProps } from "recharts";
-
-const data = [
-  { name: "امتحانات", value: 40, color: "#10b981", icon: FileText, gradient: "from-emerald-400 to-emerald-600" },
-  { name: "واجبات", value: 25, color: "#f59e0b", icon: BookOpen, gradient: "from-amber-400 to-orange-500" },
-  { name: "فيديوهات", value: 20, color: "#3b82f6", icon: Video, gradient: "from-blue-400 to-blue-600" },
-];
+import { Statistics } from "@/types/dashboard.types";
 
 const weeklyProgress = [
   { day: "السبت", minutes: 45 },
@@ -79,18 +74,44 @@ const recentAchievements = [
   },
 ];
 
-export function Chart() {
-  const [activeIndex, setActiveIndex] = useState(-1);
+export function Chart({ statistics }: { statistics: Statistics }) {
+  const data = [
+    { name: "امتحانات", value: Math.floor(statistics?.percentExam), color: "#10b981", icon: FileText, gradient: "from-emerald-400 to-emerald-600" },
+    { name: "واجبات", value: Math.floor(statistics?.percentGrade), color: "#f59e0b", icon: BookOpen, gradient: "from-amber-400 to-orange-500" },
+    { name: "فيديوهات", value: Math.floor(statistics?.percentlesson), color: "#3b82f6", icon: Video, gradient: "from-blue-400 to-blue-600" },
+  ];
+
+const [activeIndex, setActiveIndex] = useState(-1);
   const [animatedValues, setAnimatedValues] = useState(data.map(() => 0));
+  const [isAnimationComplete, setIsAnimationComplete] = useState(false);
   const total = data.reduce((acc, cur) => acc + cur.value, 0);
 
-  // Animation effect on mount
+  // Animation effect when data changes from API
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setAnimatedValues(data.map((item) => item.value));
-    }, 300);
-    return () => clearTimeout(timer);
-  }, []);
+    // Check if we have valid data from API
+    const hasValidData = statistics && (statistics.percentExam > 0 || statistics.percentGrade > 0 || statistics.percentlesson > 0);
+    
+    if (hasValidData) {
+      // Reset animation state
+      setAnimatedValues(data.map(() => 0));
+      setIsAnimationComplete(false);
+      
+      // Start animation - data will be set immediately but recharts will animate
+      const animationTimer = setTimeout(() => {
+        setAnimatedValues(data.map((item) => item.value));
+      }, 50);
+      
+      // Mark animation as complete after recharts animation finishes
+      const completeTimer = setTimeout(() => {
+        setIsAnimationComplete(true);
+      }, 1300); // 50ms delay + 1200ms animation + 50ms buffer
+      
+      return () => {
+        clearTimeout(animationTimer);
+        clearTimeout(completeTimer);
+      };
+    }
+  }, [statistics?.percentExam, statistics?.percentGrade, statistics?.percentlesson]);
 
   interface PieData {
     name: string;
@@ -210,10 +231,8 @@ export function Chart() {
         </div>
 
         <div className="grid grid-cols-12 gap-8">
-          {/* القسم الأيسر - الإحصائيات */}
           <div className="col-span-12 lg:col-span-7">
             <div className="bg-gradient-to-br from-slate-50 via-white to-blue-50 rounded-3xl p-8 border border-gray-100" dir="rtl">
-              {/* Enhanced Chart Section */}
               <div className="relative">
                 <div className="relative bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
                   <div className="w-80 h-80 mx-auto relative">
@@ -227,9 +246,10 @@ export function Chart() {
                             </linearGradient>
                           ))}
                         </defs>
-                        <Pie data={data.map((item, index) => ({ ...item, value: animatedValues[index] }))} cx="50%" cy="50%" innerRadius={100} outerRadius={110} paddingAngle={3} dataKey="value" onMouseEnter={onPieEnter} onMouseLeave={onPieLeave}>
+                        <Pie  data={data.map((item, index) => ({ ...item, value: animatedValues[index] }))} cx="50%" cy="50%" innerRadius={100} outerRadius={110} paddingAngle={3} dataKey="value" onMouseEnter={onPieEnter} onMouseLeave={onPieLeave}>
                           {data.map((entry, index) => (
                             <Cell
+                            
                               key={`cell-${index}`}
                               fill={`url(#gradient-${index})`}
                               stroke={activeIndex === index ? "#ffffff" : "transparent"}

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ExamResult } from "../types/student.types";
 import RowSkeleton from "./skeletons/RowSkeleton";
+import Link from "next/link";
 
 interface MyExamResultsProps {
   showAll?: boolean;
@@ -17,7 +18,11 @@ function MyExamResults({ showAll = true, results, isLoading = false }: MyExamRes
       <div className="container">
         <div className="flex items-center justify-between">
           <TitleSection title="نتائج امتحاناتي" />
-          {showAll && <Button>عرض المزيد</Button>}
+          {showAll && (
+            <Button asChild>
+              <Link href={"/student/myexamresults"}>عرض المزيد</Link>
+            </Button>
+          )}
         </div>
         <div className="content bg-[#f9f9f9] py-7 px-3 rounded space-y-5">
           {isLoading ? (

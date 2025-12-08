@@ -5,16 +5,20 @@ import { Button } from "@/components/ui/button";
 import { InvoiceStatus } from "@/types/common.types";
 import { formatDate } from "@/utils/formatDate";
 import { useGetStudentPayementsQuery } from "../services/studentApi";
+import { Payment } from "../types/student.types";
+import Link from "next/link";
 
-function MyPayments({ showAll = true }: { showAll?: boolean }) {
-  const { data } = useGetStudentPayementsQuery();
-  const payments = data?.Data;
+function MyPayments({ payments, showAll = true }: { payments: Payment[]; showAll?: boolean }) {
   return (
     <section>
       <div className="container">
         <div className="flex items-center justify-between">
           <TitleSection title="مدفوعاتي" />
-          {showAll && <Button>عرض المزيد</Button>}
+          {showAll && (
+            <Button asChild>
+              <Link href={"/student/mypayments"}>عرض المزيد</Link>
+            </Button>
+          )}
         </div>
         <div className="content bg-[#f9f9f9] py-7 px-3 rounde space-y-5">
           {payments &&
