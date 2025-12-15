@@ -91,7 +91,7 @@ function Header() {
           )}
         </div>
       </header>
-      <ScrollProgress className="top-[73px]" />
+      {/* <ScrollProgress className="top-[73px]" /> */}
     </>
   );
 }
