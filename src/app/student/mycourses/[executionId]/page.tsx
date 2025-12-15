@@ -47,7 +47,7 @@ export default function Page({ params }: { params: Promise<{ executionId: string
               {/* Lessons */}
               <div className="pl-4 space-y-2">
                 {[...Array(3)].map((_, lessonIndex) => (
-                  <div key={lessonIndex} className="flex justify-between items-center px-3 py-2 rounded bg-gray-100">
+                  <div key={lessonIndex} className="flex justify-between items-center px-3 py-2 rounded bg-gray-100 gap-x-2">
                     <div className="flex items-center gap-2">
                       {/* Icon */}
                       <Skeleton className="h-7 w-7 rounded-full bg-gray-300/80" />
