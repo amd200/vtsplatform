@@ -4,9 +4,10 @@ import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 
 import ChaptersContent from "@/features/student/components/ChaptersContent";
-import PdfViewer from "@/features/student/components/PdfViewer";
+const PdfViewer = dynamic(() => import("@/features/student/components/PdfViewer"), { ssr: false });
 import RichTextViewer from "@/features/student/components/RichTextViewer";
 import VideoViewer from "@/features/student/components/VideoViewer";
 import AudioPlayer from "@/features/student/components/AudioPlayer";
