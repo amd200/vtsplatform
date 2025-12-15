@@ -11,7 +11,7 @@ function CourseDetails({ course }: { course: Course }) {
       <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
         <div className="flex items-center justify-center gap-3  ">
           <Languages className="w-5 h-5" />
-          {/* <span className="text-base font-normal">{details}</span> */}
+          {/* <span className="text-base font-normal">{course?.langurage}</span> */}
         </div>
         <div className="flex items-center justify-center gap-3">
           <Calendar className="w-5 h-5" />
