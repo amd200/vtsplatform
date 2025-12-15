@@ -1,120 +1,25 @@
 import Image from "next/image";
 import { SparklesText } from "@/components/ui/sparkles-text";
-// يمكنك استخدام أيقونات Lucide أو غيرها هنا
-// import { GitBranch, Star, Cpu } from "lucide-react"; 
-
 function Hero() {
-  const teachers = [
-    {
-      id: 1,
-      image: "",
-      bg: "bg-primary/80", // تركيز على الشفافية
-      lineColor: "bg-primary",
-      offset: "mt-24",
-    },
-    {
-      id: 2,
-      image: "",
-      bg: "bg-secondary/80",
-      lineColor: "bg-secondary",
-      offset: "mt-0",
-    },
-    {
-      id: 3,
-      image: "",
-      bg: "bg-[#2f2f2f]/80",
-      lineColor: "bg-[#2f2f2f]",
-      offset: "mt-24",
-    },
-  ];
-
-  // دالة لرسم خطوط الربط بين المدرسين
-  const drawConnections = () => {
-    // هذه مجرد أمثلة CSS، يمكنك استخدام SVG لرسم خطوط منحنية أكثر دقة
-    const connectionStyles = "absolute border-t-2 border-dashed border-gray-400/50";
-    
-    return (
-      <>
-        {/* ربط المدرس الأول بالثاني */}
-        <span className={`${connectionStyles} top-[250px] left-[15%] w-[40%] transform -rotate-12`}></span>
-        {/* ربط المدرس الثاني بالثالث */}
-        <span className={`${connectionStyles} top-[250px] right-[15%] w-[40%] transform rotate-12`}></span>
-        {/* ربط المدرس الأول بالثالث (بشكل أطول وأكثر انحناءً) - يتم محاكاة الانحناء بواسطة Tailwind */}
-        <span className="absolute top-[100px] left-[20%] w-[60%] h-[150px] border-b-2 border-l-2 border-dashed border-primary/30 rounded-bl-[100px]"></span>
-      </>
-    );
-  };
-
   return (
-    <section className=" h-[75vh] py-8">
-      <div className="container bg-white h-full rounded grid lg:grid-cols-2 gap-x-12 items-center overflow-hidden">
-        {/* قسم النص */}
+    <section className="bg-primary h-[75vh] py-8">
+      <div className="container bg-white h-full rounded grid lg:grid-cols-2 gap-x-12 items-center">
         <div className="text-center font-ar-medium max-w-lg text-primary">
+          {/* <SparklesText colors={{ first: "#3192ff", second: "#03438b" }} className="text-2xl mb-3">
+          </SparklesText> */}
           <h1 className="text-2xl mb-3 font-bold relative w-fit mx-auto z-50">
             عائلة دكتور إسلام يحيى
             <span className="w-[82px] h-[36px] bg-[#fadbd7] -z-20 absolute bottom-[-15px] left-[-20px] rounded"></span>
           </h1>
           <p className="max-w-80 -300 mx-auto text-xl relative z-50">
-            اهلًا دفعة 2026 في منصة د/ إسلام يحيى - لدراسة كل ما يتعلق بمنهج الفيزيــــاء للثانوية العامة والأزهرية .
-            <span className="w-[82px] h-[36px] bg-[#f3f3e0] -z-20 absolute bottom-[-20px] left-[0px] rounded"></span>
+            اهلًا دفعة 2026 في منصة د/ إسلام يحيى - لدراسة كل ما يتعلق بمنهج الفيزيــــاء للثانوية العامة والأزهرية .<span className="w-[82px] h-[36px] bg-[#f3f3e0] -z-20 absolute bottom-[-20px] left-[0px] rounded"></span>
             <span className="w-[36px] h-[82px] bg-[#dfe8f3] -z-20 absolute top-0 right-0 rounded"></span>
           </p>
-
-          {/* إضافة رمز يمثل المعالجة/التعلم العميق */}
-          <div className="mt-8 relative w-full h-10">
-            <div className="absolute left-1/2 -translate-x-1/2 w-16 h-16 border-4 border-double border-secondary/70 rounded-lg transform rotate-45"></div>
-            <div className="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-primary rounded-full top-6 animate-ping"></div>
-          </div>
         </div>
-
-        {/* قسم صور المدرسين والشبكة */}
-        <div className="flex justify-center items-center gap-20 gap-x-12 relative">
-          
-          {/* خلفية الشبكة/النقاط (مصفوفة) */}
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
-            {/* يمكنك تكرار نقاط صغيرة أو استخدام صورة خلفية شبكية */}
-            <div className="grid grid-cols-5 gap-8 h-full w-full">
-              {[...Array(25)].map((_, i) => (
-                <div key={i} className="flex items-center justify-center">
-                  <span className={`w-1 h-1 rounded-full bg-gray-600/50 ${i % 5 === 0 ? 'animate-pulse' : ''}`}></span>
-                </div>
-              ))}
-            </div>
+        <div className="w-full h-auto">
+          <div className="w-full h-[300px] relative">
+            <Image src="https://www.alpha-dz.com/static/media/heroSectionImage.e8c5d677b315b26a4494.webp" alt="image" fill className="rounded object-cover" />
           </div>
-
-          {/* خطوط الربط بين العناصر */}
-          {drawConnections()}
-          
-          {teachers.map((teacher) => (
-            <div key={teacher.id} className={`relative flex flex-col items-center ${teacher.offset}`}>
-              {/* نقطة ربط/ Node */}
-              <div className={`absolute -top-2 w-6 h-6 rounded-full ${teacher.lineColor} border-4 border-white z-10 shadow-lg flex items-center justify-center`}>
-                <span className="w-1 h-1 bg-white rounded-full animate-pulse"></span>
-              </div>
-              
-              {/* الخطوط (لم تعد مجرد خطوط، بل "روابط") */}
-              <span className={`absolute -top-16 w-[2px] h-14 ${teacher.lineColor} opacity-50`} />
-
-              {/* Card - التركيز على الإطار اللامع */}
-              <div className={`relative w-[190px] h-[300px] rounded-2xl overflow-hidden ${teacher.bg} shadow-2xl shadow-gray-700/50 transition-all duration-300 hover:shadow-primary`}>
-                {teacher?.image && <Image src={teacher.image} alt="" fill className="object-contain p-4" />}
-                
-                {/* إضافة تأثير بيانات (Data overlay) */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent p-2 text-xs text-white/70">
-                    {/* مثال على بيانات علمية */}
-                    <p>E=mc²</p>
-                    <p>$\lambda$</p>
-                </div>
-              </div>
-
-              {/* نقطة ربط/ Node سفلية */}
-              <div className={`absolute -bottom-2 w-6 h-6 rounded-full ${teacher.lineColor} border-4 border-white z-10 shadow-lg flex items-center justify-center`}>
-                <span className="w-1 h-1 bg-white rounded-full animate-pulse"></span>
-              </div>
-              
-              <span className={`absolute -bottom-16 w-[2px] h-14 ${teacher.lineColor} opacity-50`} />
-            </div>
-          ))}
         </div>
       </div>
     </section>
