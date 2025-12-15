@@ -103,10 +103,10 @@ function Footer() {
         {/* شريط حقوق النشر (Copyright Bar) - تقليل المسافات */}{" "}
         <div className="relative z-10 text-center border-t border-gray-200 mt-6 pt-3">
           {" "}
-          <p className="text-xs text-gray-500 flex items-center justify-center gap-1">
+          <p className="text-xs text-gray-500 flex items-center justify-center gap-1 flex-wrap">
             <Copyright className="w-3 h-3" /> جميع الحقوق محفوظة {new Date().getFullYear()} لمنصة مستر محمد فاروق.{" "}
             <span className="block mt-0.5">
-              تصميم وتطوير بواسطة <Link href={"https://www.facebook.com/ahmed.elhosseni.71"}>Ahmed Mohamed</Link>.
+              تصميم وتطوير بواسطة <Link className="underline" href={"https://www.facebook.com/ahmed.elhosseni.71"}>Ahmed Mohamed</Link>.
             </span>{" "}
           </p>{" "}
         </div>{" "}
