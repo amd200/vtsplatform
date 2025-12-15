@@ -50,7 +50,7 @@ function About() {
           {/* <div className="size-[375px] -z-10 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2   rounded-full bg-[radial-gradient(circle,_#f57005_61%,_#ffffff_61%)] blur-[665.21px]  "></div> */}
           <div className="size-[375px] max-lg:hidden -z-10 absolute right-0 top-1/2 transform -translate-y-1/2   rounded-full bg-[radial-gradient(circle,_#f57005_61%,_#ffffff_61%)] blur-[665.21px] "></div>
           {/* <Image src={capbg} alt="lettersEng" className="absolute lg:size-[150px] size-[100px] top-2/3 lg:left-5 left-12 -translate-x-1/2" /> */}
-          <div className="bg-[#2B7BAC0D] inline-block rounded-full px-3 py-1 text-lg text-primary mb-2">اختيارك الاول للانجليزي</div>
+          <div className="bg-[#2B7BAC0D] inline-block rounded-full px-3 py-1 text-lg text-primary mb-2">اختيارك الاول </div>
           <h2 className="font-bold lg:text-4xl text-3xl leading-normal mb-3 ">ذاكر و اكسب جوايز دلوقتي !</h2>
           <p className="lg:text-lg text-lg  text-grey mb-5">وفرنالك اجواء تنافسية بينك وبين زمايلك عشان نحفزك تقفل .. لو طلعت من الأوائل في امتحانات اينشتاين هتفوز بجوايز مش هتخطر على بالك .. هنروق على الأوائل المتفوقين</p>
           <div className="grid lg:grid-cols-2 gap-y-7">
