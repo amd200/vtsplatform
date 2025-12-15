@@ -84,7 +84,7 @@
   --popover-foreground: oklch(0.145 0 0);
   --primary: var(--color-primary);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary:var(--color-secondary);
+  --secondary: var(--color-secondary);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
@@ -179,11 +179,25 @@
 }
 
 @keyframes slide-up {
-  from { transform: translateY(100%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .animate-slide-up {
   animation: slide-up 0.25s ease-out;
 }
-  
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: var(--primary) !important;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: var(--primary) !important;
+}

@@ -1,99 +1,113 @@
+"use client";
 import { footerBg, logo, snow } from "@/assets/images";
-import { ChevronsLeft } from "lucide-react";
+import { ChevronsLeft, MapPin, Phone, Facebook, Youtube, Send, MessageCircle, ChevronLeft, Copyright } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 function Footer() {
   return (
     <>
-      <footer style={{ backgroundImage: `url(${footerBg.src})` }} className="relative py-4 mt-12 bg-center lg:max-w-7xl w-full  mx-auto font-ar-medium rounded-lg overflow-hidden">
-        {/* <Image src={snow} alt="snow" className="absolute h-[60px] w-full top-[-30px] z-5" /> */}
-        <div className="container grid lg:grid-cols-3 gap-y-4 pt-[10px]">
-          <div className="">
-            <Link href="/">
-              <Image src={logo} alt="logo" />
+      {/* Footer Container: تم تقليل الـ Padding والحجم الكلي */}{" "}
+      <footer
+        style={{
+          backgroundImage: `url(${footerBg.src})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+        className="relative py-6 mt-10 bg-white shadow-2xl lg:max-w-7xl w-[95%] mx-auto font-ar-medium rounded-xl overflow-hidden text-gray-800 border border-primary/10"
+      >
+        {/* طبقة تظليل خفيفة فوق الصورة الخلفية لتحسين وضوح النص */} <div className="absolute inset-0 bg-white/70 backdrop-blur-sm"></div> {/* المحتوى الرئيسي (شبكة الأعمدة) - تقليل التباعد الرأسي */}{" "}
+        <div className="container relative z-10 grid lg:grid-cols-4 gap-y-5 gap-x-4 px-4 sm:px-6">
+          {/* العمود الأول: الشعار والتفاصيل الأساسية */}{" "}
+          <div className="flex flex-col gap-2">
+            {" "}
+            <Link href="/" className="w-20">
+              {" "}
+              {/* حجم أصغر للشعار */}
+              <Image src={logo} alt="Mr. Mohamed Farouk Logo" width={80} height={40} className="object-contain" />{" "}
             </Link>
-            <p className="">منصة مستر محمد فاروق</p>
-            <ul className="navbar-nav icons-social flex-row">
-              <li className=" d-flex align-items-center justify-content-center">
-                <a className=" justify-content-center" href="#">
-                  <i className="fa-brands fa-facebook-f"></i>
-                </a>
-              </li>
-              <li className=" d-flex align-items-center justify-content-center">
-                <a className=" justify-content-center" href="#">
-                  <i className="fa-brands fa-youtube"></i>
-                </a>
-              </li>
-              <li className=" d-flex align-items-center justify-content-center">
-                <a className=" justify-content-center" href="#">
-                  <i className="fa-brands fa-telegram"></i>
-                </a>
-              </li>
-              <li className=" d-flex align-items-center justify-content-center">
-                <a className=" justify-content-center" href="#">
-                  <i className="fa-brands fa-whatsapp"></i>
-                </a>
-              </li>
-            </ul>
+            <p className="text-xs text-gray-600 leading-relaxed"> منصة مستر محمد فاروق التعليمية لتقديم أفضل محتوى أكاديمي. </p>{" "}
           </div>
-          <div className="">
-            <p className="text-lg mb-3 border-b-2 border-primary border-dashed inline-block pb-1">تواصل مع المستر</p>
-            <ul className="space-y-2">
-              <li className="">
-                <Link className="flex items-center gap-x-1" href="#">
-                  <ChevronsLeft className="size-4" />
-                  <span>المسلة - ش جمال عبدالناصر</span>
+          {/* العمود الثاني: روابط سريعة */}{" "}
+          <div className="lg:pl-4">
+            <h3 className="text-base font-bold mb-2 border-b-2 border-primary/50 border-dashed inline-block pb-0.5">روابط سريعة</h3> {/* حجم أصغر للعناوين والـ mb أقل */}{" "}
+            <ul className="space-y-2 text-sm">
+              {" "}
+              {/* تباعد أصغر */}{" "}
+              <li>
+                <Link className="flex items-center gap-x-1 text-xs text-gray-600 hover:text-primary transition-colors" href="#">
+                  <ChevronLeft className="size-3 text-primary" /> الرئيسية
                 </Link>
               </li>
-              <li className="">
-                <Link className="flex items-center gap-x-1" href="#">
-                  <ChevronsLeft className="size-4" />
-                  <span>01115003800</span>
+              <li>
+                <Link className="flex items-center gap-x-1 text-xs text-gray-600 hover:text-primary transition-colors" href="#">
+                  <ChevronLeft className="size-3 text-primary" /> الكورسات المتاحة
                 </Link>
               </li>
-            </ul>
+              <li>
+                <Link className="flex items-center gap-x-1 text-xs text-gray-600 hover:text-primary transition-colors" href="#">
+                  <ChevronLeft className="size-3 text-primary" /> تسجيل الدخول
+                </Link>
+              </li>{" "}
+            </ul>{" "}
           </div>
+          {/* العمود الثالث: تواصل معنا */}{" "}
           <div className="">
-            <p className="mb-1">تصميم وتطوير</p>
-            <Link href="/">VTS</Link> لخدمات تكنولوجيا المعلومات
+            <h3 className="text-base font-bold mb-2 border-b-2 border-primary/50 border-dashed inline-block pb-0.5">تواصل معنا</h3> {/* حجم أصغر للعناوين والـ mb أقل */}{" "}
+            <ul className="space-y-2 text-sm">
+              {" "}
+              {/* تباعد أصغر */}{" "}
+              <li className="flex items-start gap-x-2">
+                <MapPin className="size-4 text-secondary flex-shrink-0 mt-0.5" />
+                <span className="text-xs">المسلة - ش جمال عبدالناصر، بجوار...</span>{" "}
+              </li>
+              <li className="flex items-center gap-x-2">
+                <Phone className="size-4 text-secondary flex-shrink-0" />
+                <Link className="text-xs text-gray-600 hover:text-primary transition-colors" href="tel:01115003800">
+                  01115003800
+                </Link>
+              </li>{" "}
+            </ul>{" "}
           </div>
-          {/* <div className="row align-items-start">
-          <div className="col-lg-3 col-12">
-            <div className="right mb-xl-0 mb-3">
-              <a href="#" className="logo">
-                <img src="assets/imgs/logo.png" alt="" />
-              </a>
-              <p className="ar-medium">منصة مستر محمد فاروق</p>
-              <ul className="navbar-nav icons-social flex-row">
-                <li className=" d-flex align-items-center justify-content-center">
-                  <a className=" justify-content-center" href="#">
-                    <i className="fa-brands fa-facebook-f"></i>
-                  </a>
-                </li>
-                <li className=" d-flex align-items-center justify-content-center">
-                  <a className=" justify-content-center" href="#">
-                    <i className="fa-brands fa-youtube"></i>
-                  </a>
-                </li>
-                <li className=" d-flex align-items-center justify-content-center">
-                  <a className=" justify-content-center" href="#">
-                    <i className="fa-brands fa-telegram"></i>
-                  </a>
-                </li>
-                <li className=" d-flex align-items-center justify-content-center">
-                  <a className=" justify-content-center" href="#">
-                    <i className="fa-brands fa-whatsapp"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        
-       
-        </div> */}
+          {/* العمود الرابع: وسائل التواصل الاجتماعي - تم تصغير الأيقونات */}{" "}
+          <div className="">
+            <h3 className="text-base font-bold mb-2 border-b-2 border-primary/50 border-dashed inline-block pb-0.5">تابعنا</h3> {/* حجم أصغر للعناوين والـ mb أقل */}{" "}
+            <ul className="flex space-x-2 rtl:space-x-reverse justify-start">
+              {" "}
+              {/* تباعد أصغر */}{" "}
+              <li className="p-1.5 bg-gray-100 rounded-full hover:bg-primary transition-colors group">
+                {" "}
+                {/* padding أصغر */}
+                <a href="#" aria-label="فيسبوك">
+                  <Facebook className="size-4 text-gray-600 group-hover:text-white transition-colors" /> {/* أيقونة أصغر */}
+                </a>
+              </li>
+              <li className="p-1.5 bg-gray-100 rounded-full hover:bg-red-600 transition-colors group">
+                <a href="#" aria-label="يوتيوب">
+                  <Youtube className="size-4 text-gray-600 group-hover:text-white transition-colors" />
+                </a>
+              </li>
+              <li className="p-1.5 bg-gray-100 rounded-full hover:bg-blue-500 transition-colors group">
+                <a href="#" aria-label="تليجرام">
+                  <Send className="size-4 text-gray-600 group-hover:text-white transition-colors" />
+                </a>
+              </li>
+              <li className="p-1.5 bg-gray-100 rounded-full hover:bg-green-500 transition-colors group">
+                <a href="#" aria-label="واتساب">
+                  <MessageCircle className="size-4 text-gray-600 group-hover:text-white transition-colors" />
+                </a>
+              </li>{" "}
+            </ul>{" "}
+          </div>{" "}
         </div>
-      </footer>
+        {/* شريط حقوق النشر (Copyright Bar) - تقليل المسافات */}{" "}
+        <div className="relative z-10 text-center border-t border-gray-200 mt-6 pt-3">
+          {" "}
+          <p className="text-xs text-gray-500 flex items-center justify-center gap-1">
+            <Copyright className="w-3 h-3" /> جميع الحقوق محفوظة {new Date().getFullYear()} لمنصة مستر محمد فاروق. <span className="block mt-0.5">تصميم وتطوير بواسطة Ahmed.</span>{" "}
+          </p>{" "}
+        </div>{" "}
+      </footer>{" "}
     </>
   );
 }

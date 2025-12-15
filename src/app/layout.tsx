@@ -31,7 +31,6 @@ const arBold = localFont({
   variable: "--font-ar-bold",
 });
 
-
 export const metadata: Metadata = {
   title: {
     default: "VTS Platform – منصتك التعليمية المتكاملة",
@@ -99,6 +98,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl" className={`${arLight.variable} ${arMedium.variable} ${arBold.variable}`}>
+      {/* <head>
+        <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+      </head> */}
       <body className={`antialiased font-ar-medium`}>
         <ToastContainer />
         <ProviderWrapper>
@@ -107,8 +109,21 @@ export default function RootLayout({
           </ParallaxWrapper>
         </ProviderWrapper>
         <Script src="/nutrient-viewer/nutrient-viewer.js" strategy="beforeInteractive" />
-        {/* <Salesiq widgetCode="siqd29074ac33ce4ef3a1a65c99b8ea93675cbad44e888f83b0e253b6db26b63d6d" domain="https://salesiq.zohopublic.com/widget" /> */}
+        <Salesiq widgetCode="siqd29074ac33ce4ef3a1a65c99b8ea93675cbad44e888f83b0e253b6db26b63d6d" domain="https://salesiq.zohopublic.com/widget" />
         <Toaster className="!font-ar-medium" position="top-center" />
+        {/* <Script
+          type="module"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+      import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+      createChat({
+        webhookUrl: 'https://n8n.srv1078880.hstgr.cloud/webhook/c3e92960-f5f8-4274-a44c-d4657dc5e6d1/chat'
+      });
+    `,
+          }}
+        /> */}
       </body>
     </html>
   );
