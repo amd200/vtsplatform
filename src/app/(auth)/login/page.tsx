@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { success, z } from "zod";
 import { Switch } from "@/components/ui/switch";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useEffect, useState } from "react";
@@ -31,7 +31,7 @@ function Page() {
   const [useCodeOnly, setUseCodeOnly] = useState(false);
   const router = useRouter();
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
-  const { error } = useToastMessage();
+  const { error, success } = useToastMessage();
 
   function onChange(value: string | null) {
     console.log("Captcha value:", value);
@@ -65,8 +65,9 @@ function Page() {
 
     if (res?.error) {
       error(res?.error || "حدث خطأ يرجى المحاولة لاحقا");
-
       return;
+    } else {
+      success("تم تسجيل الدخول بنجاح");
     }
 
     router.push("/student");
