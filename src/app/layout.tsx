@@ -65,12 +65,12 @@ export const metadata: Metadata = {
     ],
   },
 
-  twitter: {
-    card: "summary_large_image",
-    title: "VTS Platform – منصتك التعليمية المتكاملة",
-    description: "منصة تعليمية ذكية تقدم محتوى تفاعلي، اختبارات، وجلسات تعليمية تساعدك على تطوير مستواك.",
-    images: ["/og-image.png"],
-  },
+  // twitter: {
+  //   card: "summary_large_image",
+  //   title: "VTS Platform – منصتك التعليمية المتكاملة",
+  //   description: "منصة تعليمية ذكية تقدم محتوى تفاعلي، اختبارات، وجلسات تعليمية تساعدك على تطوير مستواك.",
+  //   images: ["/og-image.png"],
+  // },
 
   viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",
 
