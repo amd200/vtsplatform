@@ -4,28 +4,42 @@ import axios, { AxiosRequestConfig, AxiosError } from "axios";
 import { getSession, signOut } from "next-auth/react";
 import { toast } from "react-toastify";
 
+// ================= AXIOS INSTANCE =================
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
+// ================= RESPONSE INTERCEPTOR =================
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response && error.response.status === 401) {
+    if (error.response?.status === 401) {
       signOut({ callbackUrl: "/login" });
     }
     return Promise.reject(error);
   }
 );
 
+// ================= REQUEST INTERCEPTOR =================
 axiosInstance.interceptors.request.use(
   async (config) => {
     const session = await getSession();
 
-    config.headers["X-App-Token"] = `UhqBUAP3T6Irguej2ogSdg==`;
+    const appToken = process.env.NEXT_PUBLIC_APP_TOKEN!;
+    const hasStudentToken = Boolean(session?.user?.StudentToken);
 
-    if (session?.user?.StudentToken) {
-      config.headers["X-Student-Token"] = session.user.StudentToken;
+    // تأكد إن headers موجود
+    config.headers = config.headers ?? {};
+
+    // عدّل عليه مباشرة
+    config.headers["Content-Type"] = "application/json";
+
+    config.headers["X-App-Token"] = hasStudentToken
+      ? appToken
+      : `Bearer ${appToken}`;
+
+    if (hasStudentToken) {
+      config.headers["X-Student-Token"] = session!.user.StudentToken;
     }
 
     return config;
@@ -33,6 +47,7 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
+// ================= RTK BASE QUERY =================
 export const axiosBaseQuery =
   (): BaseQueryFn<
     {
@@ -46,14 +61,11 @@ export const axiosBaseQuery =
   > =>
   async ({ url, method, data, params }) => {
     try {
-      console.log(data);
       const result = await axiosInstance({
         url,
         method,
         data,
         params,
-        headers: { "Content-Type": "application/json" },
-
         onUploadProgress: (progressEvent) => {
           if (progressEvent.total) {
             const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
@@ -65,12 +77,9 @@ export const axiosBaseQuery =
       return { data: result.data };
     } catch (err) {
       const error = err as AxiosError<BaseResponse<unknown>>;
+
       if (error.response?.data) {
-        const resData = error.response.data;
-        // if (resData.Message) {
-        //   toast.error(resData.Message);
-        // }
-        return { error: resData };
+        return { error: error.response.data };
       }
 
       const fallbackError: BaseResponse<null> = {

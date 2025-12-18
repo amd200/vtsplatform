@@ -20,6 +20,7 @@ import { CommentsSection } from "@/features/student/components/Comments";
 import { useLazyShowAudioQuery, useLazyShowPdfQuery, useLazyShowRichTextQuery, useLazyShowVideoQuery } from "@/features/student/services/lessonContentApi";
 import { ShowContent } from "@/features/student/types/student.types";
 import { useToastMessage } from "@/hooks/useToastMessage";
+import MeetingViewer from "@/features/student/components/MeetingViewer";
 
 function Page() {
   const params = useParams();
@@ -57,6 +58,7 @@ function Page() {
 
         setContentData(res.Data ?? null);
       } catch (err) {
+        console.log(err);
         const error = err as BaseResponse<null>;
         toasError(error?.Message || "حدث خطأ ");
       }
@@ -66,6 +68,9 @@ function Page() {
 
     load();
   }, [type, executionId, lessonId]);
+  useEffect(() => {
+    console.log(contentData);
+  }, [contentData]);
 
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [videoStats, setVideoStats] = useState({
@@ -109,6 +114,8 @@ function Page() {
 
       case "sound":
         return <AudioPlayer audioUrl={contentUrl} />;
+      case "meeting":
+        return <MeetingViewer />;
 
       default:
         return <RichTextViewer htmlContent={contentUrl} />;

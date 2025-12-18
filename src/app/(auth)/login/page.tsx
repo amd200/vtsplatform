@@ -62,8 +62,9 @@ function Page() {
       redirect: false,
       callbackUrl: "/student",
     });
-
+console.log(res)
     if (res?.error) {
+      console.log(res)
       error(res?.error || "حدث خطأ يرجى المحاولة لاحقا");
       return;
     } else {

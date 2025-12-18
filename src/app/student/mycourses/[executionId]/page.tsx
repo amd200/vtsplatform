@@ -11,7 +11,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function Page({ params }: { params: Promise<{ executionId: string }> }) {
   const { executionId } = use(params);
   const { data, isLoading, error } = useGetCourseDetailsQuery(executionId);
-
   return (
     <div className="container">
       {isLoading ? (
@@ -65,7 +64,7 @@ export default function Page({ params }: { params: Promise<{ executionId: string
           ))}
         </div>
       ) : (
-        <ChaptersAccordion executionId={executionId} chapters={data?.Data?.Chapters || []} />
+        <ChaptersAccordion courseDetails={data?.Data ?? ({} as Course)} executionId={executionId} chapters={data?.Data?.Chapters || []} />
       )}
     </div>
   );

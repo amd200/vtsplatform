@@ -5,29 +5,29 @@ import type { NextConfig } from "next";
 const withLess = require("next-with-less");
 
 const nextConfig: NextConfig = {
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.externals = config.externals || [];
-      config.externals.push({
-        "@nutrient-sdk/viewer": "@nutrient-sdk/viewer",
-      });
-    }
+  // webpack: (config, { isServer }) => {
+  //   if (!isServer) {
+  //     config.externals = config.externals || [];
+  //     config.externals.push({
+  //       "@nutrient-sdk/viewer": "@nutrient-sdk/viewer",
+  //     });
+  //   }
 
-    config.plugins.push(
-      new CopyPlugin({
-        patterns: [
-          {
-            from: path.resolve(__dirname, "node_modules/@nutrient-sdk/viewer/dist"),
-            to: path.resolve(__dirname, "public"),
-            info: () => ({ minimized: true }),
-            force: true,
-          },
-        ],
-      })
-    );
+  //   config.plugins.push(
+  //     new CopyPlugin({
+  //       patterns: [
+  //         {
+  //           from: path.resolve(__dirname, "node_modules/@nutrient-sdk/viewer/dist"),
+  //           to: path.resolve(__dirname, "public"),
+  //           info: () => ({ minimized: true }),
+  //           force: true,
+  //         },
+  //       ],
+  //     })
+  //   );
 
-    return config;
-  },
+  //   return config;
+  // },
   images: {
     remotePatterns: [
       {
@@ -38,6 +38,12 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: process.env.NEXT_PUBLIC_FILES_PATH!.replace(/^https?:\/\//, ""),
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "localhost",
+        port: "44314",
         pathname: "/**",
       },
       {

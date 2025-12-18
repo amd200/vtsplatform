@@ -5,15 +5,12 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { LogIn, Menu, UserPlus } from "lucide-react";
 import { getSession, signOut, useSession } from "next-auth/react";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useEffect, useState } from "react";
 function Header() {
   const { data: session } = useSession();
   const [greeting, setGreeting] = useState("مرحباً بك");
-
   useEffect(() => {
     const hour = new Date().getHours();
 

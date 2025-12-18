@@ -1,7 +1,7 @@
 import { Calendar, Languages, LinkIcon } from "lucide-react";
 import React from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Chapter, ContentType, Lesson } from "@/types/common.types";
+import { Chapter, ContentType, Course, Lesson } from "@/types/common.types";
 import { Button } from "@/components/ui/button";
 import { BookOpen, FileText, Video, File, Music, Users } from "lucide-react";
 import Link from "next/link";
@@ -25,7 +25,7 @@ const lessonTypeConfig: Record<ContentType, { icon: React.ReactNode; buttonText:
   [ContentType.Meeting]: { icon: <Users className="size-4 text-primary" />, buttonText: "الانضمام للاجتماع" },
 };
 
-function ChaptersAccordion({ chapters, executionId }: { chapters: Chapter[]; executionId: string }) {
+function ChaptersAccordion({ chapters, executionId, courseDetails }: { chapters: Chapter[]; executionId: string; courseDetails?: Course }) {
   if (!chapters || chapters.length === 0) return null;
 
   return (
@@ -45,9 +45,11 @@ function ChaptersAccordion({ chapters, executionId }: { chapters: Chapter[]; exe
                         <div className="size-7 flex items-center justify-center bg-white rounded-full">{config.icon}</div>
                         <span>{lesson.Title}</span>
                       </div>
-                      <Button size="sm" asChild>
-                        <Link href={url}>{config.buttonText}</Link>
-                      </Button>
+                      {(courseDetails?.Isbuy || lesson?.CanViewWithoutPay ) && (
+                        <Button size="sm" asChild>
+                          <Link href={url}>{config.buttonText}</Link>
+                        </Button>
+                      )}
                     </li>
                   );
                 })}

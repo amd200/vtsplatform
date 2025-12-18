@@ -69,7 +69,13 @@ export const lessonContentApi = createApi({
         },
       }),
     }),
+    joinMeeting: builder.mutation<{ token: string; room: string }, void>({
+      query: () => ({
+        url: `/platform/Content/lessons/3fa85f64-5717-4562-b3fc-2c963f66afa6/join`,
+        method: "POST",
+      }),
+    }),
   }),
 });
 
-export const { useAddCommentMutation, useDeleteCommentMutation, useLazyShowVideoQuery, useLazyShowPdfQuery, useLazyShowRichTextQuery, useLazyShowAudioQuery } = lessonContentApi;
+export const { useJoinMeetingMutation, useAddCommentMutation, useDeleteCommentMutation, useLazyShowVideoQuery, useLazyShowPdfQuery, useLazyShowRichTextQuery, useLazyShowAudioQuery } = lessonContentApi;

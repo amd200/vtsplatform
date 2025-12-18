@@ -81,7 +81,7 @@ export function Chart({ statistics }: { statistics: Statistics }) {
     { name: "فيديوهات", value: Math.floor(statistics?.percentlesson), color: "#3b82f6", icon: Video, gradient: "from-blue-400 to-blue-600" },
   ];
 
-const [activeIndex, setActiveIndex] = useState(-1);
+  const [activeIndex, setActiveIndex] = useState(-1);
   const [animatedValues, setAnimatedValues] = useState(data.map(() => 0));
   const [isAnimationComplete, setIsAnimationComplete] = useState(false);
   const total = data.reduce((acc, cur) => acc + cur.value, 0);
@@ -90,22 +90,22 @@ const [activeIndex, setActiveIndex] = useState(-1);
   useEffect(() => {
     // Check if we have valid data from API
     const hasValidData = statistics && (statistics.percentExam > 0 || statistics.percentGrade > 0 || statistics.percentlesson > 0);
-    
+
     if (hasValidData) {
       // Reset animation state
       setAnimatedValues(data.map(() => 0));
       setIsAnimationComplete(false);
-      
+
       // Start animation - data will be set immediately but recharts will animate
       const animationTimer = setTimeout(() => {
         setAnimatedValues(data.map((item) => item.value));
       }, 50);
-      
+
       // Mark animation as complete after recharts animation finishes
       const completeTimer = setTimeout(() => {
         setIsAnimationComplete(true);
       }, 1300); // 50ms delay + 1200ms animation + 50ms buffer
-      
+
       return () => {
         clearTimeout(animationTimer);
         clearTimeout(completeTimer);
@@ -164,7 +164,7 @@ const [activeIndex, setActiveIndex] = useState(-1);
               </div>
               <h3 className="text-gray-800 font-bold text-xl mb-2">الإنجاز اليومي</h3>
               <div className="flex items-end gap-2 mb-2">
-                <span className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">{Math.round(total / 7)}</span>
+                <span className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">{Number.isFinite(total) ? Math.round(total / 7) : 0}</span>
                 <span className="text-lg text-gray-600 pb-1">دقيقة</span>
               </div>
               <p className="text-gray-500 text-sm">متوسط التعلم اليومي</p>
@@ -246,10 +246,9 @@ const [activeIndex, setActiveIndex] = useState(-1);
                             </linearGradient>
                           ))}
                         </defs>
-                        <Pie  data={data.map((item, index) => ({ ...item, value: animatedValues[index] }))} cx="50%" cy="50%" innerRadius={100} outerRadius={110} paddingAngle={3} dataKey="value" onMouseEnter={onPieEnter} onMouseLeave={onPieLeave}>
+                        <Pie data={data.map((item, index) => ({ ...item, value: animatedValues[index] }))} cx="50%" cy="50%" innerRadius={100} outerRadius={110} paddingAngle={3} dataKey="value" onMouseEnter={onPieEnter} onMouseLeave={onPieLeave}>
                           {data.map((entry, index) => (
                             <Cell
-                            
                               key={`cell-${index}`}
                               fill={`url(#gradient-${index})`}
                               stroke={activeIndex === index ? "#ffffff" : "transparent"}
