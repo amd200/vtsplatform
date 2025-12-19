@@ -10,7 +10,8 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   createServer((req, res) => {
     handle(req, res);
-  }).listen(port);
+  }).listen(port, (err) => {
+    if (err) throw err;
+    console.log(`> Server listening at http://localhost:${port} as ${dev ? "development" : process.env.NODE_ENV}`);
+  });
 });
-
-console.log(`> Server listening at http://localhost:${port} as ${dev ? "development" : process.env.NODE_ENV}`);
