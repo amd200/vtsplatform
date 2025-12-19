@@ -11,7 +11,17 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         Password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        return await loginRequest(`${process.env.NEXT_PUBLIC_API_URL}/platform/Account/SignIn`, credentials!);
+        try {
+          const user = await loginRequest(`${process.env.NEXT_PUBLIC_API_URL}/platform/Account/SignIn`, credentials);
+
+          if (!user) {
+            return null;
+          }
+
+          return user;
+        } catch (error) {
+          return null;
+        }
       },
     }),
   ],
