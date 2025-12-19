@@ -1,0 +1,25 @@
+/* [project]/src/app/arbold_607a2bb4.module.css [app-client] (css) */
+@font-face {
+  font-family: arBold;
+  src: url("../media/ARABIC_BOLD-s.p.b77b25f5.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: arBold Fallback;
+  src: local(Arial);
+  ascent-override: 119.36%;
+  descent-override: 26.86%;
+  line-gap-override: 0.0%;
+  size-adjust: 100.54%;
+}
+
+.arbold_607a2bb4-module__DGfuWW__className {
+  font-family: arBold, arBold Fallback;
+}
+
+.arbold_607a2bb4-module__DGfuWW__variable {
+  --font-ar-bold: "arBold", "arBold Fallback";
+}
+
+/*# sourceMappingURL=src_app_arbold_607a2bb4_module_css_bad6b30c._.single.css.map*/

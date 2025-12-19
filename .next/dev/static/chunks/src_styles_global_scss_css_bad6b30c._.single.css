@@ -1,0 +1,73 @@
+/* [project]/src/styles/global.scss.css [app-client] (css) */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.hover-swiper {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.hover-swiper .swiper-wrapper {
+  transition: all .3s;
+  display: flex;
+}
+
+.hover-swiper .hover-slide {
+  background-color: var(--color-secondary);
+}
+
+.hover-swiper .hover-slide:nth-child(odd) {
+  background-color: var(--color-primary);
+}
+
+.hover-swiper .hover-slide {
+  border-radius: 12px;
+  flex-grow: 1;
+  width: 120px;
+  height: 250px;
+  transition: width .3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-swiper .hover-slide img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  transition: transform .3s;
+}
+
+.hover-swiper:hover .hover-slide {
+  width: 70px;
+}
+
+.hover-swiper:hover .hover-slide img {
+  object-fit: cover;
+}
+
+.hover-swiper .hover-slide:hover {
+  width: 400px;
+}
+
+.hover-swiper .hover-slide:hover img {
+  object-fit: contain;
+}
+
+.hover-slide:hover .slide-img {
+  transform: translateX(130px);
+}
+
+.hover-slide:hover .slide-text {
+  opacity: 1;
+  transform: translateX(-40px);
+}
+
+/*# sourceMappingURL=src_styles_global_scss_css_bad6b30c._.single.css.map*/

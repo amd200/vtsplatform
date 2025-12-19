@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/src/app/armedium_f26472d6.module.css"],"sourcesContent":["@font-face {\n    \nfont-family: 'arMedium';\n    src: url('@vercel/turbopack-next/internal/font/local/font?{%22path%22:%22../assets/fonts/ARABIC-MEDIUM.ttf%22,%22preload%22:true,%22has_size_adjust%22:true}') format('truetype');\n    font-display: swap;\n    \n}\n\n@font-face {\n    font-family: 'arMedium Fallback';\n    src: local(\"Arial\");\n    ascent-override: 121.12%;\ndescent-override: 27.25%;\nline-gap-override: 0.00%;\nsize-adjust: 99.08%;\n\n}\n\n.className {\n    font-family: 'arMedium', 'arMedium Fallback';\n    \n}\n.variable {\n    --font-ar-medium: 'arMedium', 'arMedium Fallback';\n}\n\n"],"names":[],"mappings":"AAAA;;;;;;AAQA;;;;;;;;;AAUA;;;;AAIA"}}]
+}

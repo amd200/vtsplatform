@@ -1,0 +1,12 @@
+{
+  "pages": {},
+  "app": {
+    "[project]/src/app/student/mylessons/page": [
+      "static/media/ARABIC_LIGHT-s.p.4ca1f3dd.ttf",
+      "static/media/ARABIC_MEDIUM-s.p.a597387f.ttf",
+      "static/media/ARABIC_BOLD-s.p.b77b25f5.ttf"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pagesUsingSizeAdjust": false
+}

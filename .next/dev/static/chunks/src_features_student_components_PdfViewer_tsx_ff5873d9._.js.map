@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///E:/web/vtsplatform/src/features/student/components/PdfViewer.tsx"],"sourcesContent":["\"use client\";\r\nimport React from \"react\";\r\nimport { Worker } from \"@react-pdf-viewer/core\";\r\nimport { Viewer } from \"@react-pdf-viewer/core\";\r\nimport \"@react-pdf-viewer/core/lib/styles/index.css\";\r\nimport { defaultLayoutPlugin } from \"@react-pdf-viewer/default-layout\";\r\nimport \"@react-pdf-viewer/default-layout/lib/styles/index.css\";\r\nfunction PdfViewer({ pdfUrl }: { pdfUrl: string }) {\r\n  const defaultLayoutPluginInstance = defaultLayoutPlugin();\r\n  return (\r\n    <div className=\"w-full max-w-full h-[500px]\">\r\n      <Worker workerUrl=\"https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js\">{pdfUrl && <Viewer plugins={[defaultLayoutPluginInstance]} fileUrl={pdfUrl} />}</Worker>\r\n    </div>\r\n  );\r\n}\r\n\r\nexport default PdfViewer;\r\n"],"names":[],"mappings":";;;;;AAEA;AAGA;AALA;;;;;;;AAOA,SAAS,UAAU,EAAE,MAAM,EAAsB;IAC/C,MAAM,8BAA8B,IAAA,uMAAmB;IACvD,qBACE,6LAAC;QAAI,WAAU;kBACb,cAAA,6LAAC,6KAAM;YAAC,WAAU;sBAAgE,wBAAU,6LAAC,6KAAM;gBAAC,SAAS;oBAAC;iBAA4B;gBAAE,SAAS;;;;;;;;;;;;;;;;AAG3J;KAPS;uCASM"}}]
+}

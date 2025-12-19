@@ -1,0 +1,25 @@
+/* [project]/src/app/armedium_f26472d6.module.css [app-client] (css) */
+@font-face {
+  font-family: arMedium;
+  src: url("../media/ARABIC_MEDIUM-s.p.a597387f.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: arMedium Fallback;
+  src: local(Arial);
+  ascent-override: 121.12%;
+  descent-override: 27.25%;
+  line-gap-override: 0.0%;
+  size-adjust: 99.08%;
+}
+
+.armedium_f26472d6-module__a9nUOq__className {
+  font-family: arMedium, arMedium Fallback;
+}
+
+.armedium_f26472d6-module__a9nUOq__variable {
+  --font-ar-medium: "arMedium", "arMedium Fallback";
+}
+
+/*# sourceMappingURL=src_app_armedium_f26472d6_module_css_bad6b30c._.single.css.map*/

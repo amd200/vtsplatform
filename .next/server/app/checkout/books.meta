@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(main)/layout,_N_T_/(main)/checkout/layout,_N_T_/(main)/checkout/books/layout,_N_T_/(main)/checkout/books/page,_N_T_/checkout/books"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KG1haW4p/checkout/books/__PAGE__",
+    "/!KG1haW4p/checkout/books",
+    "/!KG1haW4p/checkout",
+    "/!KG1haW4p",
+    "/_index",
+    "/_head"
+  ]
+}
