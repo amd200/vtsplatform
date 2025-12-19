@@ -1,29 +1,12 @@
-"use client";
+export const dynamic = "force-dynamic";
+
+("use client");
 import OrderSummary from "@/components/checkout/OrderSummary";
 import PaymentMethod from "@/components/checkout/PaymentMethod";
 import ShippingAddressSection from "@/components/checkout/ShippingAddressSection";
 import { ChevronLeft } from "lucide-react";
 import React, { useState } from "react";
 
-// Header Component
-
-// Saved Address Item Component
-
-
-// New Address Form Component
-
-// Shipping Address Section Component
-
-
-// Payment Method Component
-
-
-// Order Item Component
-
-
-// Order Summary Component
-
-// Main Checkout Page Component
 export default function CheckoutPage() {
   const [selectedAddress, setSelectedAddress] = useState("new");
   const [email, setEmail] = useState("");
@@ -49,7 +32,6 @@ export default function CheckoutPage() {
 
   return (
     <div className="min-h-screen">
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <button className="flex items-center text-blue-600 hover:text-blue-700 mb-6">
           <ChevronLeft className="h-5 w-5" />
