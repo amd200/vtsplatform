@@ -10,7 +10,8 @@ import getContentUrl from "@/features/student/utils/getContentUrl";
 import ChaptersContent from "@/features/student/components/ChaptersContent";
 import MediaThemeTailwindAudio from "player.style/tailwind-audio/react";
 
-function AudioPlayer({ audioUrl }: { audioUrl: string }) {
+function AudioPlayer({ audioUrl }: { audioUrl: string }) 
+{
   return (
     <div className="w-full max-w-full relative" dir="ltr">
       <MediaThemeTailwindAudio
