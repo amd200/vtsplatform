@@ -48,7 +48,7 @@
       },
       {
         "protocol": "https",
-        "hostname": "^(?:^(?:vedu\\-demo\\.vtsitco\\.com)$)$",
+        "hostname": "^(?:^(?:eslam\\-yahia\\-physics\\.com)$)$",
         "pathname": "^(?:\\/(?!\\.{1,2}(?:\\/|$))(?:(?:(?!(?:^|\\/)\\.{1,2}(?:\\/|$)).)*?))$"
       },
       {

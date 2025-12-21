@@ -1,13 +1,9 @@
 import TitleSection from "@/components/shared/TitleSection";
 import { ExamResult, StudentCharge, StudentChargeDetail } from "../types/student.types";
 import RowSkeleton from "./skeletons/RowSkeleton";
-import { useGetStudentWalletQuery } from "../services/studentApi";
 import { formatDate } from "@/utils/formatDate";
 
-interface MyWalletProps {
-  results: ExamResult[];
-  isLoading?: boolean;
-}
+
 
 function MyWallet({ charges, isLoading }: { charges: StudentChargeDetail[]; isLoading: boolean }) {
   console.log(charges);

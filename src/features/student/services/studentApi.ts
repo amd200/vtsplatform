@@ -133,58 +133,7 @@ export const studentApi = createApi({
         },
       }),
     }),
-    getStudentWallet: builder.query<StudentWalletRepsone, void>({
-      query: () => ({
-        url: `/platform/StudentWallet`,
-        method: "GET",
-      }),
-    }),
-    reChargeBalanceWithFawry: builder.mutation<FawryRepsone, { phoneNumber: string; amount: number }>({
-      query: ({ phoneNumber, amount }) => ({
-        url: `/platform/StudentWallet/FawryPay`,
-        method: "POST",
-        data: {
-          Mobile: phoneNumber,
-          amount,
-        },
-      }),
-      // invalidatesTags: ["StudentCourses", "AllCourses"],
-    }),
-    reChargeBalanceWithEWallet: builder.mutation<EWalletRepsone, { phoneNumber: string; amount: number }>({
-      query: ({ phoneNumber, amount }) => ({
-        url: `/platform/StudentWallet/PaymobPaymentEWallet`,
-        method: "POST",
-        data: {
-          Mobile: phoneNumber,
-          amount,
-        },
-      }),
-      // invalidatesTags: ["StudentCourses", "AllCourses"],
-    }),
-    reChargeBalanceWithCard: builder.mutation<EWalletRepsone, { phoneNumber: string; amount: number }>({
-      query: ({ phoneNumber, amount }) => ({
-        url: `/platform/StudentWallet/PaymobPaymentCard`,
-        method: "POST",
-        data: {
-          Mobile: phoneNumber,
-          amount,
-        },
-      }),
-      // invalidatesTags: ["StudentCourses", "AllCourses"],
-    }),
-    requestRefundShipping: builder.mutation<BaseResponse<null>, { Phone: string; Subject: string; Message: String }>({
-      query: ({ Phone, Message, Subject }) => ({
-        url: `/platform/StudentWallet/RequestRefundShipping`,
-        method: "POST",
-        data: {
-          Phone,
-          Message,
-          Subject,
-        },
-      }),
-      // invalidatesTags: ["StudentCourses", "AllCourses"],
-    }),
   }),
 });
 
-export const { useRequestRefundShippingMutation, useReChargeBalanceWithCardMutation, useReChargeBalanceWithEWalletMutation, useReChargeBalanceWithFawryMutation, useGetCountriesQuery, useGetChapterDetailsQuery, useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useActivateCodeMutation, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery, useGetStudentWalletQuery, useGetProtectedVideoMutation } = studentApi;
+export const { useGetCountriesQuery, useGetChapterDetailsQuery, useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useActivateCodeMutation, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery,  useGetProtectedVideoMutation } = studentApi;

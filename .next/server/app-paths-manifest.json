@@ -15,6 +15,7 @@
   "/student/content/[type]/[executionId]/[id]/page": "app/student/content/[type]/[executionId]/[id]/page.js",
   "/student/courses/page": "app/student/courses/page.js",
   "/student/exam/[id]/page": "app/student/exam/[id]/page.js",
+  "/student/mychapter/[executionId]/page": "app/student/mychapter/[executionId]/page.js",
   "/student/mychapter/page": "app/student/mychapter/page.js",
   "/student/mycourses/[executionId]/page": "app/student/mycourses/[executionId]/page.js",
   "/student/mycourses/page": "app/student/mycourses/page.js",

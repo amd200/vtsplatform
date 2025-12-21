@@ -15,6 +15,7 @@
   "/student/content/[type]/[executionId]/[id]/page": "/student/content/[type]/[executionId]/[id]",
   "/student/courses/page": "/student/courses",
   "/student/exam/[id]/page": "/student/exam/[id]",
+  "/student/mychapter/[executionId]/page": "/student/mychapter/[executionId]",
   "/student/mychapter/page": "/student/mychapter",
   "/student/mycourses/[executionId]/page": "/student/mycourses/[executionId]",
   "/student/mycourses/page": "/student/mycourses",

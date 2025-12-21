@@ -55,6 +55,14 @@
       "namedRegex": "^/student/exam/(?<nxtPid>[^/]+?)(?:/)?$"
     },
     {
+      "page": "/student/mychapter/[executionId]",
+      "regex": "^/student/mychapter/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPexecutionId": "nxtPexecutionId"
+      },
+      "namedRegex": "^/student/mychapter/(?<nxtPexecutionId>[^/]+?)(?:/)?$"
+    },
+    {
       "page": "/student/mycourses/[executionId]",
       "regex": "^/student/mycourses/([^/]+?)(?:/)?$",
       "routeKeys": {

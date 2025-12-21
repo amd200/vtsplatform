@@ -21,7 +21,7 @@ function CartCourses({ invoiceId }: { invoiceId?: string }) {
   const total = cartCaourses?.reduce((sum, cart: CartItem) => sum + cart.Price, 0) || 0;
   const [deleteCourseFromCart] = useDeleteCourseFromCartMutation();
   const router = useRouter();
-  const { error: toastError, success } = useToastMessage();
+  const { error: toastError, success, info } = useToastMessage();
 
   const deleteCourse = async (id: string) => {
     try {
@@ -35,7 +35,8 @@ function CartCourses({ invoiceId }: { invoiceId?: string }) {
   const handleSubmit = async () => {
     try {
       const res = await createInvoice().unwrap();
-      router.push(`/checkout/${res?.Data?.InvoiceData?.Id}`);
+      info("يرجى الانتظار");
+      // router.push(`/checkout/${res?.Data?.InvoiceData?.Id}`);
     } catch (err) {
       const error = err as BaseResponse<null>;
       toastError(error?.Message || "حدث خطأ حاول مرة اخرى");
