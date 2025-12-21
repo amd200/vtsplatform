@@ -1692,6 +1692,14 @@ function Sidebar() {
     _s();
     const [isOpen, setIsOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
+    const pathname = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"])();
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Sidebar.useEffect": ()=>{
+            setIsOpen(false);
+        }
+    }["Sidebar.useEffect"], [
+        pathname
+    ]);
     const handleLogout = async ()=>{
         await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$auth$2f$react$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["signOut"])();
         router.push("/login");
@@ -1704,7 +1712,7 @@ function Sidebar() {
                 size: 20
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 20,
+                lineNumber: 24,
                 columnNumber: 47
             }, this)
         },
@@ -1715,7 +1723,7 @@ function Sidebar() {
                 size: 20
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 21,
+                lineNumber: 25,
                 columnNumber: 62
             }, this)
         },
@@ -1726,7 +1734,7 @@ function Sidebar() {
                 size: 20
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 22,
+                lineNumber: 26,
                 columnNumber: 61
             }, this)
         },
@@ -1737,7 +1745,7 @@ function Sidebar() {
                 size: 20
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 23,
+                lineNumber: 27,
                 columnNumber: 59
             }, this)
         },
@@ -1748,7 +1756,7 @@ function Sidebar() {
                 size: 20
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 24,
+                lineNumber: 28,
                 columnNumber: 57
             }, this)
         },
@@ -1759,7 +1767,7 @@ function Sidebar() {
                 size: 20
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 25,
+                lineNumber: 29,
                 columnNumber: 59
             }, this)
         },
@@ -1770,7 +1778,7 @@ function Sidebar() {
                 size: 20
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 26,
+                lineNumber: 30,
                 columnNumber: 57
             }, this)
         },
@@ -1781,7 +1789,7 @@ function Sidebar() {
                 size: 20
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 27,
+                lineNumber: 31,
                 columnNumber: 66
             }, this)
         },
@@ -1792,7 +1800,7 @@ function Sidebar() {
                 size: 20
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 28,
+                lineNumber: 32,
                 columnNumber: 72
             }, this)
         },
@@ -1803,7 +1811,7 @@ function Sidebar() {
                 size: 20
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 29,
+                lineNumber: 33,
                 columnNumber: 59
             }, this)
         },
@@ -1814,7 +1822,7 @@ function Sidebar() {
                 size: 20
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 30,
+                lineNumber: 34,
                 columnNumber: 60
             }, this)
         },
@@ -1825,7 +1833,7 @@ function Sidebar() {
                 size: 20
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 31,
+                lineNumber: 35,
                 columnNumber: 75
             }, this)
         },
@@ -1836,7 +1844,7 @@ function Sidebar() {
                 size: 20
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 32,
+                lineNumber: 36,
                 columnNumber: 77
             }, this)
         },
@@ -1847,7 +1855,7 @@ function Sidebar() {
                 size: 20
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 33,
+                lineNumber: 37,
                 columnNumber: 85
             }, this)
         },
@@ -1858,7 +1866,7 @@ function Sidebar() {
                 size: 20
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 34,
+                lineNumber: 38,
                 columnNumber: 59
             }, this)
         },
@@ -1869,7 +1877,7 @@ function Sidebar() {
                 size: 20
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 35,
+                lineNumber: 39,
                 columnNumber: 61
             }, this)
         },
@@ -1880,7 +1888,7 @@ function Sidebar() {
                 size: 20
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 36,
+                lineNumber: 40,
                 columnNumber: 68
             }, this)
         },
@@ -1891,7 +1899,7 @@ function Sidebar() {
                 size: 20
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 37,
+                lineNumber: 41,
                 columnNumber: 59
             }, this)
         },
@@ -1902,7 +1910,7 @@ function Sidebar() {
                 size: 20
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 38,
+                lineNumber: 42,
                 columnNumber: 54
             }, this)
         }
@@ -1918,12 +1926,12 @@ function Sidebar() {
                     children: isOpen ? "←" : "→"
                 }, void 0, false, {
                     fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                    lineNumber: 44,
+                    lineNumber: 48,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 43,
+                lineNumber: 47,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -1942,18 +1950,18 @@ function Sidebar() {
                                             children: item.label
                                         }, void 0, false, {
                                             fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                                            lineNumber: 55,
+                                            lineNumber: 59,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                                    lineNumber: 53,
+                                    lineNumber: 57,
                                     columnNumber: 15
                                 }, this)
                             }, i, false, {
                                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                                lineNumber: 52,
+                                lineNumber: 56,
                                 columnNumber: 13
                             }, this)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -1965,7 +1973,7 @@ function Sidebar() {
                                         size: 20
                                     }, void 0, false, {
                                         fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                                        lineNumber: 62,
+                                        lineNumber: 66,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1973,41 +1981,42 @@ function Sidebar() {
                                         children: "تسجيل خروج"
                                     }, void 0, false, {
                                         fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                                        lineNumber: 63,
+                                        lineNumber: 67,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                                lineNumber: 61,
+                                lineNumber: 65,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                            lineNumber: 60,
+                            lineNumber: 64,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                    lineNumber: 50,
+                    lineNumber: 54,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-                lineNumber: 49,
+                lineNumber: 53,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/features/student/shared/Sidebar.tsx",
-        lineNumber: 42,
+        lineNumber: 46,
         columnNumber: 5
     }, this);
 }
-_s(Sidebar, "RsVkOkXxbdBLTf2FWUN5SPp7/OY=", false, function() {
+_s(Sidebar, "+0e4UEQUEnOfNufzev+MMbfyYxk=", false, function() {
     return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"]
     ];
 });
 _c = Sidebar;

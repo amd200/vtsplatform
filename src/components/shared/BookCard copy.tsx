@@ -47,7 +47,7 @@ function BookCard({ book }: { book: Book }) {
       <div className="relative h-48 w-full rounded-t-2xl overflow-hidden bg-gray-100 flex items-center justify-center">
         {book?.ImageLink && (
           <Link href="#" className="block w-full h-full">
-            <Image src={book?.ImageLink ? `${process.env.NEXT_PUBLIC_FILES_PATH}${book?.ImageLink}` : "https://vedu-demo.vtsitco.com/assets/images/noimage.jpg"} alt="Book Cover" fill className="object-cover transition-transform duration-500 hover:scale-105" />
+            <Image src={book?.ImageLink ? `${process.env.NEXT_PUBLIC_BASE_URL}${book?.ImageLink}` : "https://vedu-demo.vtsitco.com/assets/images/noimage.jpg"} alt="Book Cover" fill className="object-cover transition-transform duration-500 hover:scale-105" />
           </Link>
         )}
 

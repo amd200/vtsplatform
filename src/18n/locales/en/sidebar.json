@@ -1,0 +1,21 @@
+{
+  "dashboard": "Dashboard",
+  "centerBooking": "Center Booking",
+  "allCourses": "All Courses",
+  "myCourses": "My Courses",
+  "schedule": "Schedule",
+  "chapters": "My Chapters",
+  "lessons": "Lessons",
+  "examResults": "Exam Results",
+  "contact": "Contact",
+  "cart": "Shopping Cart",
+  "courseInvoices": "Course Invoices",
+  "booksCart": "Books Cart",
+  "booksInvoices": "Books & Services Invoices",
+  "wallet": "Top Up Wallet",
+  "payments": "My Payments",
+  "subscriptions": "Subscriptions",
+  "sessions": "My Sessions",
+  "profile": "Profile",
+  "logout": "Logout"
+}

@@ -13,10 +13,11 @@ import { useGetStudentExamsResutlsQuery } from "@/features/student/services/stud
 import { ExamResult } from "@/features/student/types/student.types";
 import Courses from "@/features/student/components/Courses";
 import { Statistics } from "@/types/dashboard.types";
+import { useTranslation } from "react-i18next";
 
 function Page() {
   const { data, isLoading, error } = useGetDashboardDataQuery();
-  console.log(data);
+  const { t } = useTranslation("student");
   return (
     <main className="py-8 space-y-20 font-ar-medium">
       <Chart statistics={data?.Data?.Statistics || ({} as Statistics)} />

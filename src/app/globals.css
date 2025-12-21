@@ -108,6 +108,7 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   --color-primary: #00838f;
+  /* --color-primary-100: #00838f; */
   --color-secondary: #c8a63b;
   --color-black: #1c1c1c;
   --color-grey: #898989;

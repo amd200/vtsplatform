@@ -42,7 +42,7 @@ function CategoryCard({ category }: { category: Category }) {
       {/* 1. قسم الصورة (مع إطار حولها) */}
       <div className="relative h-44 w-full overflow-hidden border-b border-gray-200">
         <Link href="#">
-          <Image src={category?.ImageLink ? `${process.env.NEXT_PUBLIC_FILES_PATH}${category.ImageLink}` : "https://vedu-demo.vtsitco.com/assets/images/noimage.jpg"} alt="Category Image" fill className="object-cover" />
+          <Image src={category?.ImageLink ? `${process.env.NEXT_PUBLIC_BASE_URL}${category.ImageLink}` : "https://vedu-demo.vtsitco.com/assets/images/noimage.jpg"} alt="Category Image" fill className="object-cover" />
         </Link>
 
         {/* شارة السعر المائلة (Geometric Skewed Tag) */}

@@ -1,0 +1,21 @@
+{
+  "dashboard": "حسابي",
+  "centerBooking": "حجز السنتر",
+  "allCourses": "كل المقررات",
+  "myCourses": "مقرراتي",
+  "schedule": "جدولي",
+  "chapters": "فصولي",
+  "lessons": "المحتوى الفرعي",
+  "examResults": "نتائج الامتحانات",
+  "contact": "التواصل",
+  "cart": "سلة المشتريات",
+  "courseInvoices": "فواتير المقررات",
+  "booksCart": "سلة مشتريات الكتب",
+  "booksInvoices": "فواتير شراء الكتب والخدمات",
+  "wallet": "شحن رصيد",
+  "payments": "مدفوعاتي",
+  "subscriptions": "الاشتراكات",
+  "sessions": "جلساتي",
+  "profile": "الملف الشخصي",
+  "logout": "تسجيل خروج"
+}

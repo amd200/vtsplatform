@@ -12,6 +12,7 @@ import Script from "next/script";
 import Salesiq from "./salesiq";
 import { Toaster } from "@/components/ui/sonner";
 import ParallaxWrapper from "@/providers/ParallaxWrapper";
+import "@/18n/config";
 
 const arLight = localFont({
   src: "../assets/fonts/ARABIC-LIGHT.ttf",

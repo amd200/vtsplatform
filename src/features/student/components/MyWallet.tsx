@@ -2,6 +2,7 @@ import TitleSection from "@/components/shared/TitleSection";
 import { ExamResult, StudentCharge, StudentChargeDetail } from "../types/student.types";
 import RowSkeleton from "./skeletons/RowSkeleton";
 import { useGetStudentWalletQuery } from "../services/studentApi";
+import { formatDate } from "@/utils/formatDate";
 
 interface MyWalletProps {
   results: ExamResult[];
@@ -9,6 +10,7 @@ interface MyWalletProps {
 }
 
 function MyWallet({ charges, isLoading }: { charges: StudentChargeDetail[]; isLoading: boolean }) {
+  console.log(charges);
   return (
     <div className="content bg-[#f9f9f9] py-7 px-3 rounded space-y-5">
       {isLoading ? (
@@ -20,7 +22,7 @@ function MyWallet({ charges, isLoading }: { charges: StudentChargeDetail[]; isLo
           <div key={charge?.Id} className="bg-white text-primary rounded-md px-4 py-3 flex justify-between flex-wrap gap-y-2 font-medium">
             <div className="flex gap-1">
               <span>تاريخ الفاتورة :</span>
-              <span className="font-normal">{charge?.CreatedBy}</span>
+              <span className="font-normal">{formatDate(charge?.Date)}</span>
             </div>
             <div className="flex gap-1">
               <span>طريقة الدفع :</span>
@@ -28,7 +30,7 @@ function MyWallet({ charges, isLoading }: { charges: StudentChargeDetail[]; isLo
             </div>
             <div className="flex gap-1">
               <span>المبلغ :</span>
-              <span className="font-normal">{charge?.Total}</span>
+              <span className="font-normal">{charge?.Total} جنيهًا</span>
             </div>
             <div className="flex gap-1">
               <span>حالة الدفع :</span>

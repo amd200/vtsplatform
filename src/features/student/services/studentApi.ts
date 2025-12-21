@@ -1,8 +1,8 @@
 import { axiosBaseQuery } from "@/lib/api/axiosBaseQuery";
 import { DashBoardResponse } from "@/types/dashboard.types";
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { ActivateCodeResponse, AllCoursesResponse, CoutriesRepsone, ExamResultsRepsone, GetCourseDetailsRepsone, ShowContentRepsone, StudentChaptersResponse, StudentCoursesResponse, StudentLessonsRepsone, StudentPaymentsResponse, StudentScheduleRepsone, StudentSessionsRepsone, StudentSubscriptionsResponse, StudentWalletRepsone } from "../types/student.types";
-import { Course } from "@/types/common.types";
+import { ActivateCodeResponse, AllCoursesResponse, CoutriesRepsone, EWalletRepsone, ExamResultsRepsone, FawryRepsone, GetChapterDetailsRepsone, GetCourseDetailsRepsone, GetLessonDetailsRepsone, ShowContentRepsone, StudentChaptersResponse, StudentCoursesResponse, StudentLessonsRepsone, StudentPaymentsResponse, StudentScheduleRepsone, StudentSessionsRepsone, StudentSubscriptionsResponse, StudentWalletRepsone } from "../types/student.types";
+import { BaseResponse, Course } from "@/types/common.types";
 
 export const studentApi = createApi({
   reducerPath: "studentApi",
@@ -62,6 +62,34 @@ export const studentApi = createApi({
       providesTags: (result, error, id) => [{ type: "CourseDetails", id }],
       keepUnusedDataFor: 60,
     }),
+    getChapterDetails: builder.query<GetChapterDetailsRepsone, string>({
+      query: (Id) => ({
+        url: `/platform/Content/StudentChapterDetails/${Id}`,
+        method: "GET",
+      }),
+      // providesTags: (result, error, id) => [{ type: "CourseDetails", id }],
+      // keepUnusedDataFor: 60,
+    }),
+    getLessonDetails: builder.query<GetLessonDetailsRepsone, string>({
+      query: (Id) => ({
+        url: `/platform/Content/StudentLessonDetails/${Id}`,
+        method: "GET",
+      }),
+      // providesTags: (result, error, id) => [{ type: "CourseDetails", id }],
+      // keepUnusedDataFor: 60,
+    }),
+    getProtectedVideo: builder.mutation<void, { lessonId: string; executionId: string }>({
+      query: ({ lessonId, executionId }) => ({
+        url: `/Student/MyCourses/ShowProtectedVideo`,
+        method: "POST",
+        data: {
+          id: executionId,
+          lessonId: lessonId,
+        },
+      }),
+      // providesTags: (result, error, id) => [{ type: "CourseDetails", id }],
+      // keepUnusedDataFor: 60,
+    }),
 
     getStudentExamsResutls: builder.query<ExamResultsRepsone, void>({
       query: () => ({
@@ -111,7 +139,52 @@ export const studentApi = createApi({
         method: "GET",
       }),
     }),
+    reChargeBalanceWithFawry: builder.mutation<FawryRepsone, { phoneNumber: string; amount: number }>({
+      query: ({ phoneNumber, amount }) => ({
+        url: `/platform/StudentWallet/FawryPay`,
+        method: "POST",
+        data: {
+          Mobile: phoneNumber,
+          amount,
+        },
+      }),
+      // invalidatesTags: ["StudentCourses", "AllCourses"],
+    }),
+    reChargeBalanceWithEWallet: builder.mutation<EWalletRepsone, { phoneNumber: string; amount: number }>({
+      query: ({ phoneNumber, amount }) => ({
+        url: `/platform/StudentWallet/PaymobPaymentEWallet`,
+        method: "POST",
+        data: {
+          Mobile: phoneNumber,
+          amount,
+        },
+      }),
+      // invalidatesTags: ["StudentCourses", "AllCourses"],
+    }),
+    reChargeBalanceWithCard: builder.mutation<EWalletRepsone, { phoneNumber: string; amount: number }>({
+      query: ({ phoneNumber, amount }) => ({
+        url: `/platform/StudentWallet/PaymobPaymentCard`,
+        method: "POST",
+        data: {
+          Mobile: phoneNumber,
+          amount,
+        },
+      }),
+      // invalidatesTags: ["StudentCourses", "AllCourses"],
+    }),
+    requestRefundShipping: builder.mutation<BaseResponse<null>, { Phone: string; Subject: string; Message: String }>({
+      query: ({ Phone, Message, Subject }) => ({
+        url: `/platform/StudentWallet/RequestRefundShipping`,
+        method: "POST",
+        data: {
+          Phone,
+          Message,
+          Subject,
+        },
+      }),
+      // invalidatesTags: ["StudentCourses", "AllCourses"],
+    }),
   }),
 });
 
-export const { useGetCountriesQuery, useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useActivateCodeMutation, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery, useGetStudentWalletQuery } = studentApi;
+export const { useRequestRefundShippingMutation, useReChargeBalanceWithCardMutation, useReChargeBalanceWithEWalletMutation, useReChargeBalanceWithFawryMutation, useGetCountriesQuery, useGetChapterDetailsQuery, useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useActivateCodeMutation, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery, useGetStudentWalletQuery, useGetProtectedVideoMutation } = studentApi;

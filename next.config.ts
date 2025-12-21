@@ -37,9 +37,14 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: process.env.NEXT_PUBLIC_FILES_PATH!.replace(/^https?:\/\//, ""),
+        hostname: "eslam-yahia-physics.com",
         pathname: "/**",
       },
+      // {
+      //   protocol: "https",
+      //   hostname: process.env.NEXT_PUBLIC_BASE_URL!.replace(/^https?:\/\//, ""),
+      //   pathname: "/**",
+      // },
       {
         protocol: "https",
         hostname: "localhost",

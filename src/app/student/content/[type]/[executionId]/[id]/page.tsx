@@ -124,8 +124,8 @@ function Page() {
 
   return (
     <section className="py-8 font-ar-medium">
-      <div className="container grid lg:grid-cols-12 grid-cols-1 lg:gap-x-12 gap-y-8">
-        <div className="lg:col-span-8">
+      <div className="container items-stretch grid lg:grid-cols-12 grid-cols-1 lg:gap-x-12 gap-y-8">
+        <div className="lg:col-span-8 flex flex-col">
           <div className="flex items-center mb-4 justify-between">
             <h1 className="text-2xl font-bold ">{lessonTitle}</h1>
             <Button onClick={copyCurrentUrl}>

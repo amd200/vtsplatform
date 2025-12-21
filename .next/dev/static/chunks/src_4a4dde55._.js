@@ -42,9 +42,14 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toa
 ;
 ;
 ;
-// ================= AXIOS INSTANCE =================
+// ================= AXIOS INSTANCES =================
 const axiosInstance = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].create({
     baseURL: ("TURBOPACK compile-time value", "https://vedu-demo.vtsitco.com/api")
+});
+const publicAxios = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].create({
+    headers: {
+        "Content-Type": "application/json"
+    }
 });
 // ================= RESPONSE INTERCEPTOR =================
 axiosInstance.interceptors.response.use((response)=>response, (error)=>{
@@ -60,9 +65,7 @@ axiosInstance.interceptors.request.use(async (config)=>{
     const session = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$auth$2f$react$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getSession"])();
     const appToken = ("TURBOPACK compile-time value", "UhqBUAP3T6Irguej2ogSdg==");
     const hasStudentToken = Boolean(session?.user?.StudentToken);
-    // تأكد إن headers موجود
     config.headers = config.headers ?? {};
-    // عدّل عليه مباشرة
     config.headers["Content-Type"] = "application/json";
     config.headers["X-App-Token"] = hasStudentToken ? appToken : `Bearer ${appToken}`;
     if (hasStudentToken) {
@@ -70,19 +73,15 @@ axiosInstance.interceptors.request.use(async (config)=>{
     }
     return config;
 }, (error)=>Promise.reject(error));
-const axiosBaseQuery = ()=>async ({ url, method, data, params })=>{
+const axiosBaseQuery = ()=>async ({ url, method, data, params, skipAuth })=>{
         try {
-            const result = await axiosInstance({
+            // 👇 هنا الفرق الحقيقي
+            const client = skipAuth ? publicAxios : axiosInstance;
+            const result = await client({
                 url,
                 method,
                 data,
-                params,
-                onUploadProgress: (progressEvent)=>{
-                    if (progressEvent.total) {
-                        const percent = Math.round(progressEvent.loaded * 100 / progressEvent.total);
-                        console.log(`Upload Progress: ${percent}%`);
-                    }
-                }
+                params
             });
             return {
                 data: result.data
@@ -520,6 +519,12 @@ __turbopack_context__.s([
     ()=>paymentApi,
     "useBuyCourseMutation",
     ()=>useBuyCourseMutation,
+    "useCoursePaymentWithFawryMutation",
+    ()=>useCoursePaymentWithFawryMutation,
+    "useCreateInvoiceMutation",
+    ()=>useCreateInvoiceMutation,
+    "useFawryMutation",
+    ()=>useFawryMutation,
     "useFawryPayMutation",
     ()=>useFawryPayMutation,
     "useStudentWalletMutation",
@@ -559,10 +564,33 @@ const paymentApi = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modu
                             Id: id
                         }
                     })
+            }),
+            fawry: builder.mutation({
+                query: (data)=>({
+                        url: "https://atfawry.com/fawrypay-api/api/payments/init",
+                        method: "POST",
+                        skipAuth: true,
+                        data
+                    })
+            }),
+            CoursePaymentWithFawry: builder.mutation({
+                query: (data)=>({
+                        url: "/platform/StudentCoursesPayment/FawryPay",
+                        method: "POST",
+                        data: {
+                            Id: data
+                        }
+                    })
+            }),
+            createInvoice: builder.mutation({
+                query: ()=>({
+                        url: "/platform/CompleteThePaymentProcess",
+                        method: "POST"
+                    })
             })
         })
 });
-const { useBuyCourseMutation, useFawryPayMutation, useStudentWalletMutation } = paymentApi;
+const { useCreateInvoiceMutation, useCoursePaymentWithFawryMutation, useFawryMutation, useBuyCourseMutation, useFawryPayMutation, useStudentWalletMutation } = paymentApi;
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -577,10 +605,14 @@ __turbopack_context__.s([
     ()=>useActivateCodeMutation,
     "useGetAllCoursesQuery",
     ()=>useGetAllCoursesQuery,
+    "useGetChapterDetailsQuery",
+    ()=>useGetChapterDetailsQuery,
     "useGetCountriesQuery",
     ()=>useGetCountriesQuery,
     "useGetCourseDetailsQuery",
     ()=>useGetCourseDetailsQuery,
+    "useGetProtectedVideoMutation",
+    ()=>useGetProtectedVideoMutation,
     "useGetStudentChaptersQuery",
     ()=>useGetStudentChaptersQuery,
     "useGetStudentCoursesQuery",
@@ -598,7 +630,15 @@ __turbopack_context__.s([
     "useGetStudentSubscriptionsQuery",
     ()=>useGetStudentSubscriptionsQuery,
     "useGetStudentWalletQuery",
-    ()=>useGetStudentWalletQuery
+    ()=>useGetStudentWalletQuery,
+    "useReChargeBalanceWithCardMutation",
+    ()=>useReChargeBalanceWithCardMutation,
+    "useReChargeBalanceWithEWalletMutation",
+    ()=>useReChargeBalanceWithEWalletMutation,
+    "useReChargeBalanceWithFawryMutation",
+    ()=>useReChargeBalanceWithFawryMutation,
+    "useRequestRefundShippingMutation",
+    ()=>useRequestRefundShippingMutation
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$api$2f$axiosBaseQuery$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/api/axiosBaseQuery.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$reduxjs$2f$toolkit$2f$dist$2f$query$2f$react$2f$rtk$2d$query$2d$react$2e$modern$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/@reduxjs/toolkit/dist/query/react/rtk-query-react.modern.mjs [app-client] (ecmascript) <locals>");
@@ -675,6 +715,28 @@ const studentApi = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modu
                     ],
                 keepUnusedDataFor: 60
             }),
+            getChapterDetails: builder.query({
+                query: (Id)=>({
+                        url: `/platform/Content/StudentChapterDetails/${Id}`,
+                        method: "GET"
+                    })
+            }),
+            getLessonDetails: builder.query({
+                query: (Id)=>({
+                        url: `/platform/Content/StudentLessonDetails/${Id}`,
+                        method: "GET"
+                    })
+            }),
+            getProtectedVideo: builder.mutation({
+                query: ({ lessonId, executionId })=>({
+                        url: `/Student/MyCourses/ShowProtectedVideo`,
+                        method: "POST",
+                        data: {
+                            id: executionId,
+                            lessonId: lessonId
+                        }
+                    })
+            }),
             getStudentExamsResutls: builder.query({
                 query: ()=>({
                         url: `/platform/StudentExamsResults`,
@@ -723,10 +785,51 @@ const studentApi = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modu
                         url: `/platform/StudentWallet`,
                         method: "GET"
                     })
+            }),
+            reChargeBalanceWithFawry: builder.mutation({
+                query: ({ phoneNumber, amount })=>({
+                        url: `/platform/StudentWallet/FawryPay`,
+                        method: "POST",
+                        data: {
+                            Mobile: phoneNumber,
+                            amount
+                        }
+                    })
+            }),
+            reChargeBalanceWithEWallet: builder.mutation({
+                query: ({ phoneNumber, amount })=>({
+                        url: `/platform/StudentWallet/PaymobPaymentEWallet`,
+                        method: "POST",
+                        data: {
+                            Mobile: phoneNumber,
+                            amount
+                        }
+                    })
+            }),
+            reChargeBalanceWithCard: builder.mutation({
+                query: ({ phoneNumber, amount })=>({
+                        url: `/platform/StudentWallet/PaymobPaymentCard`,
+                        method: "POST",
+                        data: {
+                            Mobile: phoneNumber,
+                            amount
+                        }
+                    })
+            }),
+            requestRefundShipping: builder.mutation({
+                query: ({ Phone, Message, Subject })=>({
+                        url: `/platform/StudentWallet/RequestRefundShipping`,
+                        method: "POST",
+                        data: {
+                            Phone,
+                            Message,
+                            Subject
+                        }
+                    })
             })
         })
 });
-const { useGetCountriesQuery, useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useActivateCodeMutation, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery, useGetStudentWalletQuery } = studentApi;
+const { useRequestRefundShippingMutation, useReChargeBalanceWithCardMutation, useReChargeBalanceWithEWalletMutation, useReChargeBalanceWithFawryMutation, useGetCountriesQuery, useGetChapterDetailsQuery, useGetStudentPayementsQuery, useGetStudentSubscriptionsQuery, useActivateCodeMutation, useGetStudentCoursesQuery, useGetStudentChaptersQuery, useGetAllCoursesQuery, useGetCourseDetailsQuery, useGetStudentExamsResutlsQuery, useGetStudentLessonsQuery, useGetStudentSessionsQuery, useGetStudentScheduleQuery, useGetStudentWalletQuery, useGetProtectedVideoMutation } = studentApi;
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -795,9 +898,10 @@ const store = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2
         [__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$cartBooksApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cartBooksApi"].reducerPath]: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$cartBooksApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cartBooksApi"].reducer,
         [__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$lessonContentApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["lessonContentApi"].reducerPath]: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$lessonContentApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["lessonContentApi"].reducer,
         [__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$paymentApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["paymentApi"].reducerPath]: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$paymentApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["paymentApi"].reducer,
-        [__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$communicationApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["communicationApi"].reducerPath]: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$communicationApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["communicationApi"].reducer
+        [__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$communicationApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["communicationApi"].reducerPath]: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$communicationApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["communicationApi"].reducer,
+        [walletApi.reducerPath]: walletApi.reducer
     },
-    middleware: (getDefaultMiddleware)=>getDefaultMiddleware().concat(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$auth$2f$services$2f$authApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["authApi"].middleware, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$dashboardApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["dashboardApi"].middleware, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$studentApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["studentApi"].middleware, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$cartApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cartApi"].middleware, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$lessonContentApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["lessonContentApi"].middleware, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$paymentApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["paymentApi"].middleware, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$communicationApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["communicationApi"].middleware, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$cartBooksApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cartBooksApi"].middleware)
+    middleware: (getDefaultMiddleware)=>getDefaultMiddleware().concat(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$auth$2f$services$2f$authApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["authApi"].middleware, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$dashboardApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["dashboardApi"].middleware, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$studentApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["studentApi"].middleware, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$cartApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cartApi"].middleware, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$lessonContentApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["lessonContentApi"].middleware, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$paymentApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["paymentApi"].middleware, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$communicationApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["communicationApi"].middleware, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$cartBooksApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cartBooksApi"].middleware, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$student$2f$services$2f$cartBooksApi$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cartBooksApi"].middleware)
 });
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);

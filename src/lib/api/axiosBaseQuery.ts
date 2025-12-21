@@ -4,9 +4,16 @@ import axios, { AxiosRequestConfig, AxiosError } from "axios";
 import { getSession, signOut } from "next-auth/react";
 import { toast } from "react-toastify";
 
-// ================= AXIOS INSTANCE =================
+// ================= AXIOS INSTANCES =================
+
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
+});
+
+const publicAxios = axios.create({
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 // ================= RESPONSE INTERCEPTOR =================
@@ -28,15 +35,9 @@ axiosInstance.interceptors.request.use(
     const appToken = process.env.NEXT_PUBLIC_APP_TOKEN!;
     const hasStudentToken = Boolean(session?.user?.StudentToken);
 
-    // تأكد إن headers موجود
     config.headers = config.headers ?? {};
-
-    // عدّل عليه مباشرة
     config.headers["Content-Type"] = "application/json";
-
-    config.headers["X-App-Token"] = hasStudentToken
-      ? appToken
-      : `Bearer ${appToken}`;
+    config.headers["X-App-Token"] = hasStudentToken ? appToken : `Bearer ${appToken}`;
 
     if (hasStudentToken) {
       config.headers["X-Student-Token"] = session!.user.StudentToken;
@@ -55,23 +56,21 @@ export const axiosBaseQuery =
       method: AxiosRequestConfig["method"];
       data?: AxiosRequestConfig["data"];
       params?: AxiosRequestConfig["params"];
+      skipAuth?: boolean;
     },
     unknown,
     BaseResponse<unknown>
   > =>
-  async ({ url, method, data, params }) => {
+  async ({ url, method, data, params, skipAuth }) => {
     try {
-      const result = await axiosInstance({
+      // 👇 هنا الفرق الحقيقي
+      const client = skipAuth ? publicAxios : axiosInstance;
+
+      const result = await client({
         url,
         method,
         data,
         params,
-        onUploadProgress: (progressEvent) => {
-          if (progressEvent.total) {
-            const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-            console.log(`Upload Progress: ${percent}%`);
-          }
-        },
       });
 
       return { data: result.data };

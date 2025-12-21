@@ -1,14 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { LayoutDashboard, BookOpen, Users, FileText, Wallet, Settings, User, LogOut, ShoppingCart, CalendarCheck, MessageCircle, ClipboardList, Archive, Book, CreditCard, Banknote } from "lucide-react";
 import { signOut } from "next-auth/react";
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   const handleLogout = async () => {
     await signOut();

@@ -82,7 +82,7 @@ function CourseCard({ course }: { course: Course }) {
       <div className="relative h-44 w-full bg-gray-50 flex flex-col items-center justify-center border-b-4 border-secondary">
         {course?.ImageLink && (
           <Link href="#" className="block w-full h-full">
-            <Image src={`${process.env.NEXT_PUBLIC_FILES_PATH}${course?.ImageLink}`} alt="Course Image" fill className="object-cover transform skew-y-0.5 transition-transform duration-500 hover:scale-105" />
+            <Image src={`${process.env.NEXT_PUBLIC_BASE_URL}${course?.ImageLink}`} alt="Course Image" fill className="object-cover transform skew-y-0.5 transition-transform duration-500 hover:scale-105" />
           </Link>
         )}
       </div>

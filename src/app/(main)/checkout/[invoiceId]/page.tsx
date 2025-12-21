@@ -1,5 +1,5 @@
 import TitleSection from "@/components/shared/TitleSection";
-import CartCourses from "@/features/student/components/CartCourses";
+import Payment from "@/features/student/components/Payment";
 import React, { use } from "react";
 
 export default async function Page({ params }: { params: Promise<{ invoiceId: string }> }) {
@@ -10,7 +10,7 @@ export default async function Page({ params }: { params: Promise<{ invoiceId: st
         <div className="flex items-center justify-between">
           <TitleSection title="إتمام عملية الشراء" />
         </div>
-        <CartCourses invoiceId={invoiceId} />
+        <Payment invoiceId={invoiceId} />
       </div>
     </section>
   );

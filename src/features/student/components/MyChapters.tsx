@@ -8,7 +8,8 @@ import ChapterCard from "@/components/shared/ChapterCard";
 function MyChapters() {
   const { data } = useGetStudentChaptersQuery();
   const chapters = data?.Data;
-  console.log("first");
+  console.log(chapters);
+  
   return (
     <section className="">
       <div className="container">

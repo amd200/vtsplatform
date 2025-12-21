@@ -10,14 +10,19 @@ import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
 import { Input } from "../ui/input";
 import { Chapter, Course } from "@/types/common.types";
 import { formatDate } from "@/utils/formatDate";
+import { useGetChapterDetailsQuery } from "@/features/student/services/studentApi";
 function ChapterCard({ isPurchased = false, chapter }: { isPurchased?: boolean; chapter: Chapter }) {
   const { openDialog } = useDialog();
-  console.log(chapter)
+  console.log(chapter);
+  const isFree = chapter?.Price <= 0;
+  const currentPrice = chapter?.Discount > 0 ? chapter?.Price - chapter?.Discount : chapter?.Price;
+  const originalPrice = chapter?.Price;
+  const isDiscounted = chapter?.Discount > 0 && chapter?.Price > 0;
   return (
     <Card className="shadow-none pt-0 gap-0 border-0 font-ar-medium hover:-translate-y-3 transition-transform bg-transparent">
       <div className="relative h-48 w-full rounded overflow-hidden">
         <Link href="#">
-          <Image src={`${process.env.NEXT_PUBLIC_FILES_PATH}${chapter.ImageLink}`} alt="Course Image" fill className="object-cover" />
+          <Image src={`${process.env.NEXT_PUBLIC_BASE_URL}${chapter.ImageLink}`} alt="Course Image" fill className="object-cover" />
         </Link>
       </div>
 
@@ -26,7 +31,8 @@ function ChapterCard({ isPurchased = false, chapter }: { isPurchased?: boolean; 
           <div className="inline-flex w-fit mt-[-24px] gap-x-1 px-2 py-1  bg-primary/90 rounded">
             <div className="bg-white rounded flex px-1 space-x-1 items-center">
               {/* <del className="text-gray-400">1500</del> */}
-              <span className="text-sm">{chapter.Price} </span>
+              {!isFree && <span className="text-sm">{chapter.Price} </span>}
+              {isFree && <span className="text-sm">مجانا </span>}
             </div>
             {/* <span className="text-white">{chapter.DefaultCurrencyCode}</span> */}
           </div>
@@ -74,7 +80,7 @@ function ChapterCard({ isPurchased = false, chapter }: { isPurchased?: boolean; 
                 </>
               ) : (
                 <>
-                  <Link href="/student/video">
+                  <Link href={`/student/mychapter/${chapter?.ExecutionId}`}>
                     <Button className="text-xs h-7" size="sm" variant="outline">
                       <PlayCircle />
                       المشاهدة الان

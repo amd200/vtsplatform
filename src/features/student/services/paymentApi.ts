@@ -1,6 +1,6 @@
 import { axiosBaseQuery } from "@/lib/api/axiosBaseQuery";
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { AllCoursesResponse, ExamResultsRepsone, FawryRepsone, GetCourseDetailsRepsone, InvoiceRepsone, ShowContentRepsone, StudentChaptersResponse, StudentCoursesResponse, StudentLessonsRepsone, StudentPaymentsResponse, StudentScheduleRepsone, StudentSessionsRepsone, StudentSubscriptionsResponse, StudentWalletRepsone } from "../types/student.types";
+import { FawryRepsone, InvoiceRepsone } from "../types/student.types";
 
 export const paymentApi = createApi({
   reducerPath: "paymentApi",
@@ -33,7 +33,30 @@ export const paymentApi = createApi({
         },
       }),
     }),
+    fawry: builder.mutation<string, any>({
+      query: (data) => ({
+        url: "https://atfawry.com/fawrypay-api/api/payments/init",
+        method: "POST",
+        skipAuth: true,
+        data,
+      }),
+    }),
+    CoursePaymentWithFawry: builder.mutation<string, string>({
+      query: (data) => ({
+        url: "/platform/StudentCoursesPayment/FawryPay",
+        method: "POST",
+        data: {
+          Id: data,
+        },
+      }),
+    }),
+    createInvoice: builder.mutation<string, void>({
+      query: () => ({
+        url: "/platform/CompleteThePaymentProcess",
+        method: "POST",
+      }),
+    }),
   }),
 });
 
-export const { useBuyCourseMutation, useFawryPayMutation, useStudentWalletMutation } = paymentApi;
+export const { useCreateInvoiceMutation, useCoursePaymentWithFawryMutation, useFawryMutation, useBuyCourseMutation, useFawryPayMutation, useStudentWalletMutation } = paymentApi;

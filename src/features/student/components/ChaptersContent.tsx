@@ -27,7 +27,7 @@ function ChaptersContent({ executionId, lessonId, onLessonsLoaded }: { execution
 
   return (
     <div className="lg:col-span-4 col-span-12 ">
-      <div className="shadow-sm p-4 rounded h-full max-h-[500px] overflow-y-auto">
+      <div className="shadow-sm p-4 rounded h-full overflow-y-auto">
         <h3 className="text-lg">تفاصيل الكورس</h3>
         <div>
           <Accordion type="single" collapsible>
@@ -36,7 +36,7 @@ function ChaptersContent({ executionId, lessonId, onLessonsLoaded }: { execution
               courseDetails.Data.Chapters.map((chapter: Chapter) => (
                 <AccordionItem key={chapter.Id} value={`item-${chapter.Id}`}>
                   <AccordionTrigger className="relative">
-                    {chapter.Title}
+                    <span className="me-16 text-start">{chapter.Title}</span>
                     <div className="absolute end-8 flex items-center gap-x-3">
                       <div className="flex items-end px-1 py-1 pb-2 rounded text-gray-500 gap-x-1">
                         <Video className="size-3 text-primary/80" />
