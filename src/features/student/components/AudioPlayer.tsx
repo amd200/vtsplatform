@@ -14,10 +14,12 @@ function AudioPlayer({ audioUrl }: { audioUrl: string }) {
   return (
     <div className="w-full max-w-full relative" dir="ltr">
       <MediaThemeTailwindAudio
-        style={{
-          width: "100%",
-          "--media-accent-color": "var(--primary)",
-        }}
+        style={
+          {
+            width: "100%",
+            "--media-accent-color": "var(--primary)",
+          } as React.CSSProperties
+        }
       >
         <audio slot="media" src={audioUrl} playsInline crossOrigin="anonymous"></audio>
       </MediaThemeTailwindAudio>{" "}
