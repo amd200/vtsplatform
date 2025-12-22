@@ -13,6 +13,7 @@ import Salesiq from "./salesiq";
 import { Toaster } from "@/components/ui/sonner";
 import ParallaxWrapper from "@/providers/ParallaxWrapper";
 import "@/18n/config";
+import ShakeDetector from "@/components/ShakeDetector";
 
 const arLight = localFont({
   src: "../assets/fonts/ARABIC-LIGHT.ttf",
@@ -95,6 +96,7 @@ export default function RootLayout({
       </head> */}
       <body className={`antialiased font-ar-medium`}>
         <ToastContainer />
+        <ShakeDetector />
         <ProviderWrapper>
           <ParallaxWrapper>
             <SessionWrapper>{children}</SessionWrapper>

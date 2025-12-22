@@ -822,7 +822,7 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 }),
 "[project]/src/assets/images/wave4.svg (static in ecmascript, tag client)", ((__turbopack_context__) => {
 
-__turbopack_context__.v("/_next/static/media/wave4.945186ce.svg");}),
+__turbopack_context__.v("/_next/static/media/wave4.b2e1fb4f.svg");}),
 "[project]/src/assets/images/wave4.svg.mjs { IMAGE => \"[project]/src/assets/images/wave4.svg (static in ecmascript, tag client)\" } [app-client] (structured image object with data url, ecmascript)", ((__turbopack_context__) => {
 "use strict";
 

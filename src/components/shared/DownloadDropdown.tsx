@@ -25,8 +25,8 @@ export function DownloadDropdown() {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className="w-56 text-start">
-        <DropdownMenuItem className="flex gap-3 flex-row-reverse">
-          <a href="https://vts-co.com/VeduPlayer/VtsVeduPlayer.exe" download target="_blank" rel="noopener noreferrer" className="flex w-full items-center justify-end">
+        <DropdownMenuItem asChild className="flex gap-3 flex-row-reverse cursor-pointer">
+          <a href="https://vts-co.com/VeduPlayer/VtsVeduPlayer.exe" download target="_blank" rel="noopener noreferrer" className="w-full">
             <div className="size-9 rounded-lg bg-[#0475cd] flex items-center justify-center">
               <svg className="size-5" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -52,12 +52,12 @@ export function DownloadDropdown() {
                 </g>
               </svg>
             </div>
+            <span>Windows</span>
           </a>
-          <span>Windows</span>
         </DropdownMenuItem>
 
         <DropdownMenuItem asChild className="flex gap-3 flex-row-reverse cursor-pointer">
-          <a href="https://vts-co.com/VeduPlayer/VtsVeduPlayerMobile.apk" download target="_blank" rel="noopener noreferrer" className="flex w-full items-center" dir="rtl">
+          <a href="https://vts-co.com/VeduPlayer/VtsVeduPlayerMobile.apk" download target="_blank" rel="noopener noreferrer">
             <div className="size-9 rounded-lg bg-[#38ce7d] flex items-center justify-center">
               <svg className="size-5" fill="#ffffff" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>

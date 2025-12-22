@@ -783,19 +783,19 @@ function AudioPlayer({ audioUrl }) {
                     crossOrigin: "anonymous"
                 }, void 0, false, {
                     fileName: "[project]/src/features/student/components/AudioPlayer.tsx",
-                    lineNumber: 22,
+                    lineNumber: 25,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/features/student/components/AudioPlayer.tsx",
-                lineNumber: 16,
+                lineNumber: 17,
                 columnNumber: 7
             }, this),
             " "
         ]
     }, void 0, true, {
         fileName: "[project]/src/features/student/components/AudioPlayer.tsx",
-        lineNumber: 15,
+        lineNumber: 16,
         columnNumber: 5
     }, this);
 }
