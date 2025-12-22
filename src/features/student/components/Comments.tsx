@@ -88,7 +88,7 @@ export function CommentsSection({ executionId, lessonId, comments }: { execution
   };
 
   return (
-    <Card className="w-full mt-6 shadow-none">
+    <Card className="w-full mt-3 shadow-none">
       <CardHeader>
         <h3 className="text-xl font-semibold">التعليقات</h3>
       </CardHeader>
