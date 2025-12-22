@@ -156,14 +156,23 @@ function CourseCard({ course }: { course: Course }) {
         </CardContent>
 
         <CardFooter className="flex justify-between text-sm text-gray-500">
-          <div className="flex items-center gap-1">
-            <CalendarDays className="size-3" />
-            <span className="text-xs">{formatDate(course?.StartDate, "date")}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Calendar className="size-3" />
-            <span className="text-xs">{formatDate(course?.EndDate, "date")}</span>
-          </div>
+          {course?.IsDuration ? (
+            <div className="flex items-center gap-1">
+              <CalendarDays className="size-3" />
+              <span className="text-xs">لمدة {course?.Duration } يوم</span>
+            </div>
+          ) : (
+            <>
+              <div className="flex items-center gap-1">
+                <CalendarDays className="size-3" />
+                <span className="text-xs">{formatDate(course?.StartDate, "date")}</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <Calendar className="size-3" />
+                <span className="text-xs">{formatDate(course?.EndDate, "date")}</span>
+              </div>
+            </>
+          )}
         </CardFooter>
       </div>
     </Card>
