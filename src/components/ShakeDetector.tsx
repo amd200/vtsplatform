@@ -7,10 +7,10 @@ export default function ShakeDetector() {
   const shakeCount = useRef(0);
   const lastShakeTime = useRef(0);
 
-  const threshold = 14; // أقوى
-  const shakeWindow = 600; // زمن الهزات (ms)
-  const requiredShakes = 2; // عدد الهزات المقصودة
-  const cooldown = 2000; // منع التكرار
+  const threshold = 18; // قوة الهزة
+  const requiredShakes = 3; // عدد الهزات
+  const shakeWindow = 500; // لازم يكونوا قريبين
+  const cooldown = 2500; // منع التكرار
 
   const lastTrigger = useRef(0);
 
