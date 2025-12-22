@@ -1,30 +1,34 @@
 "use client";
-import { useEffect } from "react";
+
+import { useEffect, useRef } from "react";
 
 export default function ShakeDetector() {
+  const last = useRef({ x: 0, y: 0, z: 0 });
+  const threshold = 8; // حساس مناسب للأندرويد
+
   useEffect(() => {
-    const start = async () => {
-      if (
-        typeof DeviceMotionEvent !== "undefined" &&
-        // @ts-ignore
-        typeof DeviceMotionEvent.requestPermission === "function"
-      ) {
-        // @ts-ignore
-        const res = await DeviceMotionEvent.requestPermission();
-        console.log("Permission:", res);
+    const onMotion = (e: DeviceMotionEvent) => {
+      const acc = e.accelerationIncludingGravity;
+      if (!acc) return;
+
+      const dx = Math.abs(acc.x! - last.current.x);
+      const dy = Math.abs(acc.y! - last.current.y);
+      const dz = Math.abs(acc.z! - last.current.z);
+
+      if (dx + dy + dz > threshold) {
+        alert("⚠️ ممنوع تصوير الشاشة");
       }
 
-      window.addEventListener("devicemotion", (e) => {
-        console.log("SHAKE", e.accelerationIncludingGravity);
-      });
+      last.current = {
+        x: acc.x || 0,
+        y: acc.y || 0,
+        z: acc.z || 0,
+      };
     };
 
-    document.body.addEventListener("click", start, { once: true });
-
-    return () => {
-      document.body.removeEventListener("click", start);
-    };
+    window.addEventListener("devicemotion", onMotion);
+    return () => window.removeEventListener("devicemotion", onMotion);
   }, []);
 
-  return <div className="hidden">Shake detector</div>;
+  return null;
 }
