@@ -144,7 +144,7 @@ function Page() {
 
           {renderViewer()}
 
-          <p className="text-lg mb-2">{stripHtml(contentData?.Description)}</p>
+          <p className="text-lg mb-2 mt-4">{stripHtml(contentData?.Description)}</p>
           <div className="flex items-center justify-between mt-4">
             {prevLesson && (
               <Button variant="ghost" onClick={() => openLesson(prevLesson)}>
