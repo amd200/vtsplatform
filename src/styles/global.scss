@@ -238,7 +238,7 @@
   &:hover {
     .hover-slide {
       width: 70px;
-      img{
+      img {
         object-fit: cover;
       }
     }
@@ -261,4 +261,10 @@
 .hover-slide:hover .slide-text {
   opacity: 1;
   transform: translateX(-40px);
+}
+
+.rpv-toolbar__right {
+  .rpv-core__display--hidden rpv-core__display--block-medium:nth-child(4) {
+    display: none !important;
+  }
 }
