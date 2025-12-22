@@ -159,7 +159,7 @@ function CourseCard({ course }: { course: Course }) {
           {course?.IsDuration ? (
             <div className="flex items-center gap-1">
               <CalendarDays className="size-3" />
-              <span className="text-xs">لمدة {course?.Duration } يوم</span>
+              <span className="text-xs">لمدة {course?.Duration } يوم من تاريخ الشراء</span>
             </div>
           ) : (
             <>
