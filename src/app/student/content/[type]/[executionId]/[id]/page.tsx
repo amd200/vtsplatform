@@ -21,6 +21,7 @@ import { useLazyShowAudioQuery, useLazyShowPdfQuery, useLazyShowRichTextQuery, u
 import { ShowContent } from "@/features/student/types/student.types";
 import { useToastMessage } from "@/hooks/useToastMessage";
 import MeetingViewer from "@/features/student/components/MeetingViewer";
+import { useOpenLesson } from "@/hooks/useOpenLesson";
 
 function Page() {
   const params = useParams();
@@ -103,6 +104,7 @@ function Page() {
   const prevUrl = prevLesson ? getContentUrl(executionId, prevLesson.Id, prevLesson.ContentType) : null;
 
   const nextUrl = nextLesson ? getContentUrl(executionId, nextLesson.Id, nextLesson.ContentType) : null;
+  const { openLesson } = useOpenLesson(executionId);
 
   const renderViewer = () => {
     switch (type) {
@@ -136,17 +138,13 @@ function Page() {
           {renderViewer()}
 
           <div className="flex items-center justify-between mt-4">
-            {prevUrl && (
-              <Link href={prevUrl}>
-                <Button variant="ghost">السابق</Button>
-              </Link>
+            {prevLesson && (
+              <Button variant="ghost" onClick={() => openLesson(prevLesson)}>
+                السابق
+              </Button>
             )}
 
-            {nextUrl && (
-              <Link href={nextUrl}>
-                <Button>التالي</Button>
-              </Link>
-            )}
+            {nextLesson && <Button onClick={() => openLesson(nextLesson)}>التالي</Button>}
           </div>
 
           {contentData?.AllowComment && <CommentsSection comments={comments} lessonId={lessonId} executionId={executionId} />}
