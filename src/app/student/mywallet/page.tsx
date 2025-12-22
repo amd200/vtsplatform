@@ -59,7 +59,7 @@ function Page() {
               imageUrl: "#",
             },
           ],
-          returnUrl: "https://vedu-demo.vtsitco.com",
+          returnUrl: process.env.NEXT_PUBLIC_BASE_URL,
           authCaptureModePayment: false,
           signature: res?.Data?.signature,
         };
