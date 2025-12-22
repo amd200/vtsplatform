@@ -35,8 +35,8 @@ const BottomNav: React.FC = () => {
 
   const moreItems: MoreItem[] = [
     { href: "/student", label: "حسابي", icon: LayoutDashboard },
-    { id: "topStudents", label: "أوائل الطلاب", icon: Star },
-    { href: "/student/mycourses", label: "حجز السنتر", icon: Star },
+    // { id: "topStudents", label: "أوائل الطلاب", icon: Star },
+    // { href: "/student/mycourses", label: "حجز السنتر", icon: Star },
     { href: "/student/myshedule", label: "جدولي", icon: Table2 },
     { href: "/student/mychapter", label: "فصولي", icon: Users },
     { href: "/student/mylessons", label: "المحتوي الفرعي", icon: GraduationCap },
@@ -44,8 +44,8 @@ const BottomNav: React.FC = () => {
     { href: "/student/mycourses", label: "التواصل", icon: Star },
     { href: "/student/cart", label: "سلة المشتريات", icon: ShoppingCart },
     { href: "/student/myinvoicesCourses", label: "فواتير المقررات", icon: FileText },
-    { href: "/student/myinvoicesCourses", label: "سلة مشتريات الكتب", icon: ShoppingCart },
-    { href: "/student/myinvoicesCourses", label: "فواتير شراء الكتب الخدمات", icon: ClipboardList },
+    // { href: "/student/myinvoicesCourses", label: "سلة مشتريات الكتب", icon: ShoppingCart },
+    // { href: "/student/myinvoicesCourses", label: "فواتير شراء الكتب الخدمات", icon: ClipboardList },
     { href: "/student/mywallet", label: "شحن رصيد", icon: Wallet },
     { href: "/", label: "مدفوعاتي", icon: CreditCard },
     { href: "/student/mysubscriptions", label: "الاشتراكات", icon: Banknote },
