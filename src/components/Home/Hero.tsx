@@ -18,7 +18,7 @@ function Hero() {
         </div>
         <div className="w-full h-auto">
           <div className="w-full h-[300px] relative">
-            <Image src="https://www.alpha-dz.com/static/media/heroSectionImage.e8c5d677b315b26a4494.webp" alt="image" fill className="rounded object-cover" />
+            <Image src="https://eslam-yahia-physics.com/Files/AboutImage/48452b18-a693-4265-90f2-eb230e6847f9.png" alt="image" fill className="rounded object-cover" />
           </div>
         </div>
       </div>
