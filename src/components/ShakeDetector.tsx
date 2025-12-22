@@ -4,7 +4,15 @@ import { useEffect, useRef } from "react";
 
 export default function ShakeDetector() {
   const last = useRef({ x: 0, y: 0, z: 0 });
-  const threshold = 8; // حساس مناسب للأندرويد
+  const shakeCount = useRef(0);
+  const lastShakeTime = useRef(0);
+
+  const threshold = 14; // أقوى
+  const shakeWindow = 600; // زمن الهزات (ms)
+  const requiredShakes = 2; // عدد الهزات المقصودة
+  const cooldown = 2000; // منع التكرار
+
+  const lastTrigger = useRef(0);
 
   useEffect(() => {
     const onMotion = (e: DeviceMotionEvent) => {
@@ -15,8 +23,24 @@ export default function ShakeDetector() {
       const dy = Math.abs(acc.y! - last.current.y);
       const dz = Math.abs(acc.z! - last.current.z);
 
-      if (dx + dy + dz > threshold) {
-        alert("⚠️ ممنوع تصوير الشاشة");
+      const intensity = dx + dy + dz;
+      const now = Date.now();
+
+      if (intensity > threshold) {
+        if (now - lastShakeTime.current < shakeWindow) {
+          shakeCount.current++;
+        } else {
+          shakeCount.current = 1;
+        }
+
+        lastShakeTime.current = now;
+
+        if (shakeCount.current >= requiredShakes && now - lastTrigger.current > cooldown) {
+          lastTrigger.current = now;
+          shakeCount.current = 0;
+
+          alert("⚠️ ممنوع تصوير الشاشة");
+        }
       }
 
       last.current = {
