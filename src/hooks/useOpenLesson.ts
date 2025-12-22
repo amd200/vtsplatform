@@ -10,10 +10,11 @@ export function useOpenLesson(executionId: string) {
   const filesPath = process.env.NEXT_PUBLIC_BASE_URL;
 
   const openLesson = async (lesson: Lesson) => {
-    if ((false && ContentType[lesson?.ContentType] == ContentType[0]) || ContentType[lesson?.ContentType] == ContentType[7]) {
-      const type = ContentType[lesson?.ContentType] == ContentType[0] ? "Youtube" : "Video";
-      const redirectUrl = `vtsplayer:${filesPath}|${executionId}|${lesson?.Id}|${lesson?.Duration}|${false}|${session?.user?.id}|${type}`;
-      // console.log(redirectUrl);
+    if (lesson?.ContentType === ContentType.RichText || lesson?.ContentType === ContentType.Video) {
+      const type = lesson.ContentType === ContentType.RichText ? "Youtube" : "Video";
+
+      const redirectUrl = `vtsplayer:${filesPath}|${executionId}|${lesson.Id}|${lesson.Duration}|false|${session?.user?.id}|${type}`;
+
       window.location.href = redirectUrl;
       return;
     }
