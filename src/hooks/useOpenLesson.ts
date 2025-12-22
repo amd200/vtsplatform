@@ -10,14 +10,14 @@ export function useOpenLesson(executionId: string) {
   const filesPath = process.env.NEXT_PUBLIC_BASE_URL;
 
   const openLesson = async (lesson: Lesson) => {
-    // if (lesson?.ContentType === ContentType.RichText || lesson?.ContentType === ContentType.Video) {
-    //   const type = lesson.ContentType === ContentType.RichText ? "Youtube" : "Video";
+    if (lesson?.ContentType === ContentType.RichText || lesson?.ContentType === ContentType.Video) {
+      const type = lesson.ContentType === ContentType.RichText ? "Youtube" : "Video";
 
-    //   const redirectUrl = `vtsplayer:${filesPath}|${executionId}|${lesson.Id}|${lesson.Duration}|false|${session?.user?.id}|${type}`;
+      const redirectUrl = `vtsplayer:${filesPath}|${executionId}|${lesson.Id}|${lesson.Duration}|false|${session?.user?.id}|${type}`;
 
-    //   window.location.href = redirectUrl;
-    //   return;
-    // }
+      window.location.href = redirectUrl;
+      return;
+    }
 
     const url = getContentUrl(executionId, lesson.Id, lesson.ContentType);
 
