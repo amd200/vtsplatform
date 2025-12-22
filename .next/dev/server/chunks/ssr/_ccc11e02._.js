@@ -491,10 +491,7 @@ function CourseCard({ course }) {
     const handleBuyCourseNow = async (id)=>{
         try {
             const res = await buyCourse(id).unwrap();
-            console.log(res);
-            if (res?.Data?.InvoiceData?.Id) {
-                router.push(`/checkout/${res?.Data?.InvoiceData?.Id}`);
-            }
+            router.push(`/checkout/${res?.Data?.InvoiceData?.Id}`);
         } catch (error) {
             console.log(error);
         }
@@ -518,20 +515,20 @@ function CourseCard({ course }) {
                                 className: "w-3 h-3 text-secondary"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                lineNumber: 78,
+                                lineNumber: 75,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 children: "[MISSION STATUS: ACTIVE]"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                lineNumber: 79,
+                                lineNumber: 76,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                        lineNumber: 77,
+                        lineNumber: 74,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -539,13 +536,13 @@ function CourseCard({ course }) {
                         children: "HP: 100%"
                     }, void 0, false, {
                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                        lineNumber: 81,
+                        lineNumber: 78,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                lineNumber: 76,
+                lineNumber: 73,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -560,17 +557,17 @@ function CourseCard({ course }) {
                         className: "object-cover transform skew-y-0.5 transition-transform duration-500 hover:scale-105"
                     }, void 0, false, {
                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                        lineNumber: 88,
+                        lineNumber: 85,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/shared/CourseCard.tsx",
-                    lineNumber: 87,
+                    lineNumber: 84,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                lineNumber: 85,
+                lineNumber: 82,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -586,12 +583,12 @@ function CourseCard({ course }) {
                                     children: course?.Title
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                    lineNumber: 98,
+                                    lineNumber: 95,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                lineNumber: 97,
+                                lineNumber: 94,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardDescription"], {
@@ -599,13 +596,13 @@ function CourseCard({ course }) {
                                 children: course?.Details || "تفاصيل الكورس: ابدأ مهمة الإتقان الآن!"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                lineNumber: 102,
+                                lineNumber: 99,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                        lineNumber: 96,
+                        lineNumber: 93,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -618,7 +615,7 @@ function CourseCard({ course }) {
                                         className: "size-4 text-secondary"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                        lineNumber: 109,
+                                        lineNumber: 106,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -629,13 +626,13 @@ function CourseCard({ course }) {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                        lineNumber: 110,
+                                        lineNumber: 107,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                lineNumber: 108,
+                                lineNumber: 105,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -645,7 +642,7 @@ function CourseCard({ course }) {
                                         className: "size-4 text-secondary"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                        lineNumber: 114,
+                                        lineNumber: 111,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -656,13 +653,13 @@ function CourseCard({ course }) {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                        lineNumber: 115,
+                                        lineNumber: 112,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                lineNumber: 113,
+                                lineNumber: 110,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -675,7 +672,7 @@ function CourseCard({ course }) {
                                                 className: "size-3 text-primary"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                lineNumber: 121,
+                                                lineNumber: 118,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -686,13 +683,13 @@ function CourseCard({ course }) {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                lineNumber: 122,
+                                                lineNumber: 119,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                        lineNumber: 120,
+                                        lineNumber: 117,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -702,7 +699,7 @@ function CourseCard({ course }) {
                                                 className: "size-3 text-primary"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                lineNumber: 125,
+                                                lineNumber: 122,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -713,25 +710,25 @@ function CourseCard({ course }) {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                lineNumber: 126,
+                                                lineNumber: 123,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                        lineNumber: 124,
+                                        lineNumber: 121,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                lineNumber: 119,
+                                lineNumber: 116,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                        lineNumber: 106,
+                        lineNumber: 103,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardFooter"], {
@@ -748,7 +745,7 @@ function CourseCard({ course }) {
                                                 children: "القيمة الأصلية:"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                lineNumber: 137,
+                                                lineNumber: 134,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("del", {
@@ -760,13 +757,13 @@ function CourseCard({ course }) {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                lineNumber: 138,
+                                                lineNumber: 135,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                        lineNumber: 136,
+                                        lineNumber: 133,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -774,7 +771,7 @@ function CourseCard({ course }) {
                                         children: "القيمة النهائية:"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                        lineNumber: 144,
+                                        lineNumber: 141,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -785,7 +782,7 @@ function CourseCard({ course }) {
                                                 children: isFree ? "مجاناً" : currentPrice
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                lineNumber: 146,
+                                                lineNumber: 143,
                                                 columnNumber: 15
                                             }, this),
                                             !isFree && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -793,19 +790,19 @@ function CourseCard({ course }) {
                                                 children: course?.DefaultCurrencyCode
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                lineNumber: 147,
+                                                lineNumber: 144,
                                                 columnNumber: 27
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                        lineNumber: 145,
+                                        lineNumber: 142,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                lineNumber: 134,
+                                lineNumber: 131,
                                 columnNumber: 11
                             }, this),
                             course?.Isbuy ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -818,19 +815,19 @@ function CourseCard({ course }) {
                                             className: "w-4 h-4 ml-2"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                            lineNumber: 155,
+                                            lineNumber: 152,
                                             columnNumber: 17
                                         }, this),
                                         "[مشاهدة]"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                    lineNumber: 154,
+                                    lineNumber: 151,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                lineNumber: 153,
+                                lineNumber: 150,
                                 columnNumber: 13
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                                 children: [
@@ -845,14 +842,14 @@ function CourseCard({ course }) {
                                                         className: "w-4 h-4 ml-2"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                        lineNumber: 165,
+                                                        lineNumber: 162,
                                                         columnNumber: 21
                                                     }, this),
                                                     "شراء"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                lineNumber: 164,
+                                                lineNumber: 161,
                                                 columnNumber: 19
                                             }, this),
                                             codePurchaseOnly && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -863,20 +860,20 @@ function CourseCard({ course }) {
                                                         className: "w-4 h-4 ml-2"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                        lineNumber: 173,
+                                                        lineNumber: 170,
                                                         columnNumber: 21
                                                     }, this),
                                                     "أضف للمخزون"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                lineNumber: 172,
+                                                lineNumber: 169,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                        lineNumber: 161,
+                                        lineNumber: 158,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -890,19 +887,19 @@ function CourseCard({ course }) {
                                                             className: "w-4 h-4 ml-2"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                            lineNumber: 183,
+                                                            lineNumber: 180,
                                                             columnNumber: 21
                                                         }, this),
                                                         "[تفعيل الكود]"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                    lineNumber: 182,
+                                                    lineNumber: 179,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                lineNumber: 181,
+                                                lineNumber: 178,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogContent"], {
@@ -915,7 +912,7 @@ function CourseCard({ course }) {
                                                                 children: "تفعيل الكورس بالكود"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                                lineNumber: 189,
+                                                                lineNumber: 186,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogDescription"], {
@@ -923,13 +920,13 @@ function CourseCard({ course }) {
                                                                 children: "أدخل كود المقرر الخاص بك في الحقل أدناه لإضافة الكورس لحسابك."
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                                lineNumber: 190,
+                                                                lineNumber: 187,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                        lineNumber: 188,
+                                                        lineNumber: 185,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -944,7 +941,7 @@ function CourseCard({ course }) {
                                                                 className: "text-right"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                                lineNumber: 193,
+                                                                lineNumber: 190,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -953,25 +950,25 @@ function CourseCard({ course }) {
                                                                 children: isLoading ? "جاري التفعيل..." : "تفعيل الكود"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                                lineNumber: 194,
+                                                                lineNumber: 191,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                        lineNumber: 192,
+                                                        lineNumber: 189,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                                lineNumber: 187,
+                                                lineNumber: 184,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                                        lineNumber: 180,
+                                        lineNumber: 177,
                                         columnNumber: 15
                                     }, this)
                                 ]
@@ -979,19 +976,19 @@ function CourseCard({ course }) {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/shared/CourseCard.tsx",
-                        lineNumber: 132,
+                        lineNumber: 129,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/shared/CourseCard.tsx",
-                lineNumber: 94,
+                lineNumber: 91,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/shared/CourseCard.tsx",
-        lineNumber: 74,
+        lineNumber: 71,
         columnNumber: 5
     }, this);
 }

@@ -1,5 +1,12 @@
 {
+  "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/(main)/page": "app/(main)/page.js",
   "/_not-found/page": "app/_not-found/page.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
+  "/student/cart/page": "app/student/cart/page.js",
+  "/student/courses/page": "app/student/courses/page.js",
+  "/student/mychapter/page": "app/student/mychapter/page.js",
+  "/student/mycourses/page": "app/student/mycourses/page.js",
+  "/student/mypayments/page": "app/student/mypayments/page.js",
   "/student/page": "app/student/page.js"
 }
