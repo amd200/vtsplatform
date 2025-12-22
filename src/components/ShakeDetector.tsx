@@ -39,7 +39,7 @@ export default function ShakeDetector() {
           lastTrigger.current = now;
           shakeCount.current = 0;
 
-          alert("⚠️ ممنوع تصوير الشاشة");
+          alert("اي مشكلتك بقى");
         }
       }
 
