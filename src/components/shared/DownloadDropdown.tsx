@@ -7,7 +7,7 @@ export function DownloadDropdown() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          className=" mb-3
+          className=" mb-4
  bg-[linear-gradient(45deg,var(--color-primary),rgba(0,0,0,0.3))]
 
     text-white

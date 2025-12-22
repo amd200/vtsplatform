@@ -5,6 +5,7 @@ import CourseDetails from "@/features/student/components/CourseDetails";
 import { useGetCourseDetailsQuery } from "@/features/student/services/studentApi";
 import { use } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { DownloadDropdown } from "@/components/shared/DownloadDropdown";
 
 export default function Page({ params }: { params: Promise<{ executionId: string }> }) {
   const { executionId } = use(params);
@@ -67,7 +68,10 @@ export default function Page({ params }: { params: Promise<{ executionId: string
           ))}
         </div>
       ) : course ? (
-        <ChaptersAccordion courseDetails={courseAccess} executionId={executionId} chapters={course.Chapters} />
+        <>
+          <DownloadDropdown />
+          <ChaptersAccordion courseDetails={courseAccess} executionId={executionId} chapters={course.Chapters} />
+        </>
       ) : null}
     </div>
   );

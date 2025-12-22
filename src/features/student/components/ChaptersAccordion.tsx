@@ -94,7 +94,6 @@ function ChaptersAccordion({ chapters, executionId, courseDetails }: ChaptersAcc
   const { data: session } = useSession();
   return (
     <>
-      <DownloadDropdown />
       <Accordion type="single" collapsible className="bg-[#f8f8f8] p-4 space-y-2">
         {chapters.map((chapter) => (
           <AccordionItem key={chapter.Id} value={`chapter-${chapter.Id}`} className="bg-white rounded px-4">
