@@ -48,7 +48,7 @@ function Page() {
         const payload = {
           merchantCode,
           merchantRefNum: res?.Data?.SubId,
-          customerMobile: "01063751102",
+          customerMobile: phone,
           customerEmail: "vts@vts-co.com",
           customerName: res?.Data?.ClientName,
           chargeItems: [
