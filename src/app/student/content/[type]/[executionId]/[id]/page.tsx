@@ -72,6 +72,13 @@ function Page() {
   useEffect(() => {
     console.log(contentData);
   }, [contentData]);
+  function stripHtml(html?: string | null) {
+    if (!html) return "";
+
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    return div.textContent || div.innerText || "";
+  }
 
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [videoStats, setVideoStats] = useState({
@@ -137,6 +144,7 @@ function Page() {
 
           {renderViewer()}
 
+          <p className="text-sm mb-2">{stripHtml(contentData?.Description)}</p>
           <div className="flex items-center justify-between mt-4">
             {prevLesson && (
               <Button variant="ghost" onClick={() => openLesson(prevLesson)}>
