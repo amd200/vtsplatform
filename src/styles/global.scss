@@ -264,7 +264,8 @@
 }
 
 .rpv-toolbar__right {
-  .rpv-core__display--hidden rpv-core__display--block-medium:nth-child(4) {
+  .rpv-core__display--hidden.rpv-core__display--block-medium:nth-child(4) {
     display: none !important;
   }
 }
+
