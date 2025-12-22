@@ -7,6 +7,10 @@ export default function getContentUrl(executionId: string, lessonId: string, con
     // return `/student/exam/${executionId}/${lessonId}`;
     return `/student/exam/${lessonId}`;
   }
+  else if (typeName === "Forum" || typeName === "forum") {
+    // return `/student/exam/${executionId}/${lessonId}`;
+    return `/student/community`;
+  }
   const safeType = typeName || "richtext";
   return `/student/content/${safeType}/${executionId}/${lessonId}`;
 }

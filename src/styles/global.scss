@@ -269,3 +269,8 @@
   }
 }
 
+.rpv-core__menu {
+  .rpv-core__menu-item.rpv-core__menu-item--ltr {
+    display: none !important;
+  }
+}
