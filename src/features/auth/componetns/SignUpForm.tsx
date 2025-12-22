@@ -61,7 +61,7 @@ function SignUpForm() {
         success(res?.Message);
       }
     } catch (err) {
-      const error = err as BaseResponse<unknown>;
+      const error = err as BaseResponse<null>;
       toastError(error?.Message);
     }
   }

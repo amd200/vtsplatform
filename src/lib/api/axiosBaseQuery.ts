@@ -37,10 +37,12 @@ axiosInstance.interceptors.request.use(
 
     config.headers = config.headers ?? {};
     config.headers["Content-Type"] = "application/json";
-    config.headers["X-App-Token"] = hasStudentToken ? appToken : `Bearer ${appToken}`;
 
     if (hasStudentToken) {
       config.headers["X-Student-Token"] = session!.user.StudentToken;
+      config.headers["X-App-Token"] = appToken;
+    } else {
+      config.headers.Authorization = `Bearer ${appToken}`;
     }
 
     return config;
