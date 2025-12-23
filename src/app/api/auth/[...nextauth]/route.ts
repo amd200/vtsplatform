@@ -79,7 +79,7 @@ export const authOptions: NextAuthOptions = {
         Password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        return await loginRequest(`${process.env.API_URL}/platform/Account/SignIn`, credentials!);
+        return await loginRequest(`${process.env.NEXT_PUBLIC_API_URL}/platform/Account/SignIn`, credentials!);
       },
     }),
     // CredentialsProvider({

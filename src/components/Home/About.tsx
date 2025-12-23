@@ -44,7 +44,7 @@ function About() {
             <div className=" bg-primary p-2 rounded-xl border-2 border-white top-0 -translate-y-1/2 right-5 absolute">
               <Image src={lamp} alt="Profile picture" width={25} />
             </div>{" "}
-            <CountUp className="font-bold text-secondary text-3xl" suffix="+" end={1200} />
+            <CountUp enableScrollSpy scrollSpyOnce className="font-bold text-secondary text-3xl" suffix="+" end={1200} />
             <span className="text-xl font-bold">طلاب جدد</span>
           </Parallax>
         </div>

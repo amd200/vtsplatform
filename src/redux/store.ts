@@ -7,6 +7,7 @@ import { paymentApi } from "@/features/student/services/paymentApi";
 import { studentApi } from "@/features/student/services/studentApi";
 import { walletApi } from "@/features/student/services/walletApi";
 import { dashboardApi } from "@/services/dashboardApi";
+import { settingsApi } from "@/services/settings";
 import { configureStore } from "@reduxjs/toolkit";
 
 export const store = configureStore({
@@ -20,9 +21,10 @@ export const store = configureStore({
     [paymentApi.reducerPath]: paymentApi.reducer,
     [communicationApi.reducerPath]: communicationApi.reducer,
     [walletApi.reducerPath]: walletApi.reducer,
+    [settingsApi.reducerPath]: settingsApi.reducer,
   },
 
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authApi.middleware, dashboardApi.middleware, studentApi.middleware, cartApi.middleware, lessonContentApi.middleware, paymentApi.middleware, communicationApi.middleware, cartBooksApi.middleware, walletApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authApi.middleware, dashboardApi.middleware, studentApi.middleware, cartApi.middleware, lessonContentApi.middleware, paymentApi.middleware, communicationApi.middleware, cartBooksApi.middleware, walletApi.middleware, settingsApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

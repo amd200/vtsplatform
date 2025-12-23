@@ -13,6 +13,39 @@ export interface User {
   StudentName: string;
   StudentImage?: string;
 }
+// src/types/settings.types.ts
+
+/* ===================== */
+/* Public Settings DTO  */
+/* ===================== */
+
+export interface GeneralSettings {
+  PlatformName: string;
+  PlatformLogo: string;
+  Slogan: string | null;
+
+  AboutText: string;
+  AboutImage: string;
+
+  PlatformMessageHomePage: string;
+  PlatformMessageHomePageEn: string;
+
+  WelcomeMessageHomePage: string;
+  WelcomeMessageHomePageEn: string;
+
+  ActivateStudentProcedure: boolean;
+  ActivateVideoProtection: boolean;
+  LoginWithCodeEnabled: boolean;
+
+  ShowFirstSection: boolean;
+  ShowSecondSection: boolean;
+  ShowTopStudents: boolean;
+  ShowFooter: boolean;
+
+  UseImageSlider: boolean;
+  UseSellBooks: boolean;
+}
+
 export interface Category {
   Id: string;
   ParentId: string | null;
@@ -205,3 +238,4 @@ export interface PaginatedResponse<T> {
   pageSize: number;
 }
 export type CategoriesResponse = BaseResponse<Category[]>;
+export type GeneralSettingsResponse = BaseResponse<GeneralSettings>;

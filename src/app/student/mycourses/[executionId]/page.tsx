@@ -6,11 +6,12 @@ import { useGetCourseDetailsQuery } from "@/features/student/services/studentApi
 import { use } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { DownloadDropdown } from "@/components/shared/DownloadDropdown";
+import { useGetGeneralSettingsQuery } from "@/services/settings";
 
 export default function Page({ params }: { params: Promise<{ executionId: string }> }) {
   const { executionId } = use(params);
   const { data, isLoading } = useGetCourseDetailsQuery(executionId);
-
+  const { data: settings } = useGetGeneralSettingsQuery();
   const course = data?.Data;
   const courseInfo = course
     ? {
@@ -22,6 +23,8 @@ export default function Page({ params }: { params: Promise<{ executionId: string
       }
     : null;
   const courseAccess = course ? { isBuy: course.Isbuy } : undefined;
+
+  console.log(settings?.Data)
 
   return (
     <div className="container">
@@ -69,7 +72,7 @@ export default function Page({ params }: { params: Promise<{ executionId: string
         </div>
       ) : course ? (
         <>
-          <DownloadDropdown />
+          {settings?.Data?.ActivateVideoProtection && <DownloadDropdown />}
           <ChaptersAccordion courseDetails={courseAccess} executionId={executionId} chapters={course.Chapters} />
         </>
       ) : null}

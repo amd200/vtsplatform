@@ -8,9 +8,17 @@ import { getSession, signOut, useSession } from "next-auth/react";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useEffect, useState } from "react";
+import { useGetGeneralSettingsQuery } from "@/services/dashboardApi";
 function Header() {
   const { data: session } = useSession();
   const [greeting, setGreeting] = useState("مرحباً بك");
+  const { data } = useGetGeneralSettingsQuery();
+  const settings = data?.Data;
+
+  useEffect(()=>{
+  console.log(settings)
+
+  },[settings])
   useEffect(() => {
     const hour = new Date().getHours();
 
@@ -22,14 +30,15 @@ function Header() {
       setGreeting("مرحباً بك");
     }
   }, []);
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "";
   return (
     <>
       <header className="sticky top-0 z-[100] bg-white">
         <div className="container flex items-center justify-between py-3 font-ar-medium gap-x-5">
           <div className="flex items-center gap-x-2">
             <Menu className="max-lg:block hidden" />
-            <Link href="/" prefetch>
-              <Image src={logo} alt="logo" width={120} height={40} priority className="cursor-pointer" />
+            <Link href="/">
+              <img src={settings?.PlatformLogo ? `${BASE_URL}/${settings.PlatformLogo}` : "/images/default-logo.png"} alt={settings?.PlatformName || "Platform Logo"} width={120} height={60} priority className="h-[60px] w-auto object-contain cursor-pointer" />
             </Link>
           </div>
           <ul className="lg:flex hidden gap-x-4 ms-5">
@@ -39,6 +48,11 @@ function Header() {
             <li>
               <Link href={"/"}>المعرض</Link>
             </li>
+            {settings?.UseSellBooks && (
+              <li>
+                <Link href={"/"}>الكتب والخدمات</Link>
+              </li>
+            )}
             <li>
               <Link href={"/"}>المحاضرين</Link>
             </li>

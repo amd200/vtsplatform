@@ -14,6 +14,7 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useToastMessage } from "@/hooks/useToastMessage";
+import { useGetGeneralSettingsQuery } from "@/services/settings";
 
 const phoneSchema = z.object({
   phoneNumber: z.string().min(1, "أدخل رقم الهاتف"),
@@ -32,7 +33,8 @@ function Page() {
   const router = useRouter();
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const { error, success } = useToastMessage();
-
+  const { data } = useGetGeneralSettingsQuery();
+  const settings = data?.Data;
   function onChange(value: string | null) {
     console.log("Captcha value:", value);
     setCaptchaToken(value);
@@ -64,7 +66,7 @@ function Page() {
     });
     console.log(res);
     if (res?.error) {
-      console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxx",res)
+      console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxx", res);
       console.log("error", error);
       error(res?.error || "حدث خطأ يرجى المحاولة لاحقا");
       return;

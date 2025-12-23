@@ -3,16 +3,10 @@ import { GeneralSettingsResponse } from "@/types/common.types";
 import { DashBoardResponse } from "@/types/dashboard.types";
 import { createApi } from "@reduxjs/toolkit/query/react";
 
-export const dashboardApi = createApi({
-  reducerPath: "dashboardApi",
+export const settingsApi = createApi({
+  reducerPath: "settingsApi",
   baseQuery: axiosBaseQuery(),
   endpoints: (builder) => ({
-    getDashboardData: builder.query<DashBoardResponse, void>({
-      query: () => ({
-        url: "/platform/Dashboard/AllData",
-        method: "GET",
-      }),
-    }),
     getGeneralSettings: builder.query<GeneralSettingsResponse, void>({
       query: () => ({
         url: "/platform/settings/generalSettings",
@@ -22,4 +16,4 @@ export const dashboardApi = createApi({
   }),
 });
 
-export const { useGetDashboardDataQuery, useGetGeneralSettingsQuery } = dashboardApi;
+export const { useGetGeneralSettingsQuery } = settingsApi;

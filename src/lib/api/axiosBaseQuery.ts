@@ -31,13 +31,10 @@ axiosInstance.interceptors.response.use(
 axiosInstance.interceptors.request.use(
   async (config) => {
     const session = await getSession();
-
-    const appToken = process.env.NEXT_PUBLIC_APP_TOKEN!;
+    const appToken = process.env.NEXT_PUBLIC_APP_TOKEN;
     const hasStudentToken = Boolean(session?.user?.StudentToken);
-
     config.headers = config.headers ?? {};
     config.headers["Content-Type"] = "application/json";
-
     if (hasStudentToken) {
       config.headers["X-Student-Token"] = session!.user.StudentToken;
       config.headers["X-App-Token"] = appToken;
@@ -65,7 +62,6 @@ export const axiosBaseQuery =
   > =>
   async ({ url, method, data, params, skipAuth }) => {
     try {
-      // 👇 هنا الفرق الحقيقي
       const client = skipAuth ? publicAxios : axiosInstance;
 
       const result = await client({

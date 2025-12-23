@@ -1,5 +1,6 @@
 "use client";
 import getContentUrl from "@/features/student/utils/getContentUrl";
+import { useGetGeneralSettingsQuery } from "@/services/settings";
 import { ContentType, Lesson } from "@/types/common.types";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -8,16 +9,19 @@ export function useOpenLesson(executionId: string) {
   const router = useRouter();
   const { data: session } = useSession();
   const filesPath = process.env.NEXT_PUBLIC_BASE_URL;
-
+  const { data } = useGetGeneralSettingsQuery();
+  const settings = data?.Data;
   const openLesson = async (lesson: Lesson) => {
-    // if (lesson?.ContentType === ContentType.RichText || lesson?.ContentType === ContentType.Video) {
-    //   const type = lesson.ContentType === ContentType.RichText ? "Youtube" : "Video";
+    if (settings?.ActivateVideoProtection) {
+      if (lesson?.ContentType === ContentType.RichText || lesson?.ContentType === ContentType.Video) {
+        const type = lesson.ContentType === ContentType.RichText ? "Youtube" : "Video";
 
-    //   const redirectUrl = `vtsplayer:${filesPath}|${executionId}|${lesson.Id}|${lesson.Duration}|false|${session?.user?.id}|${type}`;
+        const redirectUrl = `vtsplayer:${filesPath}|${executionId}|${lesson.Id}|${lesson.Duration}|false|${session?.user?.UserId}|${type}`;
 
-    //   window.location.href = redirectUrl;
-    //   return;
-    // }
+        window.location.href = redirectUrl;
+        return;
+      }
+    }
 
     const url = getContentUrl(executionId, lesson.Id, lesson.ContentType);
 
