@@ -21,11 +21,13 @@ function About() {
             </div>
           </div>
           <div
-            className="bg-secondary rounded-full relative overflow-hidden
-  w-full mx-auto max-w-[371px] aspect-[371/538] 
-  md:left-20 md:top-0 top-30"
+            className="
+    bg-secondary rounded-full relative overflow-hidden
+    w-full mx-auto max-w-[371px] aspect-[371/538]
+    md:left-20 md:top-0 top-30
+  "
           >
-            <Image src={teacher} alt="" className="object-cover  absolute bottom-0" />
+            <Image src={teacher} alt="Teacher" fill sizes="(max-width: 768px) 90vw, 371px" className="object-cover object-bottom" priority />
           </div>
 
           <Parallax
