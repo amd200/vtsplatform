@@ -1,30 +1,28 @@
-import type { DefaultSession, DefaultUser } from "next-auth";
+// src/types/nextauth.d.ts
+import { User as AppUser } from "./common.types";
 
 declare module "next-auth" {
   interface Session {
-    user: DefaultSession["user"] & {
-      UserId: string;
-      Role: number;
-      StudentToken: string;
-      StudentName: string;
-      StudentImage: string;
-    };
+    user: AppUser;
   }
 
-  interface User extends DefaultUser {
-    Role?: number;
-    StudentToken?: string;
+  interface User {
+    id?: string;
     StudentName?: string;
+    StudentToken?: string;
     StudentImage?: string;
+    Role?: number;
   }
 }
 
 declare module "next-auth/jwt" {
-  interface JWT {
-    UserId: string;
-    Role: number;
+  export interface JWT {
     StudentToken: string;
+    UserId: string;
+    PersonId: string;
+    Role: number;
     StudentName: string;
     StudentImage: string;
+    // [key: string]: unknown; // مهم جدا لتوافق الـ callback مع NextAuth
   }
 }
