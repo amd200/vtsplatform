@@ -17,8 +17,8 @@ function Hero() {
           </p>
         </div>
         <div className="w-full h-auto">
-          <div className="w-full h-[300px] relative">
-            <Image src="https://eslam-yahia-physics.com/Files/AboutImage/48452b18-a693-4265-90f2-eb230e6847f9.png" alt="image" fill className="rounded object-cover" />
+          <div className="w-full h-[300px] relative bg-white">
+            <Image src="https://eslam-yahia-physics.com/Files/AboutImage/48452b18-a693-4265-90f2-eb230e6847f9.png" alt="image" fill className="rounded object-contain" priority />
           </div>
         </div>
       </div>
