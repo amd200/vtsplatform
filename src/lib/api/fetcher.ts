@@ -4,8 +4,8 @@ import { getServerSession } from "next-auth";
 export async function fetcher<T = unknown>(url: string, options: RequestInit = {}): Promise<T> {
   const session = await getServerSession(authOptions);
 
-  const baseURL = process.env.NEXT_PUBLIC_API_URL;
-  const appToken = process.env.NEXT_PUBLIC_APP_TOKEN;
+  const baseURL = process.env.NEXT_PUBLIC_API_URL!;
+  const appToken = process.env.NEXT_PUBLIC_APP_TOKEN!;
 
   const studentToken = session?.user?.StudentToken;
   console.log(session);
@@ -15,7 +15,7 @@ export async function fetcher<T = unknown>(url: string, options: RequestInit = {
 
   if (studentToken) {
     headers["X-Student-Token"] = studentToken;
-    headers["X-ِApp-Token"] = `${appToken}`;
+    headers["X-App-Token"] = `${appToken}`;
   }
   headers.Authorization = `Bearer ${appToken}`;
 
