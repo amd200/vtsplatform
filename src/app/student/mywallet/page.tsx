@@ -53,7 +53,7 @@ function Page() {
           customerName: res?.Data?.ClientName,
           chargeItems: [
             {
-              itemId: session?.user?.id,
+              itemId: session?.user?.UserId,
               price: parseFloat(res?.Data?.price ?? "0"),
               quantity: 1,
               imageUrl: "#",

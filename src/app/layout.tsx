@@ -14,6 +14,9 @@ import { Toaster } from "@/components/ui/sonner";
 import ParallaxWrapper from "@/providers/ParallaxWrapper";
 import "@/18n/config";
 import ShakeDetector from "@/components/ShakeDetector";
+import { GeneralSettingsResponse } from "@/types/common.types";
+import { fetcher } from "@/lib/api/fetcher";
+import N8nChat from "@/components/N8nChat";
 
 const arLight = localFont({
   src: "../assets/fonts/ARABIC-LIGHT.ttf",
@@ -84,11 +87,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const data = await fetcher<GeneralSettingsResponse>(`/platform/settings/generalSettings`);
+  const settings = data?.Data;
   return (
     <html lang="ar" dir="rtl" className={`${arLight.variable} ${arMedium.variable} ${arBold.variable}`}>
       {/* <head>
@@ -118,6 +123,14 @@ export default function RootLayout({
     `,
           }}
         /> */}
+        <Script id="n8n-chat-ui" type="module" strategy="afterInteractive">
+          {`
+            import n8nChatUiWidget  from "https://proxy.n8nchatui.com/api/embed/qTxO9A";
+
+            n8nChatUiWidget.load()
+          `}
+        </Script>
+        {/* <N8nChat/> */}
       </body>
     </html>
   );

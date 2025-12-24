@@ -38,10 +38,8 @@ axiosInstance.interceptors.request.use(
     if (hasStudentToken) {
       config.headers["X-Student-Token"] = session!.user.StudentToken;
       config.headers["X-App-Token"] = appToken;
-    } else {
-      config.headers.Authorization = `Bearer ${appToken}`;
     }
-
+    config.headers.Authorization = `Bearer ${appToken}`;
     return config;
   },
   (error) => Promise.reject(error)

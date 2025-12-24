@@ -7,7 +7,7 @@ import React, { ReactNode } from "react";
 import NextAuth from "next-auth";
 
 export default async function StudentLayout({ children }: { children: ReactNode }) {
-  
+  ``
   return (
     <>
       <Header />

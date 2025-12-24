@@ -79,7 +79,30 @@ export const authOptions: NextAuthOptions = {
         Password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        return await loginRequest(`${process.env.NEXT_PUBLIC_API_URL}/platform/Account/SignIn`, credentials!);
+        const user = await loginRequest(`${process.env.NEXT_PUBLIC_API_URL}/platform/Account/SignIn`, credentials!);
+
+        // حسب شكل الريسبونس عدل السطر ده
+        const studentToken = user?.StudentToken;
+
+        if (!studentToken) {
+          throw new Error("Student token not found after login");
+        }
+
+        const tt = await fetch("https://n8n.srv1078880.hstgr.cloud/webhook/c3e92960-f5f8-4274-a44c-d4657dc5e6d1/chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            studentToken,
+          }),
+        });
+
+        console.log("ooooooooooooooooooooooooooooooooooooooo");
+        console.log(tt);
+
+        console.log("user", user);
+        return user;
       },
     }),
     // CredentialsProvider({

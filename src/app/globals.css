@@ -107,9 +107,9 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --color-primary: #00838f;
+  --color-primary: #323a97;
   /* --color-primary-100: #00838f; */
-  --color-secondary: #c8a63b;
+  --color-secondary: #6de8ff;
   --color-black: #1c1c1c;
   --color-grey: #898989;
 }
