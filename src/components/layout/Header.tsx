@@ -26,7 +26,7 @@ async function Header() {
           <div className="flex items-center gap-x-2">
             <Menu className="max-lg:block hidden" />
             <Link href="/">
-              <Image unoptimized src={settings?.PlatformLogo ? `${BASE_URL}/${settings.PlatformLogo}` : "/images/default-logo.png"} alt={settings?.PlatformName || "Platform Logo"} width={160} height={60} className="h-12 w-auto object-contain cursor-pointer" />
+              <img src={settings?.PlatformLogo ? `${BASE_URL}/${settings.PlatformLogo}` : "/images/default-logo.png"} alt={settings?.PlatformName || "Platform Logo"} width={160} height={60} className="h-12 w-auto object-contain cursor-pointer" />
             </Link>
           </div>
           <ul className="lg:flex hidden gap-x-4 ms-5">

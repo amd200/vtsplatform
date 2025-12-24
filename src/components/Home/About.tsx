@@ -33,7 +33,7 @@ async function About() {
     md:left-20 md:top-0 top-30
   "
           >
-            <Image src={BASE_URL + "/" + settings?.AboutImage} alt="Teacher" fill sizes="(max-width: 768px) 90vw, 371px" className="object-cover object-bottom" priority />
+            <img src={BASE_URL + "/" + settings?.AboutImage} alt="Teacher" sizes="(max-width: 768px) 90vw, 371px" className="h-full  object-cover object-bottom" priority />
           </div>
 
           <AboutStats />
