@@ -11,7 +11,6 @@ import { useState } from "react";
 import { Input } from "../ui/input";
 import { useActivateCodeMutation } from "@/features/student/services/studentApi";
 import { toast } from "react-toastify";
-import { FacebookShareButton } from "next-share";
 
 function CategoryCard({ category }: { category: Category }) {
   const [activateCode, { isLoading }] = useActivateCodeMutation();
