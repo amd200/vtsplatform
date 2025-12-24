@@ -11,7 +11,7 @@ export function CreatePost() {
     <div className="bg-white rounded-2xl p-5 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 transition-all duration-300">
       <div className="flex gap-4">
         <Avatar className="h-11 w-11 ring-2 ring-gray-50">
-          <AvatarImage src={session?.user?.image || ""} />
+          <AvatarImage src={session?.user?.StudentImage || ""} />
           <AvatarFallback className="bg-primary/10 text-primary font-bold">
             {session?.user?.StudentName?.trim()
               .split(/\s+/)
