@@ -98,10 +98,6 @@ export const authOptions: NextAuthOptions = {
           }),
         });
 
-        console.log("ooooooooooooooooooooooooooooooooooooooo");
-        console.log(tt);
-
-        console.log("user", user);
         return user;
       },
     }),

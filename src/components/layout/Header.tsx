@@ -19,6 +19,8 @@ async function Header() {
   const greeting = hour >= 5 && hour < 12 ? "صباح الخير" : hour >= 12 && hour < 18 ? "مساء الخير" : "مرحباً بك";
 
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "";
+  const logo = settings?.PlatformLogo ? `${BASE_URL.replace(/\/$/, "")}/${settings.PlatformLogo.replace(/^\//, "")}` : "/images/default-logo.png";
+
   return (
     <>
       <header className="sticky top-0 z-[50] bg-white">
@@ -26,7 +28,7 @@ async function Header() {
           <div className="flex items-center gap-x-2">
             <Menu className="max-lg:block hidden" />
             <Link href="/">
-              <Image src={settings?.PlatformLogo ? `${BASE_URL}/${settings.PlatformLogo}` : "/images/default-logo.png"} alt={settings?.PlatformName || "Platform Logo"} width={160} height={60} priority className="h-12 w-auto object-contain cursor-pointer" />
+              <Image src={logo || "/images/default-logo.png"} alt={settings?.PlatformName || "Platform Logo"} width={160} height={60} priority className="h-12 w-auto object-contain cursor-pointer" />
             </Link>
           </div>
           <ul className="lg:flex hidden gap-x-4 ms-5">
