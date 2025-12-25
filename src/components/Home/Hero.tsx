@@ -9,8 +9,6 @@ async function Hero() {
   const data = await fetcher<GeneralSettingsResponse>(`/platform/settings/generalSettings`);
   const settings = data?.Data;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "";
-
-  console.log(settings)
   return (
     <section className="bg-primary h-[75vh] py-8">
       <div className="container bg-white h-full rounded grid lg:grid-cols-2 gap-x-12 items-center">
@@ -29,7 +27,7 @@ async function Hero() {
         </div>
         <div className="w-full h-auto">
           <div className="w-[400px] mx-auto h-[380px] md:h-[220px]  relative bg-white">
-            <Image src={BASE_URL + "/" + settings?.AboutImage} alt="image" fill sizes="(max-width: 768px) 100vw, 600px" className="rounded object-contain" priority />
+            <Image src={BASE_URL + settings?.AboutImage} alt="image" fill sizes="(max-width: 768px) 100vw, 600px" className="rounded object-contain" priority />
           </div>
         </div>
       </div>

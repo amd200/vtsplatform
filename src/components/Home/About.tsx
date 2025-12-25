@@ -10,8 +10,6 @@ async function About() {
   const data = await fetcher<GeneralSettingsResponse>(`/platform/settings/generalSettings`);
   const settings = data?.Data;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "";
-  console.log(settings);
-
   return (
     <section className="pt-20">
       <div className="container grid lg:grid-cols-2 items-center">
