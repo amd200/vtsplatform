@@ -8,9 +8,12 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Clock, Video } from "lucide-react";
+import { useOpenLesson } from "@/hooks/useOpenLesson";
+import { useGetGeneralSettingsQuery } from "@/services/settings";
 function ChaptersContent({ executionId, lessonId, onLessonsLoaded }: { executionId: string; lessonId: string; onLessonsLoaded?: (lessons: Lesson[]) => void }) {
   const { data: courseDetails } = useGetCourseDetailsQuery(executionId);
-
+  const { data } = useGetGeneralSettingsQuery();
+  const settings = data?.Data;
   useEffect(() => {
     if (courseDetails?.Data?.Chapters) {
       const allLessons: Lesson[] = [];
@@ -49,6 +52,7 @@ function ChaptersContent({ executionId, lessonId, onLessonsLoaded }: { execution
                       <div className="absolute right-4 top-0 bottom-0 w-0.5 bg-gray-300"></div>
                       <div className="space-y-2">
                         {chapter.Lessons?.map((lesson: Lesson) => {
+                          const { openLesson } = useOpenLesson(executionId);
                           const url = getContentUrl(String(executionId), lesson.Id, lesson.ContentType);
                           const contentTypeName = ContentType[lesson.ContentType];
                           const isActive = lesson.Id === lessonId;
@@ -67,9 +71,15 @@ function ChaptersContent({ executionId, lessonId, onLessonsLoaded }: { execution
                                       <span className="text-xs">20 دقيقة | {contentTypeName}</span>
                                     </div>
                                   </div>
-                                  <Button size={"sm"} className="px-3 text-sm" asChild>
-                                    {isActive ? <span className="">أنت هنا</span> : <Link href={url}>ابدأ</Link>}
-                                  </Button>
+                                  {settings?.ActivateVideoProtection ? (
+                                    <Button onClick={() => openLesson(lesson)} size={"sm"} className="px-3 text-sm" asChild>
+                                      {isActive ? <span className="">أنت هنا</span> : <span>ابدأ</span>}
+                                    </Button>
+                                  ) : (
+                                    <Button size={"sm"} className="px-3 text-sm" asChild>
+                                      {isActive ? <span className="">أنت هنا</span> : <span>ابدأ</span>}
+                                    </Button>
+                                  )}
                                 </div>
                               </div>
                             </div>

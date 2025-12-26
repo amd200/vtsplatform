@@ -3,15 +3,17 @@
 import ChaptersAccordion from "@/features/student/components/ChaptersAccordion";
 import CourseDetails from "@/features/student/components/CourseDetails";
 import { useGetCourseDetailsQuery } from "@/features/student/services/studentApi";
-import { use } from "react";
+import { use, useEffect } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { DownloadDropdown } from "@/components/shared/DownloadDropdown";
 import { useGetGeneralSettingsQuery } from "@/services/settings";
+import { useToastMessage } from "@/hooks/useToastMessage";
 
 export default function Page({ params }: { params: Promise<{ executionId: string }> }) {
   const { executionId } = use(params);
-  const { data, isLoading } = useGetCourseDetailsQuery(executionId);
+  const { data, isLoading, error } = useGetCourseDetailsQuery(executionId);
   const { data: settings } = useGetGeneralSettingsQuery();
+  const { error: toasError } = useToastMessage();
   const course = data?.Data;
   const courseInfo = course
     ? {
@@ -23,8 +25,6 @@ export default function Page({ params }: { params: Promise<{ executionId: string
       }
     : null;
   const courseAccess = course ? { isBuy: course.Isbuy } : undefined;
-
-  console.log(settings?.Data)
 
   return (
     <div className="container">
