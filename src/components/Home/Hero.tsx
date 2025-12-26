@@ -26,8 +26,8 @@ async function Hero() {
           </p>
         </div>
         <div className="w-full h-auto">
-          <div className="w-[400px] mx-auto h-[380px] md:h-[220px]  relative bg-white">
-            {/* <Image src={BASE_URL + settings?.AboutImage} alt="image" fill sizes="(max-width: 768px) 100vw, 600px" className="rounded object-contain" priority /> */}
+          <div className="mx-auto h-[250px] md:h-[220px]  relative bg-white">
+            <Image src={BASE_URL + settings?.AboutImage} alt="image" fill className="rounded object-contain" priority />
           </div>
         </div>
       </div>
