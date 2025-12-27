@@ -17,9 +17,9 @@ export default function Home() {
       {/* <Features/> */}
       <About/>
       {/* <Instructors/> */}
-      {/* <Categories /> */}
+      <Categories />
       {/* <Books /> */}
-      {/* <Courses /> */}
+      <Courses />
       <HowItWork/>
       <Statics/>
     </>
