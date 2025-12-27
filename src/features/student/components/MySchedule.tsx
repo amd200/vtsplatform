@@ -19,9 +19,9 @@ export default function MySchedule() {
     {
       id: 1,
       title: "Figma Prototype Class",
-      start: "11:00 AM",
-      end: "01:00 PM",
-      date: "2025-08-27",
+      start: "01:00 AM",
+      end: "06:00 PM",
+      date: "2025-12-27",
       background: "bg-[#effaf4]",
       color: "#4cc590",
     },

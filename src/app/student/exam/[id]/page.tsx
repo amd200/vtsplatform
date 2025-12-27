@@ -12,7 +12,7 @@ import confetti from "canvas-confetti";
 export default function Page() {
   useEffect(() => {
     // مدة التأثير (3 ثواني)
-    const end = Date.now() + 3 * 1000;
+    const end = Date.now() + 4 * 1000;
     // ألوان الجزيئات 🎨
     const colors = ["#a786ff", "#fd8bbc", "#eca184", "#f8deb1"];
 

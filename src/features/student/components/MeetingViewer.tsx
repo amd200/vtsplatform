@@ -38,8 +38,8 @@ function MeetingViewer() {
     <div className="w-full max-w-full relative" dir="ltr">
       <JitsiMeeting
         domain={domainName}
-        roomName={room} // 👈 من API
-        jwt={token} // 👈 من API
+        roomName={room} 
+        jwt={token} 
         configOverwrite={{
           startWithAudioMuted: true,
           disableModeratorIndicator: true,

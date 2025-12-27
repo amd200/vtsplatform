@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../styles/global.scss";
 import "./globals.css";
+import "@/styles/chatbot.scss";
 import Footer from "@/components/layout/Footer";
 import localFont from "next/font/local";
 import DirectionProviderWrapper from "@/providers/DirectionProviderWrapper";
@@ -17,7 +18,14 @@ import ShakeDetector from "@/components/ShakeDetector";
 import { GeneralSettingsResponse } from "@/types/common.types";
 import { fetcher } from "@/lib/api/fetcher";
 import N8nChat from "@/components/N8nChat";
+import Head from "next/head";
+import { Cairo } from "next/font/google";
 
+const cairo = Cairo({
+  subsets: ["arabic"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-cairo",
+});
 const arLight = localFont({
   src: "../assets/fonts/ARABIC-LIGHT.ttf",
   display: "swap",
@@ -95,10 +103,7 @@ export default async function RootLayout({
   const data = await fetcher<GeneralSettingsResponse>(`/platform/settings/generalSettings`);
   const settings = data?.Data;
   return (
-    <html lang="ar" dir="rtl" className={`${arLight.variable} ${arMedium.variable} ${arBold.variable}`}>
-      {/* <head>
-        <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-      </head> */}
+    <html lang="ar" dir="rtl" className={`${arLight.variable} ${cairo.variable} ${arMedium.variable} ${arBold.variable}`}>
       <body className={`antialiased font-ar-medium`}>
         <ToastContainer />
         <ShakeDetector />
@@ -123,14 +128,14 @@ export default async function RootLayout({
     `,
           }}
         /> */}
-        <Script id="n8n-chat-ui" type="module" strategy="afterInteractive">
+        {/* <Script id="n8n-chat-ui" type="module" strategy="afterInteractive">
           {`
             import n8nChatUiWidget  from "https://proxy.n8nchatui.com/api/embed/qTxO9A";
 
             n8nChatUiWidget.load()
           `}
-        </Script>
-        {/* <N8nChat/> */}
+        </Script> */}
+        <N8nChat />
       </body>
     </html>
   );
