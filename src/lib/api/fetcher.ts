@@ -2,35 +2,33 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 
 export async function fetcher<T = unknown>(url: string, options: RequestInit = {}): Promise<T> {
-  const session = await getServerSession(authOptions);
+  try {
+    const session = await getServerSession(authOptions);
+    // console.log("from fethcer", session);
+    const appToken = session?.user?.StudentToken ? `UhqBUAP3T6Irguej2ogSdg==` : "Beare UhqBUAP3T6Irguej2ogSdg==";
+    const baseURL = process.env.NEXT_PUBLIC_API_URL!;
+    const res = await fetch(`${baseURL}${url}`, {
+      headers: {
+        "Content-Type": "application/json",
+        "X-App-Token": appToken,
+        "X-Student-Token": session?.user?.StudentToken ?? "",
+        Authorization: `Bearer UhqBUAP3T6Irguej2ogSdg==`,
+        ...options.headers,
+      },
+      ...options,
+      cache: "no-store",
+    });
 
-  const baseURL = process.env.NEXT_PUBLIC_API_URL!;
-  const appToken = process.env.NEXT_PUBLIC_APP_TOKEN!;
-  const studentToken = session?.user?.StudentToken;
+    const data = await res.json().catch(() => null);
+    console.log(data);
 
-  const headers: HeadersInit = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${appToken}`,
-  };
+    // if (!res.ok || (data && data.success === false)) {
+    //   throw new Error(data?.message || "حدث خطأ أثناء الاتصال بالسيرفر");
+    // }
 
-  if (studentToken) {
-    headers["X-Student-Token"] = studentToken;
-    headers["X-App-Token"] = appToken;
+    return data as T;
+  } catch (error) {
+    console.error(error);
+    throw error instanceof Error ? error : new Error("حدث خطأ غير متوقع أثناء جلب البيانات");
   }
-
-  const res = await fetch(`${baseURL}${url}`, {
-    ...options,
-    headers: {
-      ...headers,
-      ...options.headers,
-    },
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    const errorText = await res.text();
-    throw new Error(`API Error ${res.status}: ${errorText}`);
-  }
-
-  return (await res.json()) as T;
 }
