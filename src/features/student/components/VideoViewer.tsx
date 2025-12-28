@@ -81,8 +81,20 @@ function VideoViewer({ videoUrl, lessonTitle, onStatsUpdate }: VideoViewerProps)
   };
 
   return (
-    <div className="w-full max-w-full relative" dir="ltr">
-      <Video ref={videoRef} src={videoUrl} height={500} controls style={{ width: "100%", maxWidth: "100%" }} onLoadedMetadata={handleLoadedMetadata} onVolumeChange={handleVolumeChange} onPlay={handlePlay} onTimeUpdate={handleTimeUpdate} onEnded={handleEnded} />
+    <div style={{ position: "relative", paddingTop: "56.25%" }}>
+      <iframe
+        src="https://player.mediadelivery.net/embed/571230/2232df46-5d0a-4324-b1fc-d8abdc27b548?autoplay=true&loop=false&muted=false&preload=true&responsive=true"
+        loading="lazy"
+        style={{
+          border: 0,
+          position: "absolute",
+          top: 0,
+          height: "100%",
+          width: "100%",
+        }}
+        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
+        allowFullScreen={true}
+      ></iframe>
     </div>
   );
 }

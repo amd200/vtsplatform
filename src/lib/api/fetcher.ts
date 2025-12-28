@@ -1,34 +1,49 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 
-export async function fetcher<T = unknown>(url: string, options: RequestInit = {}): Promise<T> {
+export async function fetcher<T>(url: string, options: RequestInit = {}): Promise<T> {
+  const baseURL = process.env.NEXT_PUBLIC_API_URL;
+
+  if (!baseURL) {
+    throw new Error("NEXT_PUBLIC_API_URL is not defined");
+  }
+
+  const session = await getServerSession(authOptions);
+
+  const headers = new Headers();
+
+  headers.set("Content-Type", "application/json");
+  headers.set("X-App-Token", "UhqBUAP3T6Irguej2ogSdg==");
+  headers.set("Authorization", "Bearer UhqBUAP3T6Irguej2ogSdg==");
+
+  if (session?.user?.StudentToken) {
+    headers.set("X-Student-Token", session.user.StudentToken);
+  }
+
+  if (options.headers) {
+    new Headers(options.headers).forEach((value, key) => {
+      headers.set(key, value);
+    });
+  }
+
   try {
-    const session = await getServerSession(authOptions);
-    // console.log("from fethcer", session);
-    const appToken = session?.user?.StudentToken ? `UhqBUAP3T6Irguej2ogSdg==` : "Beare UhqBUAP3T6Irguej2ogSdg==";
-    const baseURL = process.env.NEXT_PUBLIC_API_URL!;
     const res = await fetch(`${baseURL}${url}`, {
-      headers: {
-        "Content-Type": "application/json",
-        "X-App-Token": appToken,
-        "X-Student-Token": session?.user?.StudentToken ?? "",
-        Authorization: `Bearer UhqBUAP3T6Irguej2ogSdg==`,
-        ...options.headers,
-      },
       ...options,
+      headers,
       cache: "no-store",
     });
 
-    const data = await res.json().catch(() => null);
-    console.log(data);
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(`API ${res.status}: ${text}`);
+    }
 
-    // if (!res.ok || (data && data.success === false)) {
-    //   throw new Error(data?.message || "حدث خطأ أثناء الاتصال بالسيرفر");
-    // }
-
-    return data as T;
-  } catch (error) {
-    console.error(error);
-    throw error instanceof Error ? error : new Error("حدث خطأ غير متوقع أثناء جلب البيانات");
+    return (await res.json()) as T;
+  } catch (err) {
+    console.error("FETCH FAILED:", {
+      url: `${baseURL}${url}`,
+      error: err,
+    });
+    throw err;
   }
 }

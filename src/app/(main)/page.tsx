@@ -7,6 +7,7 @@ import Hero from "@/components/Home/Hero";
 import HowItWork from "@/components/Home/HowItWork";
 import Instructors from "@/components/Home/Instructors";
 import Statics from "@/components/Home/Statics";
+import UploadVideo from "@/components/UploadVideo";
 import ExamPaper3D from "@/features/student/components/ExamPaper3D";
 import Image from "next/image";
 
@@ -15,13 +16,14 @@ export default function Home() {
     <>
       <Hero />
       {/* <Features/> */}
-      <About/>
+      <About />
+      <UploadVideo videoId="2232df46-5d0a-4324-b1fc-d8abdc27b548" />
       {/* <Instructors/> */}
       <Categories />
       {/* <Books /> */}
       <Courses />
-      <HowItWork/>
-      <Statics/>
+      <HowItWork />
+      <Statics />
     </>
   );
 }

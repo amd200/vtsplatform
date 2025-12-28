@@ -135,7 +135,7 @@ export default async function RootLayout({
             n8nChatUiWidget.load()
           `}
         </Script> */}
-        <N8nChat />
+        {/* <N8nChat /> */}
       </body>
     </html>
   );

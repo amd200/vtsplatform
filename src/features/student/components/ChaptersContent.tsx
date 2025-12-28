@@ -27,6 +27,7 @@ function ChaptersContent({ executionId, lessonId, onLessonsLoaded }: { execution
       onLessonsLoaded?.(allLessons);
     }
   }, [courseDetails]);
+  const { openLesson } = useOpenLesson(executionId);
 
   return (
     <div className="lg:col-span-4 col-span-12 ">
@@ -52,8 +53,6 @@ function ChaptersContent({ executionId, lessonId, onLessonsLoaded }: { execution
                       <div className="absolute right-4 top-0 bottom-0 w-0.5 bg-gray-300"></div>
                       <div className="space-y-2">
                         {chapter.Lessons?.map((lesson: Lesson) => {
-                          const { openLesson } = useOpenLesson(executionId);
-                          const url = getContentUrl(String(executionId), lesson.Id, lesson.ContentType);
                           const contentTypeName = ContentType[lesson.ContentType];
                           const isActive = lesson.Id === lessonId;
 
