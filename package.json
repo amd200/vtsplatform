@@ -67,6 +67,7 @@
     "sonner": "^2.0.7",
     "swiper": "^12.0.3",
     "tailwind-merge": "^3.3.1",
+    "tus-js-client": "^4.3.1",
     "videojs-mux": "^4.21.10",
     "zod": "^4.1.10"
   },
