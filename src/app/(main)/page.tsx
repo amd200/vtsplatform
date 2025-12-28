@@ -14,14 +14,14 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      {/* <Hero /> */}
+      <Hero />
       {/* <Features/> */}
-      {/* <About /> */}
-      <UploadVideo videoId="8fc24e4e-572c-4d3b-93ec-4d029ecd1334" />
+      <About />
+      {/* <UploadVideo videoId="8fc24e4e-572c-4d3b-93ec-4d029ecd1334" /> */}
       {/* <Instructors/> */}
-      {/* <Categories /> */}
-      {/* <Books /> */}
-      {/* <Courses /> */}
+      <Categories />
+      <Books />
+      <Courses />
       <HowItWork />
       <Statics />
     </>
