@@ -12,7 +12,7 @@ export function useOpenLesson(executionId: string) {
   const { data } = useGetGeneralSettingsQuery();
   const settings = data?.Data;
   const openLesson = async (lesson: Lesson) => {
-    if (false) {
+    if (settings?.ActivateVideoProtection) {
       if (lesson?.ContentType === ContentType.RichText || lesson?.ContentType === ContentType.Video) {
         const type = lesson.ContentType === ContentType.RichText ? "Youtube" : "Video";
 

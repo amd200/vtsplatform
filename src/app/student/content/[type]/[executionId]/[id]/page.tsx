@@ -69,9 +69,9 @@ function Page() {
 
     load();
   }, [type, executionId, lessonId]);
-  useEffect(() => {
-    console.log(contentData);
-  }, [contentData]);
+  // useEffect(() => {
+  //   console.log(contentData);
+  // }, [contentData]);
   function stripHtml(html?: string | null) {
     if (!html) return "";
 
@@ -97,7 +97,6 @@ function Page() {
     } catch {}
   };
 
-  // لو لسة يحمل
   // if (isLoading || !contentData) return <p className="text-center py-10">جاري التحميل...</p>;
 
   const lessonTitle = contentData?.LessonTitle || "";

@@ -5,7 +5,7 @@ import { StudentCoursesResponse } from "@/features/student/types/student.types";
 import CoursesSlider from "./CoursesSlider";
 
 async function Courses() {
-  const data = await fetcher<StudentCoursesResponse>(`/platform/AllCourses`);
+  const data = await fetcher<StudentCoursesResponse>(`/platform/global/AllCourses`);
   const courses = data?.Data;
 
   return (

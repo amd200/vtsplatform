@@ -7,7 +7,7 @@ import CategoriesSlider from "./CategoriesSlider";
 
 async function Categories() {
   const data = await fetcher<DashBoardResponse>(`/platform/Dashboard/AllData`);
-  console.log(data)
+  console.log(data);
   const categories = data?.Data?.Categories?.filter((cat: Category) => cat?.Visible && cat?.VisibleOnHome);
 
   return (

@@ -6,7 +6,6 @@ export function formatDate(dateStr: string, format: DateFormatType = "full"): st
   const date = new Date(dateStr);
   if (isNaN(date.getTime())) return "";
 
-  // أسماء الشهور بالعربية
   const months = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
 
   let hours = date.getHours();
@@ -20,7 +19,6 @@ export function formatDate(dateStr: string, format: DateFormatType = "full"): st
   const monthName = months[date.getMonth()];
   const year = date.getFullYear();
 
-  // بناء الشكل حسب المطلوب
   switch (format) {
     case "date":
       return `${day}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${year}`;
