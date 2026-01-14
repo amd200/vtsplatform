@@ -56,10 +56,10 @@ export const metadata: Metadata = {
 
   authors: [{ name: "VTS Team" }],
 
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
+  // icons: {
+  //   icon: "/favicon.ico",
+  //   apple: "/apple-touch-icon.png",
+  // },
 
   openGraph: {
     title: "VTS Platform – منصتك التعليمية المتكاملة",
