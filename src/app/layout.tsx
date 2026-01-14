@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     siteName: "VTS Platform",
     images: [
       {
-        url: "/og-image.png",
+        url: "/assets/images/48452b18-a693-4265-90f2-eb230e6847f9.webp",
         width: 1200,
         height: 630,
         alt: "VTS Platform Preview",
