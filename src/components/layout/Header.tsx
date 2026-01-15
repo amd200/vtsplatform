@@ -41,9 +41,9 @@ async function Header() {
                 <Link href={"/"}>الكتب والخدمات</Link>
               </li>
             )}
-            <li>
+            {/* <li>
               <Link href={"/"}>المحاضرين</Link>
-            </li>
+            </li> */}
             <li>
               <Link href={"/"}>تواصل معنا</Link>
             </li>

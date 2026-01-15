@@ -44,23 +44,22 @@ function CategoryCard({ category }: { category: Category }) {
           <Image src={category?.ImageLink ? `${process.env.NEXT_PUBLIC_BASE_URL}${category.ImageLink}` : "https://vedu-demo.vtsitco.com/assets/images/noimage.jpg"} alt="Category Image" fill className="object-cover" />
         </Link>
 
-        {/* شارة السعر المائلة (Geometric Skewed Tag) */}
-        <div className="absolute top-4 right-0 z-10 py-1 pl-4 pr-6 bg-secondary/90 rounded-l-full shadow-lg flex items-center gap-1 transform skew-y-1">
-          <DollarSign className="w-4 h-4 text-white fill-white transform -skew-y-1" />
-          <span className="text-sm font-bold text-white transform -skew-y-1">{priceDisplay}</span>
-          {category?.Price > 0 && <span className="text-xs text-white/90 transform -skew-y-1">{currencyDisplay}</span>}
-        </div>
+        {category?.Sell && (
+          <div className="absolute top-4 right-0 z-10 py-1 pl-4 pr-6 bg-secondary/90 rounded-l-full shadow-lg flex items-center gap-1 transform skew-y-1">
+            <DollarSign className="w-4 h-4 text-white fill-white transform -skew-y-1" />
+            <span className="text-sm font-bold text-white transform -skew-y-1">{priceDisplay}</span>
+            {category?.Price > 0 && <span className="text-xs text-white/90 transform -skew-y-1">{currencyDisplay}</span>}
+          </div>
+        )}
       </div>
-      {/* 2. قسم المحتوى الرئيسي */}
       <div className="p-4 pb-0 relative z-10">
-        {/* العنوان (مع إطار خفيف) */}
         <CardHeader className="p-0 mb-3 pb-2 border border-gray-300 rounded-md p-2">
           <CardTitle>
             <Link href="#" className="text-base font-bold text-gray-900 hover:text-primary transition-colors line-clamp-2">
               {category?.NameAr}
             </Link>
           </CardTitle>
-          <CardDescription className="text-xs text-gray-600 mt-1 line-clamp-2">{category?.Details || "مجموعة من المقررات التعليمية المتميزة في هذا القسم."}</CardDescription>
+          <CardDescription className="text-xs text-gray-600 mt-1 line-clamp-2">{category?.Details}</CardDescription>
         </CardHeader>
 
         {/* شريط الإحصائيات (Metadata Bar) */}
