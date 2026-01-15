@@ -1,13 +1,23 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 
-export async function fetcher<T = unknown>(url: string, options: RequestInit = {}): Promise<T> {
+type FetcherOptions = RequestInit & {
+  revalidate?: number;
+};
+
+export async function fetcher<T = unknown>(url: string, options: FetcherOptions = {}): Promise<T> {
   try {
     const session = await getServerSession(authOptions);
-    // console.log("from fethcer", session);
-    const appToken = session?.user?.StudentToken ? `UhqBUAP3T6Irguej2ogSdg==` : "Beare UhqBUAP3T6Irguej2ogSdg==";
-    const baseURL = process.env.NEXT_PUBLIC_API_URL!;
+
+    const baseURL = process.env.NEXT_PUBLIC_API_URL;
+    if (!baseURL) {
+      throw new Error("API base URL is not defined");
+    }
+
+    const appToken = session?.user?.StudentToken ? "UhqBUAP3T6Irguej2ogSdg==" : "UhqBUAP3T6Irguej2ogSdg==";
+
     const res = await fetch(`${baseURL}${url}`, {
+      ...options,
       headers: {
         "Content-Type": "application/json",
         "X-App-Token": appToken,
@@ -15,20 +25,21 @@ export async function fetcher<T = unknown>(url: string, options: RequestInit = {
         Authorization: `Bearer UhqBUAP3T6Irguej2ogSdg==`,
         ...options.headers,
       },
-      ...options,
-      cache: "no-store",
+      next: options.revalidate ? { revalidate: options.revalidate } : undefined,
     });
 
-    const data = await res.json().catch(() => null);
-    console.log(data);
+    if (!res.ok) {
+      const errorText = await res.text();
+      throw new Error(errorText || `Request failed with status ${res.status}`);
+    }
 
-    // if (!res.ok || (data && data.success === false)) {
-    //   throw new Error(data?.message || "حدث خطأ أثناء الاتصال بالسيرفر");
-    // }
+    if (res.status === 204) {
+      return null as T;
+    }
 
-    return data as T;
+    return (await res.json()) as T;
   } catch (error) {
-    console.error(error);
-    throw error instanceof Error ? error : new Error("حدث خطأ غير متوقع أثناء جلب البيانات");
+    console.error("Fetcher error:", error);
+    throw error; // مهم جدًا
   }
 }
