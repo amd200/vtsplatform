@@ -68,7 +68,7 @@ function CourseCard({ course }: { course: Course }) {
       <Image src={snow} alt="snow" className="absolute h-[50px] top-[-30px] z-5" />
       <div className="relative h-48 w-full rounded overflow-hidden">
         {course?.ImageLink && (
-          <Link href="#">
+          <Link href={`/student/mycourses/${course?.CourseExecutionId}`}>
             <Image src={`${process.env.NEXT_PUBLIC_BASE_URL}${course?.ImageLink}`} alt="Course Image" fill className="object-cover" />
           </Link>
         )}
@@ -87,7 +87,7 @@ function CourseCard({ course }: { course: Course }) {
 
           <div className="flex flex-col border-b-2 border-primary pb-3 mb-3">
             <CardTitle>
-              <Link href="#" className="text-lg text-primary">
+              <Link href={`/student/mycourses/${course?.CourseExecutionId}`} className="text-lg text-primary">
                 {course?.Title}
               </Link>
             </CardTitle>
@@ -159,7 +159,7 @@ function CourseCard({ course }: { course: Course }) {
           {course?.IsDuration ? (
             <div className="flex items-center gap-1">
               <CalendarDays className="size-3" />
-              <span className="text-xs">لمدة {course?.Duration } يوم من تاريخ الشراء</span>
+              <span className="text-xs">لمدة {course?.Duration} يوم من تاريخ الشراء</span>
             </div>
           ) : (
             <>
