@@ -64,7 +64,7 @@ export default async function Home() {
     <>
       <Hero />
       <About />
-      {isLoggedIn && <Categories />}
+      {/* {isLoggedIn && <Categories />} */}
       <Courses />
       <HowItWork />
       <Statics />

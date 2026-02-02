@@ -7,11 +7,8 @@ declare module "next-auth" {
   }
 
   interface User {
-    id?: string;
-    StudentName?: string;
-    StudentToken?: string;
-    StudentImage?: string;
-    Role?: number;
+    id: string;
+    name: string | null;
   }
 }
 
