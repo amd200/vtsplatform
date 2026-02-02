@@ -61,6 +61,7 @@ async function loginRequest(endpoint: string, credentials: Credentials) {
   if (res.ok && data) {
     return {
       id: data?.Data?.UserId,
+      name: data?.Data?.StudentName,
       StudentName: data?.Data?.StudentName,
       StudentToken: data?.Data?.StudentToken,
       StudentImage: data?.Data?.StudentImage,
