@@ -59,12 +59,12 @@ function Footer() {
               {/* تباعد أصغر */}{" "}
               <li className="flex items-start gap-x-2">
                 <MapPin className="size-4 text-secondary flex-shrink-0 mt-0.5" />
-                <span className="text-xs">المسلة - ش جمال عبدالناصر، بجوار...</span>{" "}
+                <span className="text-xs">...</span>{" "}
               </li>
               <li className="flex items-center gap-x-2">
                 <Phone className="size-4 text-secondary flex-shrink-0" />
                 <Link className="text-xs text-gray-600 hover:text-primary transition-colors" href="tel:01115003800">
-                  01115003800
+                  01063751102
                 </Link>
               </li>{" "}
             </ul>{" "}
@@ -78,7 +78,7 @@ function Footer() {
               <li className="p-1.5 bg-gray-100 rounded-full hover:bg-primary transition-colors group">
                 {" "}
                 {/* padding أصغر */}
-                <a href="#" aria-label="فيسبوك">
+                <a href="https://www.facebook.com/ahmed.elhosseni.71" aria-label="فيسبوك">
                   <Facebook className="size-4 text-gray-600 group-hover:text-white transition-colors" /> {/* أيقونة أصغر */}
                 </a>
               </li>

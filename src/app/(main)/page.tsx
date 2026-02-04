@@ -11,6 +11,7 @@ import { StudentCoursesResponse } from "@/features/student/types/student.types";
 import Categories from "@/components/Home/Categories";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
+import Instructors from "@/components/Home/Instructors";
 
 // export async function generateMetadata(): Promise<Metadata> {
 //   try {
@@ -63,6 +64,7 @@ export default async function Home() {
   return (
     <>
       <Hero />
+      {/* <Instructors/> */}
       <About />
       {/* {isLoggedIn && <Categories />} */}
       <Courses />
