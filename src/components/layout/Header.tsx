@@ -11,8 +11,6 @@ import { GeneralSettingsResponse } from "@/types/common.types";
 import { fetcher } from "@/lib/api/fetcher";
 import UserMenu from "./UserMenu";
 async function Header() {
-  const data = await fetcher<GeneralSettingsResponse>(`/platform/settings/generalSettings`);
-  const settings = data?.Data;
   const session = await getServerSession(authOptions);
 
   const hour = new Date().getHours();
@@ -25,9 +23,7 @@ async function Header() {
         <div className="container flex items-center justify-between py-3 font-ar-medium gap-x-5">
           <div className="flex items-center gap-x-2">
             <Menu className="max-lg:block hidden" />
-            <Link href="/">
-              <Image src={settings?.PlatformLogo ? `${BASE_URL}${settings.PlatformLogo}` : "/images/default-logo.png"} alt={settings?.PlatformName || "Platform Logo"} width={160} height={60} className="h-12 w-auto object-contain cursor-pointer" />
-            </Link>
+            <Link href="/"><Image src={logo} alt={ "Platform Logo"} width={160} height={60} className="h-12 w-auto object-contain cursor-pointer" /></Link>
           </div>
           <ul className="lg:flex hidden gap-x-4 ms-5">
             <li>
@@ -36,11 +32,9 @@ async function Header() {
             <li>
               <Link href={"/"}>المعرض</Link>
             </li>
-            {settings?.UseSellBooks && (
-              <li>
-                <Link href={"/"}>الكتب والخدمات</Link>
-              </li>
-            )}
+            <li>
+              <Link href={"/"}>الكتب والخدمات</Link>
+            </li>
             {/* <li>
               <Link href={"/"}>المحاضرين</Link>
             </li> */}

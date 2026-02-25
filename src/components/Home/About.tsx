@@ -7,9 +7,9 @@ import { fetcher } from "@/lib/api/fetcher";
 import { stripHtml } from "@/utils/stripHtml";
 
 async function About() {
-  const data = await fetcher<GeneralSettingsResponse>(`/platform/settings/generalSettings`);
-  const settings = data?.Data;
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "";
+  // const data = await fetcher<GeneralSettingsResponse>(`/platform/settings/generalSettings`);
+  // const settings = data?.Data;
+  // const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "";
   return (
     <section className="pt-20">
       <div className="container grid lg:grid-cols-2 items-center">
@@ -31,7 +31,7 @@ async function About() {
     md:left-20 md:top-0 top-30
   "
           >
-            <Image fill src={BASE_URL + settings?.AboutImage} alt="Teacher" sizes="(max-width: 768px) 90vw, 371px" className="  object-cover object-bottom" />
+            <Image fill src={teacher} alt="Teacher" sizes="(max-width: 768px) 90vw, 371px" className="  object-cover object-bottom" />
           </div>
 
           <AboutStats />
@@ -42,7 +42,7 @@ async function About() {
           {/* <Image src={capbg} alt="lettersEng" className="absolute lg:size-[150px] size-[100px] top-2/3 lg:left-5 left-12 -translate-x-1/2" /> */}
           <div className="bg-[#2B7BAC0D] inline-block rounded-full px-3 py-1 text-lg text-primary mb-2">اختيارك الاول </div>
           <h2 className="font-bold lg:text-4xl text-3xl leading-normal mb-3 ">منصة Vedu</h2>
-          <p className="lg:text-lg text-lg  text-grey mb-5">{stripHtml(settings?.AboutText)}</p>
+          <p className="lg:text-lg text-lg  text-grey mb-5">وفرنالك اجواء تنافسية بينك وبين زمايلك عشان نحفزك تقفل .. لو طلعت من الأوائل في امتحانات اينشتاين هتفوز بجوايز مش هتخطر على بالك .. هنروق على الأوائل المتفوقين</p>
           <div className="grid lg:grid-cols-2 gap-y-7">
             <div className="flex items-center gap-2">
               <div className="size-9 rounded-full bg-secondary flex items-center justify-center text-white text-xs font-bold">

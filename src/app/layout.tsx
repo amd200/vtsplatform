@@ -100,8 +100,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const data = await fetcher<GeneralSettingsResponse>(`/platform/settings/generalSettings`);
-  const settings = data?.Data;
+
   return (
     <html lang="ar" dir="rtl" className={`${arLight.variable} ${cairo.variable} ${arMedium.variable} ${arBold.variable}`}>
       <body className={`antialiased font-ar-medium`}>
