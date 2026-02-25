@@ -65,6 +65,7 @@ export default async function Home() {
     <>
       <Hero />
       {/* <Instructors/> */}
+      
       <About />
       {/* {isLoggedIn && <Categories />} */}
       <Courses />
